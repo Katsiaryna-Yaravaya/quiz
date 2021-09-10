@@ -1,0 +1,26 @@
+html {
+    /* 1rem = 10px => 10 / 16 * 100 = 62,5%*/
+    font-size: 62.5%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.app {
+    background: #6A5ACD;
+    height: 100vh;
+    width: 100vw;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.app__heading {
+    color: white;
+}
+
