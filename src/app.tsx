@@ -1,23 +1,34 @@
+import {Switch, Route, BrowserRouter} from 'react-router-dom'
+
 import './index.css'
-import Question from "./question";
+import {COUNTRY_ROUT, FLAG_ROUT, MAIN} from "./constants/routs";
+import Quiz from "./components/quiz";
+import Main from "./components/main";
 
 const App = () => {
 
+    const question = {
+        country: ' is the capital of',
+        flag: 'Which country does this flag belong to?'
+    }
+
+
     return (
-        <div className='app container'>
-            <h1 className='app__heading'>
-                COUNTRY QUIZ
-            </h1>
-
-            <form>
-                <Question content = 'question'/>
-
-                {/*<input type='submit'>a</input>*/}
-                {/*<input type='submit'>b</input>*/}
-                {/*<input type='submit'>c</input>*/}
-                {/*<input type='submit'>d</input>*/}
-            </form>
-        </div>
+        <BrowserRouter>
+            <div className='app main'>
+                <div className='main__heading'>
+                    <h1 className='main__title'>
+                        COUNTRY QUIZ
+                    </h1>
+                    <Switch>
+                        <Route exact path={MAIN} component={Main}/>
+                        <Route path={FLAG_ROUT} render={() => <Quiz question={question.flag}/>}/>
+                        <Route path={COUNTRY_ROUT} render={() => <Quiz question={question.country}/>
+                        }/>
+                    </Switch>
+                </div>
+            </div>
+        </BrowserRouter>
     );
 }
 

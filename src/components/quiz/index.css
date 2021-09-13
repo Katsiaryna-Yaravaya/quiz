@@ -1,0 +1,22 @@
+.quiz-form {
+    background: white;
+    height: 51.5rem;
+    width: 43.2rem;
+    margin-top: 1rem;
+    border-radius: 24px;
+    border: none;
+    padding: 3.2rem;
+}
+
+@media (max-width: 58rem) {
+    .quiz-form {
+        height: 48rem;
+        width: 30rem;
+    }
+}
+
+@media (max-width: 42rem) {
+    .quiz-form {
+        width: 24rem;
+    }
+}

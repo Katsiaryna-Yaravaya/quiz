@@ -4,10 +4,13 @@
     "sourceMap": true,
     "target": "es5",
     "module": "esnext",
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "outFile": "Content/app.js",
     "allowSyntheticDefaultImports": true,
-    "lib": ["es6", "dom"],
+    "lib": [
+      "es6",
+      "dom"
+    ],
     "moduleResolution": "node",
     "allowJs": true,
     "skipLibCheck": true,
@@ -17,7 +20,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "noFallthroughCasesInSwitch": true
   },
   "include": [
     "src"
