@@ -1,9 +1,9 @@
 import {Switch, Route, BrowserRouter} from 'react-router-dom'
 
-import './index.css'
 import {COUNTRY_ROUT, FLAG_ROUT, MAIN} from "./constants/routs";
-import Quiz from "./components/quiz";
-import Main from "./components/main";
+
+import './index.css'
+import {Main, Quiz} from "./components";
 
 const App = () => {
 
