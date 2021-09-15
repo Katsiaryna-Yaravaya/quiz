@@ -3,11 +3,11 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../redux/root-reducer";
 
 import {Answers, Next, Question, QuestionCount} from "../index";
+import {getCurrentQuestion, saveCounter, saveGenerateCountryInformation} from "../../redux/country/actions";
 import {generateIndexCountry} from "../../utils";
 import {Country} from "../../interface/country.interface";
 
 import './index.css'
-import {saveGenerateCountryInformation} from "../../redux/country/actions";
 
 interface Props {
     question: string
@@ -25,7 +25,9 @@ const Quiz = ({question}: Props) => {
         }
     }, [data.country])
 
+
     return (
+
         <form className='quiz-form'>
             <QuestionCount/>
             <Question question={question}/>

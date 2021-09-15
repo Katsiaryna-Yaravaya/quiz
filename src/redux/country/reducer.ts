@@ -7,9 +7,8 @@ const INITIAL_STATE: CountryState = {
     counter: 1,
     currentQuestion: {
         name: '',
-        correctAnswer: '',
         capital: '',
-        currentId: '',
+        numericCode: '',
         allAnswers: []
     }
 }
@@ -27,7 +26,6 @@ const countryReducer = (state = INITIAL_STATE, action): CountryState => {
                 generateCountryInformation: action.payload
             }
         case types.countryActionTypes.SET_COUNTER:
-            console.log(action.payload)
             return {
                 ...state,
                 counter: action.payload
@@ -38,13 +36,13 @@ const countryReducer = (state = INITIAL_STATE, action): CountryState => {
                 currentQuestion: action.payload
             }
         case types.countryActionTypes.GENERATE_ANSWERS:
-
-
-            // return {
-            //     ...state,
-            //     currentQuestion: action.payload
-            // }
-
+            return {
+                ...state,
+                currentQuestion: {
+                    ...state.currentQuestion,
+                    allAnswers: action.payload
+                }
+            }
         default:
             return state
     }

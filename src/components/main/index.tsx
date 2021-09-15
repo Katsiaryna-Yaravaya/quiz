@@ -11,7 +11,6 @@ import './index.css'
 const Main = () => {
 
     const dispatch = useDispatch()
-
     const history = useHistory()
 
     const clickCountryHandler = () => {
@@ -27,6 +26,7 @@ const Main = () => {
     }
 
     return (
+
         <div className='main__chooseAQuiz'>
             <button
                 onClick={clickCountryHandler}

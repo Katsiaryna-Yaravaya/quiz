@@ -1,7 +1,6 @@
 export interface CurrentQuestion {
     name: string,
-    correctAnswer: string;
     capital: string;
-    currentId: string;
+    numericCode: string;
     allAnswers: string[]
 }

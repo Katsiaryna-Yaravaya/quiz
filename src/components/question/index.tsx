@@ -1,6 +1,7 @@
-import './index.css'
 import {useSelector} from "react-redux";
 import {RootState} from "../../redux/root-reducer";
+
+import './index.css'
 
 interface Props {
     question: string
