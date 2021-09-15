@@ -1,5 +1,5 @@
-import {useEffect, useState} from "react";
-import {useSelector} from "react-redux";
+import {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../redux/root-reducer";
 
 import {Answers, Next, Question, QuestionCount} from "../index";
@@ -7,6 +7,7 @@ import {generateIndexCountry} from "../../utils";
 import {Country} from "../../interface/country.interface";
 
 import './index.css'
+import {saveGenerateCountryInformation} from "../../redux/country/actions";
 
 interface Props {
     question: string
@@ -14,24 +15,15 @@ interface Props {
 
 const Quiz = ({question}: Props) => {
 
-    const [allCountryInformation, setAllCountryInformation] = useState([])
-    const [generateCountryInformation, setGenerateCountryInformation] = useState<Country[]>([])
-
     const {data} = useSelector((state: RootState) => state)
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        setAllCountryInformation(data.country)
-    }, [data.country])
-
-    useEffect(() => {
-        if (allCountryInformation) {
-            const generateCountryInformation: Country[]  = generateIndexCountry(allCountryInformation)
-            setGenerateCountryInformation(generateCountryInformation)
+        if(data.country){
+            const generateCountryInformation: Country[]  = generateIndexCountry(data.country, 10)
+            dispatch(saveGenerateCountryInformation(generateCountryInformation))
         }
-    }, [allCountryInformation])
-
-    console.log('generateCountryInformation',generateCountryInformation)
-    console.log('allCountryInformation', allCountryInformation)
+    }, [data.country])
 
     return (
         <form className='quiz-form'>

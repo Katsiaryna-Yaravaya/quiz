@@ -3,4 +3,3 @@ export interface Country {
     capital: string;
     numericCode: string;
 }
-
