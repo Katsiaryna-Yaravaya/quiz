@@ -1,40 +1,46 @@
-import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
+import {useSelector} from "react-redux";
 
 import {RootState} from "../../redux/root-reducer";
-import { showGenerateAnswer} from "../../redux/country/actions";
-import {generateIndexCountry} from "../../utils";
-import {Country} from "../../interface/country.interface";
 
 import './index.css'
 
 const Answers = () => {
 
-    const {currentQuestion, country, counter} = useSelector((state: RootState) => state.data)
-    const dispatch = useDispatch()
+    const {currentQuestion} = useSelector((state: RootState) => state.data)
+    const letterMapping = ["A", "B", "C", "D"];
 
-    useEffect(() => {
-        if (country) {
-            const generateAnswerCountryInformation: Country[] = generateIndexCountry(country, 3)
+    const handleAnswerClick = (e, answer) => {
+        e.preventDefault()
 
-            const generateAnswer = generateAnswerCountryInformation
-                .map(item => item.name)
-                .concat(currentQuestion.name)
-                .sort(() => {
-                    return 0.5 - Math.random()
-                });
+        const a = e.target.closest('.answer')
 
-            dispatch(showGenerateAnswer(generateAnswer))
+        if (answer === currentQuestion.name) {
+            a.classList.add('correct')
         }
-    }, [country, counter])
+        if (answer !== currentQuestion.name) {
+            a.classList.add('incorrect')
+        }
+    }
 
     return (
         <>
             {currentQuestion.allAnswers ? currentQuestion.allAnswers.map((answer, idx) => {
-                return (<div key={idx} className='answer'>
-                    <div className='answer__text'>
+                return (<div
+                    key={idx}
+                    onClick={(e) => handleAnswerClick(e, answer)}
+                    className='answer'>
+
+                    <span className="answer__letter">
+                        {letterMapping.map((item, i) => {
+                            if (i === idx) {
+                                return item
+                            }
+                        })}
+                    </span>
+
+                    <span className='answer__text'>
                         {answer}
-                    </div>
+                    </span>
                 </div>)
             }) : null}
         </>

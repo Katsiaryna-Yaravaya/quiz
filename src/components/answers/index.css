@@ -12,16 +12,26 @@
     margin-bottom: 2.5rem;
 }
 
-.answer:hover {
+.answer:hover:not(.correct, .incorrect) {
     background-color: #F9A826;
     color: white;
-    border:1px solid #F9A826;
+    border: 1px solid #F9A826;
+}
+
+.correct {
+    border: 1px solid rgb(53, 212, 53);
+    background-color: rgb(53, 212, 53);
+    color: white;
+}
+
+.incorrect {
+    background-color: rgb(206, 58, 58);
+    border: 1px solid rgb(206, 58, 58);
+    color: white;
 }
 
 .answer__letter {
-}
-
-.answer__text {
+    margin-right: 4.6rem;
 }
 
 @media (max-width: 58rem) {

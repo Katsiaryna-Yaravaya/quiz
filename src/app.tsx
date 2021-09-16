@@ -1,9 +1,10 @@
 import {Switch, Route, BrowserRouter} from 'react-router-dom'
 
-import {COUNTRY_ROUT, FLAG_ROUT, MAIN} from "./constants/routs";
+import {Main, Quiz, Results} from "./components";
+
+import {COUNTRY_ROUT, FLAG_ROUT, MAIN, RESULTS} from "./constants/routs";
 
 import './index.css'
-import {Main, Quiz} from "./components";
 
 const App = () => {
 
@@ -11,7 +12,6 @@ const App = () => {
         country: ' is the capital of',
         flag: 'Which country does this flag belong to?'
     }
-
 
     return (
         <BrowserRouter>
@@ -23,8 +23,8 @@ const App = () => {
                     <Switch>
                         <Route exact path={MAIN} component={Main}/>
                         <Route path={FLAG_ROUT} render={() => <Quiz question={question.flag}/>}/>
-                        <Route path={COUNTRY_ROUT} render={() => <Quiz question={question.country}/>
-                        }/>
+                        <Route path={COUNTRY_ROUT} render={() => <Quiz question={question.country}/>}/>
+                        <Route path={RESULTS} component={Results}/>
                     </Switch>
                 </div>
             </div>
