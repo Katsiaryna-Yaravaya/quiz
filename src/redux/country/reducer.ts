@@ -43,6 +43,19 @@ const countryReducer = (state = INITIAL_STATE, action): CountryState => {
                     allAnswers: action.payload
                 }
             }
+        case types.countryActionTypes.DELETE_DATA:
+            return {
+                ...state,
+                country: [],
+                generateCountryInformation: [],
+                counter: 1,
+                currentQuestion: {
+                    name: '',
+                    capital: '',
+                    numericCode: '',
+                    allAnswers: []
+                }
+            }
         default:
             return state
     }

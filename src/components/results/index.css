@@ -1,0 +1,33 @@
+.quiz-form__title {
+    margin-top: 25rem;
+    font-size: 4.8rem;
+    font-weight: bold;
+    color: #1D355D;
+    text-align: center;
+}
+
+.quiz-form__text {
+    color: #1D355D;
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+.quiz-form__text-count{
+    color: #90EE90;
+    font-weight: bold;
+    font-size: 2.8rem;
+}
+
+.quiz-form__try-again {
+    display: flex;
+    justify-content: center;
+    margin-top: 7rem;
+}
+
+.quiz-form__try-again-button {
+    cursor: pointer;
+    border: 2px solid #1D355D;
+    border-radius: 12px;
+    padding: 1.8rem 6rem;
+    font-size: 1.8rem;
+}

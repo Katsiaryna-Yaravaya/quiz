@@ -13,7 +13,7 @@ import {Country} from "../../interface/country.interface";
 import {
     GENERATE_NUMBER_INDEX_QUESTION_COUNTRY_INFORMATION,
     GENERATE_NUMBER_INDEX_ANSWER_COUNTRY_INFORMATION
-} from "../../constants/general";
+} from "../../constants/general.constants.";
 
 import './index.css'
 
@@ -57,7 +57,6 @@ const Quiz = ({question}: Props) => {
             <QuestionCount/>
             <Question question={question}/>
             <Answers/>
-            <Next/>
         </form>
     );
 }

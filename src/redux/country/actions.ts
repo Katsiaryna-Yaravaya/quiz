@@ -24,3 +24,8 @@ export const showGenerateAnswer = answers => ({
     type: types.countryActionTypes.GENERATE_ANSWERS,
     payload: answers
 })
+
+export const deleteData = () => ({
+    type: types.countryActionTypes.DELETE_DATA
+})
+

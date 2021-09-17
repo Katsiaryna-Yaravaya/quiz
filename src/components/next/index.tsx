@@ -23,7 +23,7 @@ const Next = () => {
     return (
 
         <div className='next'>
-            <button onClick={handleNextQuestionButton} className='next__button'>Next</button>
+            <button onClick={handleNextQuestionButton} type='button' className='next__button'>Next</button>
         </div>
     );
 }
