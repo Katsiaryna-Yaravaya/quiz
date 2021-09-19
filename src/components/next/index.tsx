@@ -4,13 +4,17 @@ import {getCurrentQuestion, saveCounter} from "../../redux/country/actions";
 
 import './index.css'
 
-const Next = () => {
+interface Props {
+    isNextQuestionState: () => void
+}
 
+const Next = ({isNextQuestionState}: Props) => {
     let {generateCountryInformation, counter} = useSelector((state: RootState) => state.data)
     const dispatch = useDispatch()
 
     const handleNextQuestionButton = (e) => {
         e.preventDefault()
+        isNextQuestionState()
 
         if (generateCountryInformation && (counter < generateCountryInformation.length)) {
             // +1 тк ++counter и на 9 ломается

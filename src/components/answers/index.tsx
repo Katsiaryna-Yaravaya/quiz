@@ -17,6 +17,10 @@ const Answers = () => {
     const [isNextQuestion, setIsNextQuestion] = useState<boolean>(false)
     const letterMapping = ["A", "B", "C", "D"];
 
+    const handleIsNextQuestionState = () => {
+        setIsNextQuestion(false)
+    }
+
     const handleAnswerClick = (e, answer) => {
 
         const searchNearParent = e.target.closest('.answer')
@@ -29,8 +33,8 @@ const Answers = () => {
         if (answer !== name) {
             searchNearParent.classList.add('incorrect')
 
-            currentQuestion.allAnswers.forEach((item, i)=> {
-                if(item === name) {
+            currentQuestion.allAnswers.forEach((item, i) => {
+                if (item === name) {
                     const answerButtons = Array.from(document.body.getElementsByClassName('answer'));
                     const correctAnswer = answerButtons[i];
                     setTimeout(() => correctAnswer.classList.add('correct'), 250);
@@ -40,8 +44,6 @@ const Answers = () => {
             setIsNextQuestion(false)
             setTimeout(() => history.push(RESULTS), 2000)
         }
-
-        // setIsNextQuestion(false)
     }
 
     return (
@@ -61,14 +63,14 @@ const Answers = () => {
                         })}
                     </span>
 
-                    <span className='answer__text'> {answer} </span>
+                        <span className='answer__text'> {answer} </span>
 
                     </div>
                 )
 
             }) : null}
 
-            {isNextQuestion ? <Next/> : null}
+            {isNextQuestion ? <Next isNextQuestionState={handleIsNextQuestionState}/> : null}
         </>
     )
 }
