@@ -1,6 +1,6 @@
 .quiz-form {
     background: white;
-    height: 51.5rem;
+    height: 54.6rem;
     width: 43.2rem;
     margin-top: 1rem;
     border-radius: 24px;
@@ -8,9 +8,18 @@
     padding: 3.2rem;
 }
 
+.quiz-form__travel-icon {
+    text-align: right;
+    margin-top: -10rem;
+}
+
+.quiz-form__icon {
+    height: 11.6rem;
+}
+
 @media (max-width: 58rem) {
     .quiz-form {
-        height: 48rem;
+        height: 50rem;
         width: 30rem;
     }
 }
