@@ -5,13 +5,13 @@ import { RootState } from '../redux/root-reducer'
 import { MAIN } from '../constants/routs.constants'
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-  const { country } = useSelector((state: RootState) => state.data)
+  const { countries } = useSelector((state: RootState) => state.data)
 
   return (
     <Route
       {...rest}
       render={props =>
-        !country.length ? <Redirect to={MAIN} /> : <Component {...props} />
+        !countries.length ? <Redirect to={MAIN} /> : <Component {...props} />
       }
     />
   )

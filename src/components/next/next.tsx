@@ -9,7 +9,7 @@ interface Props {
 }
 
 const Next = ({ isNextQuestionState }: Props) => {
-  const { generateCountryInformation, counter } = useSelector(
+  const { generateCountriesInformation, counter } = useSelector(
     (state: RootState) => state.data
   )
   const dispatch = useDispatch()
@@ -19,11 +19,11 @@ const Next = ({ isNextQuestionState }: Props) => {
     isNextQuestionState()
 
     if (
-      generateCountryInformation &&
-      counter < generateCountryInformation.length
+      generateCountriesInformation &&
+      counter < generateCountriesInformation.length
     ) {
       dispatch(saveCounter(counter + 1))
-      dispatch(getCurrentQuestion(generateCountryInformation[counter - 1]))
+      dispatch(getCurrentQuestion(generateCountriesInformation[counter - 1]))
     }
   }
 

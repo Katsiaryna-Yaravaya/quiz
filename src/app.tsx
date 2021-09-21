@@ -1,8 +1,7 @@
 import { Switch, Route, BrowserRouter } from 'react-router-dom'
 
-import { Main, Quiz, Results } from './components'
-
 import PrivateRoute from './private-rout/private-rout'
+import { Main, Quiz, Results } from './components'
 
 import {
   COUNTRY_ROUT,

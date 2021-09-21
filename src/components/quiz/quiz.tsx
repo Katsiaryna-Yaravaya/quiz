@@ -5,7 +5,7 @@ import { RootState } from '../../redux/root-reducer'
 import { Answers, Question, QuestionCount } from '../index'
 import {
   getCurrentQuestion,
-  saveGenerateCountryInformation,
+  saveGenerateCountriesInformation,
   showGenerateAnswer
 } from '../../redux/country/actions'
 import { generateIndexCountry } from '../../utils'
@@ -19,30 +19,31 @@ import { generalIcon } from '../../asserts/imgIcon'
 import './index.css'
 
 const Quiz = () => {
-  let { counter, currentQuestion, country } = useSelector(
+  let { counter, currentQuestion, countries } = useSelector(
     (state: RootState) => state.data
   )
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (country.length) {
+    if (countries.length) {
       const generateQuestionCountryInformation: Country[] =
         generateIndexCountry(
-          country,
+          countries,
           GENERATE_NUMBER_INDEX_QUESTION_COUNTRY_INFORMATION
         )
       dispatch(
-        saveGenerateCountryInformation(generateQuestionCountryInformation)
+        saveGenerateCountriesInformation(generateQuestionCountryInformation)
       )
       dispatch(getCurrentQuestion(generateQuestionCountryInformation[0]))
     }
-  }, [country])
+  }, [countries])
 
   useEffect(() => {
-    if (country.length && counter) {
+    if (countries.length && counter) {
       const generateAnswerCountryInformation: Country[] = generateIndexCountry(
-        country,
-        GENERATE_NUMBER_INDEX_ANSWER_COUNTRY_INFORMATION
+        countries,
+        GENERATE_NUMBER_INDEX_ANSWER_COUNTRY_INFORMATION,
+        currentQuestion.name
       )
 
       const generateAnswer = generateAnswerCountryInformation
@@ -54,7 +55,7 @@ const Quiz = () => {
 
       dispatch(showGenerateAnswer(generateAnswer))
     }
-  }, [country, counter, currentQuestion.name])
+  }, [countries, counter, currentQuestion.name])
 
   return (
     <form className="quiz-form">

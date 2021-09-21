@@ -1,8 +1,8 @@
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
-import { getCountryCapital, getCountryFlag } from '../../backend/api'
-import { saveCountry } from '../../redux/country/actions'
+import { getCountriesCapital, getCountriesFlag } from '../../backend/api'
+import { saveCountries } from '../../redux/country/actions'
 
 import { COUNTRY_ROUT, FLAG_ROUT } from '../../constants/routs.constants'
 
@@ -13,15 +13,15 @@ const Main = () => {
   const history = useHistory()
 
   const clickCountryHandler = () => {
-    getCountryCapital('name', 'capital', 'numericCode').then(resp => {
-      dispatch(saveCountry(resp))
+    getCountriesCapital('name', 'capital', 'numericCode').then(resp => {
+      dispatch(saveCountries(resp))
       history.push(COUNTRY_ROUT)
     })
   }
 
   const clickFlagHandler = () => {
-    getCountryFlag('name', 'flag', 'numericCode').then(resp => {
-      dispatch(saveCountry(resp))
+    getCountriesFlag('name', 'flag', 'numericCode').then(resp => {
+      dispatch(saveCountries(resp))
       history.push(FLAG_ROUT)
     })
   }

@@ -1,31 +1,30 @@
 import * as types from './types'
 
-export const saveCountry = country => ({
-    type: types.countryActionTypes.GET_COUNTRY,
-    payload: country
+export const saveCountries = countries => ({
+  type: types.countriesActionTypes.GET_COUNTRIES,
+  payload: countries
 })
 
-export const saveGenerateCountryInformation = countryInformation => ({
-    type: types.countryActionTypes.SET_GENERATE_COUNTRY_INFORMATION,
-    payload: countryInformation
+export const saveGenerateCountriesInformation = countriesInformation => ({
+  type: types.countriesActionTypes.SET_GENERATE_COUNTRIES_INFORMATION,
+  payload: countriesInformation
 })
 
 export const saveCounter = counter => ({
-    type: types.countryActionTypes.SET_COUNTER,
-    payload: counter
+  type: types.countriesActionTypes.SET_COUNTER,
+  payload: counter
 })
 
 export const getCurrentQuestion = currentQuestion => ({
-    type: types.countryActionTypes.GET_CURRENT_QUESTION,
-    payload: currentQuestion
+  type: types.countriesActionTypes.GET_CURRENT_QUESTION,
+  payload: currentQuestion
 })
 
 export const showGenerateAnswer = answers => ({
-    type: types.countryActionTypes.GENERATE_ANSWERS,
-    payload: answers
+  type: types.countriesActionTypes.GENERATE_ANSWERS,
+  payload: answers
 })
 
 export const deleteData = () => ({
-    type: types.countryActionTypes.DELETE_DATA
+  type: types.countriesActionTypes.DELETE_DATA
 })
-

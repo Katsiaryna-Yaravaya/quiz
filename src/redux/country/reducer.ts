@@ -2,41 +2,40 @@ import * as types from './types'
 import { CountryState } from '../../interface/countryState.interface'
 
 const INITIAL_STATE: CountryState = {
-  country: [],
-  generateCountryInformation: [],
+  countries: [],
+  generateCountriesInformation: [],
   counter: 1,
   currentQuestion: {
     name: '',
     flag: '',
     capital: '',
-    numericCode: '',
     allAnswers: []
   }
 }
 
 const countryReducer = (state = INITIAL_STATE, action): CountryState => {
   switch (action.type) {
-    case types.countryActionTypes.GET_COUNTRY:
+    case types.countriesActionTypes.GET_COUNTRIES:
       return {
         ...state,
-        country: action.payload
+        countries: action.payload
       }
-    case types.countryActionTypes.SET_GENERATE_COUNTRY_INFORMATION:
+    case types.countriesActionTypes.SET_GENERATE_COUNTRIES_INFORMATION:
       return {
         ...state,
-        generateCountryInformation: action.payload
+        generateCountriesInformation: action.payload
       }
-    case types.countryActionTypes.SET_COUNTER:
+    case types.countriesActionTypes.SET_COUNTER:
       return {
         ...state,
         counter: action.payload
       }
-    case types.countryActionTypes.GET_CURRENT_QUESTION:
+    case types.countriesActionTypes.GET_CURRENT_QUESTION:
       return {
         ...state,
         currentQuestion: action.payload
       }
-    case types.countryActionTypes.GENERATE_ANSWERS:
+    case types.countriesActionTypes.GENERATE_ANSWERS:
       return {
         ...state,
         currentQuestion: {
@@ -44,17 +43,16 @@ const countryReducer = (state = INITIAL_STATE, action): CountryState => {
           allAnswers: action.payload
         }
       }
-    case types.countryActionTypes.DELETE_DATA:
+    case types.countriesActionTypes.DELETE_DATA:
       return {
         ...state,
-        country: [],
-        generateCountryInformation: [],
+        countries: [],
+        generateCountriesInformation: [],
         counter: 1,
         currentQuestion: {
           name: '',
           flag: '',
           capital: '',
-          numericCode: '',
           allAnswers: []
         }
       }

@@ -5,7 +5,7 @@ import { RootState } from '../../redux/root-reducer'
 import './index.css'
 
 const QuestionCount = () => {
-  const { generateCountryInformation, counter } = useSelector(
+  const { generateCountriesInformation, counter } = useSelector(
     (state: RootState) => state.data
   )
 
@@ -14,8 +14,8 @@ const QuestionCount = () => {
       Question
       {counter ? <span> {counter} </span> : null}
       of
-      {generateCountryInformation ? (
-        <span> {generateCountryInformation.length} </span>
+      {generateCountriesInformation ? (
+        <span> {generateCountriesInformation.length} </span>
       ) : null}
     </div>
   )
