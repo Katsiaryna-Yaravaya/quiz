@@ -46,6 +46,12 @@
 
 /*end blink button*/
 
+.disable{
+    pointer-events: none;
+    opacity: 0.7;
+    color: grey;
+}
+
 .incorrect {
     background-color: rgb(206, 58, 58);
     border: 1px solid rgb(206, 58, 58);

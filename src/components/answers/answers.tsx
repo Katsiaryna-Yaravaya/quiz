@@ -15,25 +15,32 @@ const Answers = () => {
     currentQuestion: { allAnswers, name }
   } = useSelector((state: RootState) => state.data)
   const [isNextQuestion, setIsNextQuestion] = useState<boolean>(false)
+  const [isSelectedAnswer, setIsSelectedAnswer] = useState<boolean>(false)
   const letterMapping = ['A', 'B', 'C', 'D']
 
   const handleIsNextQuestionState = () => {
     setIsNextQuestion(false)
   }
 
+  const disableElementByClassName = (className)=> {
+    const answerButtons = Array.from(
+        document.body.getElementsByClassName(className)
+    )
+    answerButtons.forEach(el => el.classList.add('disable'))
+    return answerButtons;
+  }
+
   const handleAnswerClick = (e, answer) => {
+    if(isSelectedAnswer){
+      return
+    }
     const searchNearParent = e.target.closest('.answer')
+    setIsSelectedAnswer(true)
+    const answerButtons = disableElementByClassName('answer');
 
     if (answer === name) {
       searchNearParent.classList.add('correct')
       setIsNextQuestion(true)
-
-      allAnswers.forEach(() => {
-        if (!searchNearParent) {
-          Array.from(document.body.getElementsByClassName('answer'))
-          // searchNearParent.removeEventListener('click')
-        }
-      })
     }
 
     if (answer !== name) {
@@ -41,14 +48,10 @@ const Answers = () => {
 
       allAnswers.forEach((item, i) => {
         if (item === name) {
-          const answerButtons = Array.from(
-            document.body.getElementsByClassName('answer')
-          )
+
           const correctAnswer = answerButtons[i]
           setTimeout(() => correctAnswer.classList.add('correct'), 250)
         }
-
-        // searchNearParent.removeEventListener('click')
       })
 
       setIsNextQuestion(false)
@@ -64,7 +67,7 @@ const Answers = () => {
               <div
                 key={idx}
                 onClick={e => handleAnswerClick(e, answer)}
-                className="answer"
+                className='answer'
               >
                 <span className="answer__letter">
                   {letterMapping.map((item, i) => {
