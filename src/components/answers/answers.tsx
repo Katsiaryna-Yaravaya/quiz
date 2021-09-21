@@ -27,6 +27,13 @@ const Answers = () => {
     if (answer === name) {
       searchNearParent.classList.add('correct')
       setIsNextQuestion(true)
+
+      allAnswers.forEach(() => {
+        if (!searchNearParent) {
+          Array.from(document.body.getElementsByClassName('answer'))
+          // searchNearParent.removeEventListener('click')
+        }
+      })
     }
 
     if (answer !== name) {
@@ -40,6 +47,8 @@ const Answers = () => {
           const correctAnswer = answerButtons[i]
           setTimeout(() => correctAnswer.classList.add('correct'), 250)
         }
+
+        // searchNearParent.removeEventListener('click')
       })
 
       setIsNextQuestion(false)

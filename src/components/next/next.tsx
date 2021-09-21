@@ -33,6 +33,7 @@ const Next = ({ isNextQuestionState }: Props) => {
       history.push(RESULTS)
     }
   }
+
   return (
     <div className="next">
       <button
