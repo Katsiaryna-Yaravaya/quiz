@@ -1,8 +1,8 @@
 import { CurrentQuestion } from './currentQuestion.interface'
 
 export interface CountryState {
-  countries: []
-  generateCountriesInformation: []
+  countries: any[]
+  generateCountriesInformation: any[]
   counter: number
   currentQuestion: CurrentQuestion
 }

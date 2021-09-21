@@ -18,12 +18,12 @@ const countryReducer = (state = INITIAL_STATE, action): CountryState => {
     case types.countriesActionTypes.GET_COUNTRIES:
       return {
         ...state,
-        countries: action.payload
+        countries: [...action.payload]
       }
     case types.countriesActionTypes.SET_GENERATE_COUNTRIES_INFORMATION:
       return {
         ...state,
-        generateCountriesInformation: action.payload
+        generateCountriesInformation: [...action.payload]
       }
     case types.countriesActionTypes.SET_COUNTER:
       return {
@@ -33,14 +33,14 @@ const countryReducer = (state = INITIAL_STATE, action): CountryState => {
     case types.countriesActionTypes.GET_CURRENT_QUESTION:
       return {
         ...state,
-        currentQuestion: action.payload
+        currentQuestion: { ...action.payload }
       }
     case types.countriesActionTypes.GENERATE_ANSWERS:
       return {
         ...state,
         currentQuestion: {
           ...state.currentQuestion,
-          allAnswers: action.payload
+          allAnswers: [...action.payload]
         }
       }
     case types.countriesActionTypes.DELETE_DATA:

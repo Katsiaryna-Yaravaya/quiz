@@ -1,6 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../redux/root-reducer'
-import { getCurrentQuestion, saveCounter } from '../../redux/country/actions'
+import { useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
+
+import { saveCounter } from '../../redux/country/actions'
+import { RESULTS } from '../../constants/routs.constants'
 
 import './index.css'
 
@@ -12,21 +16,23 @@ const Next = ({ isNextQuestionState }: Props) => {
   const { generateCountriesInformation, counter } = useSelector(
     (state: RootState) => state.data
   )
+
   const dispatch = useDispatch()
+  const history = useHistory()
 
-  const handleNextQuestionButton = e => {
-    e.preventDefault()
-    isNextQuestionState()
+  useEffect(() => {}, [counter])
 
+  const handleNextQuestionButton = () => {
     if (
       generateCountriesInformation &&
       counter < generateCountriesInformation.length
     ) {
+      isNextQuestionState()
       dispatch(saveCounter(counter + 1))
-      dispatch(getCurrentQuestion(generateCountriesInformation[counter - 1]))
+    } else {
+      history.push(RESULTS)
     }
   }
-
   return (
     <div className="next">
       <button

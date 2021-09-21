@@ -19,9 +19,8 @@ import { generalIcon } from '../../asserts/imgIcon'
 import './index.css'
 
 const Quiz = () => {
-  let { counter, currentQuestion, countries } = useSelector(
-    (state: RootState) => state.data
-  )
+  let { counter, currentQuestion, countries, generateCountriesInformation } =
+    useSelector((state: RootState) => state.data)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -34,12 +33,15 @@ const Quiz = () => {
       dispatch(
         saveGenerateCountriesInformation(generateQuestionCountryInformation)
       )
-      dispatch(getCurrentQuestion(generateQuestionCountryInformation[0]))
     }
   }, [countries])
 
   useEffect(() => {
-    if (countries.length && counter) {
+    dispatch(getCurrentQuestion(generateCountriesInformation[counter - 1]))
+  }, [generateCountriesInformation, counter])
+
+  useEffect(() => {
+    if (countries.length) {
       const generateAnswerCountryInformation: Country[] = generateIndexCountry(
         countries,
         GENERATE_NUMBER_INDEX_ANSWER_COUNTRY_INFORMATION,
@@ -55,7 +57,7 @@ const Quiz = () => {
 
       dispatch(showGenerateAnswer(generateAnswer))
     }
-  }, [countries, counter, currentQuestion.name])
+  }, [currentQuestion.name])
 
   return (
     <form className="quiz-form">
