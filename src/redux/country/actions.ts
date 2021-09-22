@@ -29,26 +29,7 @@ export const deleteData = () => ({
   type: types.countriesActionTypes.DELETE_DATA
 })
 
-export const chooseByUserAnswer = answer => ({
-  type: types.countriesActionTypes.CHOOSE_BY_USER_ANSWER,
-  payload: answer
-})
-
-export const savedAllAnswers = answers => ({
-  type: types.countriesActionTypes.SAVE_ALL_ANSWERS,
-  payload: answers
-})
-
-export const savedCorrectAnswers = answers => ({
-  type: types.countriesActionTypes.SAVE_CORRECT_ANSWER,
-  payload: answers
-})
-
-export const savedCorrectNameAnswer = name => ({
-  type: types.countriesActionTypes.NAME_QUESTION,
-  payload: name
-})
-
-export const deleteAllDataIncludeDataAfterResult = () => ({
-  type: types.countriesActionTypes.DELETE_DATA_INCLUDE_DATA_AFTER_RESULT
+export const saveQuestionDataAnswer = data => ({
+  type: types.countriesActionTypes.SAVE_QUESTION_DATA_ANSWER,
+  payload: data
 })

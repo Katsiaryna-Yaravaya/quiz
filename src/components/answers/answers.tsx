@@ -4,28 +4,19 @@ import { useState } from 'react'
 
 import { RootState } from '../../redux/root-reducer'
 
-import {
-  chooseByUserAnswer,
-  savedAllAnswers,
-  savedCorrectAnswers,
-  savedCorrectNameAnswer
-} from '../../redux/country/actions'
-
 import { Next } from '../index'
 import { RESULTS } from '../../constants/routs.constants'
 
 import './index.css'
+import {AllSavedAnswer} from "../../interface/allSavedAnswer.interface";
+import {saveQuestionDataAnswer} from "../../redux/country/actions";
 
 const Answers = () => {
   const history = useHistory()
   const {
     currentQuestion: { allAnswers, name, flag, capital },
-    showAllDataAfterResult: {
-      chooseByUser,
-      allSavedAnswer,
-      correctAnswer,
-      nameQuestion
-    }
+    allDataAfterResult
+
   } = useSelector((state: RootState) => state.data)
   const dispatch = useDispatch()
   const [isNextQuestion, setIsNextQuestion] = useState<boolean>(false)
@@ -46,23 +37,14 @@ const Answers = () => {
   }
 
   const handleAnswerClick = (e, answer) => {
-    const saveAllClickAnswers = chooseByUser.concat(answer)
-    dispatch(chooseByUserAnswer(saveAllClickAnswers))
+    const dataAfterResult = {
+      chooseByUser: answer,
+      allSavedAnswers: allAnswers,
+      correctAnswer: name,
+      titleQuestion: capital || flag,
+    }
 
-    // @ts-ignore
-    const saveGenerateAnswer = allSavedAnswer.concat({ ...allAnswers })
-    dispatch(savedAllAnswers(saveGenerateAnswer))
-
-    const correctQuestionNameCapital = nameQuestion.concat(capital)
-    const correctQuestionNameFlag = nameQuestion.concat(flag)
-    dispatch(
-      savedCorrectNameAnswer(
-        correctQuestionNameCapital || correctQuestionNameFlag
-      )
-    )
-
-    const savedCorrectName = correctAnswer.concat(name)
-    dispatch(savedCorrectAnswers(savedCorrectName))
+    dispatch(saveQuestionDataAnswer(dataAfterResult))
 
     if (isSelectedAnswer) {
       return

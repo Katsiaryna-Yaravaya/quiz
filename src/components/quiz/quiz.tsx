@@ -5,7 +5,6 @@ import { RootState } from '../../redux/root-reducer'
 import { Answers, Question, QuestionCount } from '../index'
 import {
   getCurrentQuestion,
-  savedAllAnswers,
   saveGenerateCountriesInformation,
   showGenerateAnswer
 } from '../../redux/country/actions'
@@ -25,7 +24,6 @@ const Quiz = () => {
     currentQuestion: { name, allAnswers },
     countries,
     generateCountriesInformation,
-    showAllDataAfterResult: { allSavedAnswer }
   } = useSelector((state: RootState) => state.data)
   const dispatch = useDispatch()
 

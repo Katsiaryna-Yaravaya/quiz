@@ -2,7 +2,7 @@ import {
   Countries,
   CurrentQuestion,
   GenerateCountriesInformation,
-  ShowAllDataAfterResult
+  QuestionDataAnswer
 } from './index.interface'
 
 export interface CountryState {
@@ -10,5 +10,5 @@ export interface CountryState {
   generateCountriesInformation: GenerateCountriesInformation[]
   counter: number
   currentQuestion: CurrentQuestion
-  showAllDataAfterResult: ShowAllDataAfterResult
+  allDataAfterResult: QuestionDataAnswer[]
 }
