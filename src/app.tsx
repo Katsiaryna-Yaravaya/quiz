@@ -7,7 +7,8 @@ import {
   COUNTRY_ROUT,
   FLAG_ROUT,
   MAIN,
-  RESULTS
+  RESULTS,
+  SHOW_RESULT_QUIZ_ROUT
 } from './constants/routs.constants'
 
 import './index.css'
@@ -23,6 +24,7 @@ const App = () => {
             <PrivateRoute path={FLAG_ROUT} component={Quiz} />
             <PrivateRoute path={COUNTRY_ROUT} component={Quiz} />
             <PrivateRoute path={RESULTS} component={Results} />
+            <PrivateRoute path={SHOW_RESULT_QUIZ_ROUT} component={Quiz} />
           </Switch>
         </div>
       </div>

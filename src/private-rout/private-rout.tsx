@@ -11,10 +11,11 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={props =>
-        !countries.length ? <Redirect to={MAIN} /> : <Component {...props} />
+        false ? <Redirect to={MAIN} /> : <Component {...props} />
       }
     />
   )
 }
+//!countries
 
 export default PrivateRoute

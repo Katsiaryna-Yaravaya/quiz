@@ -1,8 +1,14 @@
-import { CurrentQuestion } from './currentQuestion.interface'
+import {
+  Countries,
+  CurrentQuestion,
+  GenerateCountriesInformation,
+  ShowAllDataAfterResult
+} from './index.interface'
 
 export interface CountryState {
-  countries: any[]
-  generateCountriesInformation: any[]
+  countries: Countries[]
+  generateCountriesInformation: GenerateCountriesInformation[]
   counter: number
   currentQuestion: CurrentQuestion
+  showAllDataAfterResult: ShowAllDataAfterResult
 }

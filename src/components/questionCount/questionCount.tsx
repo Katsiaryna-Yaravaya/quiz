@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { RootState } from '../../redux/root-reducer'
 
 import './index.css'
+import { GENERATE_NUMBER_INDEX_QUESTION_COUNTRY_INFORMATION } from '../../constants/general.constants.'
 
 const QuestionCount = () => {
   const { generateCountriesInformation, counter } = useSelector(
@@ -15,7 +16,7 @@ const QuestionCount = () => {
       {counter ? <span> {counter} </span> : null}
       of
       {generateCountriesInformation ? (
-        <span> {generateCountriesInformation.length} </span>
+        <span> {GENERATE_NUMBER_INDEX_QUESTION_COUNTRY_INFORMATION} </span>
       ) : null}
     </div>
   )

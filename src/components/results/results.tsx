@@ -1,9 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
-import { deleteData } from '../../redux/country/actions'
+import {
+  deleteAllDataIncludeDataAfterResult,
+  deleteData
+} from '../../redux/country/actions'
 import { RootState } from '../../redux/root-reducer'
-import { MAIN } from '../../constants/routs.constants'
+import { MAIN, SHOW_RESULT_QUIZ_ROUT } from '../../constants/routs.constants'
 import { GENERATE_NUMBER_INDEX_QUESTION_COUNTRY_INFORMATION } from '../../constants/general.constants.'
 
 import { imgResults } from '../../asserts/imgIcon'
@@ -14,9 +17,15 @@ const Results = () => {
   const history = useHistory()
   const dispatch = useDispatch()
 
-  const handleClick = () => {
+  const handleClickRepeat = () => {
     dispatch(deleteData())
     history.push(MAIN)
+  }
+  const handleClickShowResult = e => {
+    e.preventDefault()
+
+    dispatch(deleteAllDataIncludeDataAfterResult())
+    history.push(SHOW_RESULT_QUIZ_ROUT)
   }
 
   return (
@@ -40,8 +49,19 @@ const Results = () => {
         correct answers
       </p>
 
-      <div className="quiz-form__try-again" onClick={handleClick}>
-        <button className="quiz-form__try-again-button">Try again</button>
+      <div className="quiz-form__try-again">
+        <button
+          className="quiz-form__try-again-button"
+          onClick={handleClickRepeat}
+        >
+          Try again
+        </button>
+        <button
+          className="quiz-form__try-again-button"
+          onClick={handleClickShowResult}
+        >
+          Show result
+        </button>
       </div>
     </form>
   )
