@@ -1,28 +1,35 @@
 import './index.css'
+import {useState} from "react";
+import {useDispatch} from "react-redux";
+import {saveCounter} from "../../redux/country/actions";
 
 interface Props {
-  answer: string,
-    answerClick: (
-        answer: string,
-        index?: number
-    ) => void,
+    answer: string,
+    answerClick: (answer: string, index?: number) => string,
     letter: string,
-    setStyleClickAnswer?: string,
-    className?:string,
-    index: number
+    correctAnswer: string
 }
 
-const AnswersItem = ({ answer, answerClick, letter, setStyleClickAnswer, className, index }: Props) => {
+const AnswersItem = ({answer, answerClick, correctAnswer, letter}: Props) => {
+    const [styleAnswer, setStyleClickAnswer] = useState<string>('')
 
-  return (
-    <div onClick={() => answerClick( answer, index)} className={`answer ${setStyleClickAnswer}`}>
-      <span className="answer__letter">{letter}</span>
+    const handleClick = () => {
+        const a = answerClick(answer)
+        setStyleClickAnswer(a)
+        console.log('a', a)
 
-      <span title={answer} className="answer__text">
+    }
+
+    return (
+        <div onClick={handleClick} className={styleAnswer ? `answer ${styleAnswer}` : `answer ${styleAnswer}`}>
+            <span className="answer__letter">{letter}</span>
+
+            <span title={answer} className="answer__text">
         {' '}
-        {answer}{' '}
+                {answer}{' '}
       </span>
-    </div>
-  )
+        </div>
+    )
 }
+
 export default AnswersItem

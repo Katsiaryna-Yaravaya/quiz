@@ -1,121 +1,123 @@
-import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom'
-import { MouseEventHandler, useState } from 'react'
+import {useDispatch, useSelector} from 'react-redux'
+import {useHistory} from 'react-router-dom'
+import {useEffect, useState} from 'react'
 
-import { RootState } from '../../redux/root-reducer'
+import {RootState} from '../../redux/root-reducer'
 
-import { Next, AnswersItem } from '../index'
-import { RESULTS } from '../../constants/routs.constants'
-import { saveQuestionDataAnswer } from '../../redux/country/actions'
-import { QuestionDataAnswer } from '../../interface/questionDataAnswer.interface'
+import {Next, AnswersItem} from '../index'
+import {saveCounter, saveQuestionDataAnswer, showGenerateAnswer} from '../../redux/country/actions'
+import {QuestionDataAnswer} from '../../interface/questionDataAnswer.interface'
 
 import './index.css'
 
 export enum AnswerState {
-  DEFAULT = 0,
-  CORRECT = 1,
-  INCORRECT = 2
+    DEFAULT = 0,
+    CORRECT = 1,
+    INCORRECT = 2
 }
 
 const Answers = () => {
-  const history = useHistory()
-  const { currentQuestion: {allAnswers, name} } = useSelector((state: RootState) => state.data)
-  const dispatch = useDispatch()
-  const [isNextQuestion, setIsNextQuestion] = useState<boolean>(false)
-  const [isSelectedAnswer, setIsSelectedAnswer] = useState<boolean>(false)
-  const [styleClickAnswer, setStyleClickAnswer] = useState('')
-  // const [styleAnswer, setStyleClickAnswer] = useState<boolean>()
-  // const [enumString, setEnumString] = useState(['default', 'correct', 'incorrect'])
-  // @ts-ignore
-  const [defaultName, setDefaultName] = useState([
-    AnswerState.DEFAULT,
-    AnswerState.DEFAULT,
-    AnswerState.DEFAULT,
-    AnswerState.DEFAULT
-  ])
-  // const [defaultName, setDefaultName] = useState(currentQuestion.allAnswers?.fill(AnswerState.DEFAULT))
-  const letterMapping = ['A', 'B', 'C', 'D']
 
-  const handleIsNextQuestionState = () => {
-    setIsSelectedAnswer(false)
-    setIsNextQuestion(false)
-  }
-  // console.log(allAnswers)
+    const {
+        currentQuestion: {allAnswers, name, capital},
+        allDataAfterResult
+    } = useSelector((state: RootState) => state.data)
+    const history = useHistory()
+    const dispatch = useDispatch()
+    const [isNextQuestion, setIsNextQuestion] = useState<boolean>(false)
+    const [isSelectedAnswer, setIsSelectedAnswer] = useState<boolean>(false)
+    const [styleClickAnswer, setStyleClickAnswer] = useState('')
 
-  // const disableElementByClassName = className => {
-  //
-  // }
-  // currentQuestion.allAnswers.forEach((item) => {
-  //   if (item === currentQuestion.name) {
-  //     return setTimeout(() => 'correct', 250)
-  //   }
-  // })
-  // return setStyleClickAnswer(true)
-  // return setStyleClickAnswer(false)
-  // const enumString = ['default', 'correct', 'incorrect']
-  // const defaultName = ['default','default','default','default']
+    const letterMapping = ['A', 'B', 'C', 'D']
 
-  const handleAnswerClick = (answer, idx) => {
-
-    const allResult = []
-
-    // @ts-ignore
-    const f = allResult.push((item, idx)=>{
-
-      return (allAnswers[idx] ===allResult[idx]) ? AnswerState.CORRECT : AnswerState.INCORRECT
-    })
-    // console.log(f)
-
-
-    // const f = defaultName.map((item, idx) => {
-    //   console.log(item)
-    //   if (item[idx]===currentQuestion.name) {
-    //     if (currentQuestion.name === answer) {
-    //       // @ts-ignore
-    //       return allResult.push(AnswerState.CORRECT)
-    //     }
-    //     if (currentQuestion.name !== answer) {
-    //       // @ts-ignore
-    //       return allResult.push(AnswerState.INCORRECT)
-    //     }
-    //     // @ts-ignore
-    //     return allResult.push(item)
-    //   }
-    //   console.log(allResult)
-    // })
-    // console.log('allResult',allResult)
-    // console.log('f',f)
-
-    if (answer === name) {
-      return setStyleClickAnswer('correct')
-    } else {
-      return setStyleClickAnswer('incorrect')
+    const handleIsNextQuestionState = () => {
+        setIsSelectedAnswer(false)
+        setIsNextQuestion(false)
     }
-  }
 
-  return (
-    <>
-      {!!allAnswers &&
-        allAnswers.map((answer, idx) => {
-          return (
-            <AnswersItem
-              key={idx}
-              setStyleClickAnswer={styleClickAnswer}
-              // setDefaultName={defaultName}
-              // className = {styleClickAnswer? 'correct' : 'incorrect'}
-              letter={letterMapping[idx]}
-              answer={answer}
-              answerClick={() => handleAnswerClick(answer, idx)}
-              index={idx}
-            />
-          )
-        })}
+    // const disableElementByClassName = className => {
+    //
+    // }
+    // currentQuestion.allAnswers.forEach((item) => {
+    //   if (item === currentQuestion.name) {
+    //     return setTimeout(() => 'correct', 250)
+    //   }
+    // })
+    // return setStyleClickAnswer(true)
+    // return setStyleClickAnswer(false)
+    // const enumString = ['default', 'correct', 'incorrect']
+    // const defaultName = ['default','default','default','default']
+//
+//     const b = () => {
+//         allAnswers.forEach((item) => {
+//             if (item === name) {
+//                 const g =  setTimeout(() => {'correct'}, 250)
+//                 console.log('g', g)
+// return g
+//             }
+//         })
+//     }
+    useEffect(() => {
+        console.log('--------------')
+        handleAnswerClick(name, false)
 
-      {/*{isNextQuestion ? (*/}
-      <Next isNextQuestionState={handleIsNextQuestionState} />
-      {/*) : null}*/}
-    </>
-  )
+    }, [allDataAfterResult.length])
+    const b = () => {
+        allAnswers.forEach((item) => {
+                if (item === name) {
+                    return 'correct'
+                }
+            }
+        )
+    }
+    const show = async () => {
+        await setTimeout(()=>{
+
+        },500)
+        return
+    }
+
+    const handleAnswerClick = (answer , skipSaveCard) => {
+
+        if(skipSaveCard){
+            saveCard(answer)
+        }
+
+        if (answer === name) {
+            return 'correct'
+        } else if (answer !== name) {
+            return 'incorrect'
+        } else {
+            return ''
+        }
+    }
+    const saveCard = (answer) => {
+        dispatch(saveQuestionDataAnswer({
+            chooseByUser: answer,
+            currentQuestion: {allAnswers, name, capital}
+        }))
+    }
+
+    return (
+        <>
+            {!!allAnswers &&
+            allAnswers.map((answer, idx) => {
+                return (
+                    <AnswersItem
+                        key={idx}
+                        letter={letterMapping[idx]}
+                        answer={answer}
+                        answerClick={() => handleAnswerClick(answer, true)}
+                        correctAnswer={name}
+                    />
+                )
+            })}
+
+            {/*{isNextQuestion ? (*/}
+            <Next isNextQuestionState={handleIsNextQuestionState}/>
+            {/*) : null}*/}
+        </>
+    )
 }
 
 export default Answers
