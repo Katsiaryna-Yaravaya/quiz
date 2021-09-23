@@ -1,8 +1,6 @@
-import { AllSavedAnswer } from './index.interface'
+import { CurrentQuestion } from './index.interface'
 
 export interface QuestionDataAnswer {
   chooseByUser: string
-  allSavedAnswers: AllSavedAnswer[]
-  correctAnswer: string
-  titleQuestion: string
+  currentQuestion: CurrentQuestion
 }

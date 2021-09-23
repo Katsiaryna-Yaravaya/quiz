@@ -2,8 +2,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
 import {
-  // deleteAllDataIncludeDataAfterResult,
-  deleteData
+  deleteData,
+  deleteDataIncludeAfterResult
 } from '../../redux/country/actions'
 import { RootState } from '../../redux/root-reducer'
 import { MAIN, SHOW_RESULT_QUIZ_ROUT } from '../../constants/routs.constants'
@@ -24,7 +24,7 @@ const Results = () => {
   const handleClickShowResult = e => {
     e.preventDefault()
 
-    // dispatch(deleteAllDataIncludeDataAfterResult())
+    dispatch(deleteDataIncludeAfterResult())
     history.push(SHOW_RESULT_QUIZ_ROUT)
   }
 

@@ -33,3 +33,7 @@ export const saveQuestionDataAnswer = data => ({
   type: types.countriesActionTypes.SAVE_QUESTION_DATA_ANSWER,
   payload: data
 })
+
+export const deleteDataIncludeAfterResult = () => ({
+  type: types.countriesActionTypes.DELETE_DATA_INCLUDE_AFTER_RESULT
+})

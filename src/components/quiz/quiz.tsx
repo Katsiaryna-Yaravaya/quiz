@@ -21,9 +21,9 @@ import './index.css'
 const Quiz = () => {
   let {
     counter,
-    currentQuestion: { name, allAnswers },
+    currentQuestion: { name },
     countries,
-    generateCountriesInformation,
+    generateCountriesInformation
   } = useSelector((state: RootState) => state.data)
   const dispatch = useDispatch()
 

@@ -1,0 +1,35 @@
+.answer {
+    height: 2rem;
+    border: 1px solid #6A5ACD;
+    border-radius: 12px;
+    padding: 1rem;
+    color: #6A5ACD;
+    font-weight: 500;
+    font-size: 1.8rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-bottom: 2.5rem;
+}
+
+.answer:hover:not(.correct, .incorrect) {
+    background-color: #F9A826;
+    color: white;
+    border: 1px solid #F9A826;
+}
+
+.answer__letter {
+    margin-right: 4.6rem;
+}
+
+.answer__text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 58rem) {
+    .answer {
+        font-size: 1.4rem;
+    }
+}

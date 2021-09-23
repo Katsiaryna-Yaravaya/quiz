@@ -1,7 +1,7 @@
 import { Switch, Route, BrowserRouter } from 'react-router-dom'
 
 import PrivateRoute from './private-rout/private-rout'
-import { Main, Quiz, Results } from './components'
+import { Main, Quiz, Results, AnswersQuiz } from './components'
 
 import {
   COUNTRY_ROUT,
@@ -24,7 +24,10 @@ const App = () => {
             <PrivateRoute path={FLAG_ROUT} component={Quiz} />
             <PrivateRoute path={COUNTRY_ROUT} component={Quiz} />
             <PrivateRoute path={RESULTS} component={Results} />
-            <PrivateRoute path={SHOW_RESULT_QUIZ_ROUT} component={Quiz} />
+            <PrivateRoute
+              path={SHOW_RESULT_QUIZ_ROUT}
+              component={AnswersQuiz}
+            />
           </Switch>
         </div>
       </div>
