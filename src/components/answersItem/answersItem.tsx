@@ -1,35 +1,30 @@
+import {AnswerState} from "../../enum/AnswerState.enum";
+
 import './index.css'
-import {useState} from "react";
-import {useDispatch} from "react-redux";
-import {saveCounter} from "../../redux/country/actions";
 
 interface Props {
-    answer: string,
-    answerClick: (answer: string, index?: number) => string,
-    letter: string,
-    correctAnswer: string
+  answer: string,
+  setAnswerStateValue: AnswerState,
+  answerClick: (answer: string) => void,
+  letter: string,
 }
 
-const AnswersItem = ({answer, answerClick, correctAnswer, letter}: Props) => {
-    const [styleAnswer, setStyleClickAnswer] = useState<string>('')
+const AnswersItem = ({answer, answerClick, setAnswerStateValue, letter}: Props) => {
 
-    const handleClick = () => {
-        const a = answerClick(answer)
-        setStyleClickAnswer(a)
-        console.log('a', a)
+  const handleClick = () => {
+    answerClick(answer)
+  }
 
-    }
+  return (
+    <div onClick={handleClick} className={`answer ` + setAnswerStateValue}>
+      <span className="answer__letter">{letter}</span>
 
-    return (
-        <div onClick={handleClick} className={styleAnswer ? `answer ${styleAnswer}` : `answer ${styleAnswer}`}>
-            <span className="answer__letter">{letter}</span>
-
-            <span title={answer} className="answer__text">
+      <span title={answer} className="answer__text">
         {' '}
-                {answer}{' '}
+        {answer}{' '}
       </span>
-        </div>
-    )
+    </div>
+  )
 }
 
 export default AnswersItem
