@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import { RootState } from '../../redux/root-reducer'
 
 import { saveQuestionDataAnswer } from '../../redux/country/actions'
-import { AnswersItem, Next } from '../index'
+import { AnswerItem, Next } from '../index'
 
 import { RESULTS } from '../../constants/routs.constants'
 import { AnswerState } from '../../enum/AnswerState.enum'
@@ -20,8 +20,8 @@ const Answers = () => {
   const [isSelectedAnswer, setIsSelectedAnswer] = useState<boolean>(false)
   const [answerStateValue, setAnswerStateValue] = useState<AnswerState[]>([
     AnswerState.DEFAULT,
-    AnswerState.INCORRECT,
-    AnswerState.CORRECT,
+    AnswerState.DEFAULT,
+    AnswerState.DEFAULT,
     AnswerState.DEFAULT
   ])
   const letterMapping = ['A', 'B', 'C', 'D']
@@ -32,10 +32,7 @@ const Answers = () => {
   }
 
   useEffect(() => {
-    allAnswers &&
-      setAnswerStateValue(
-        Array(allAnswers.length).fill(AnswerState.DEFAULT, 0, allAnswers.length)
-      )
+    allAnswers && setAnswerStateValue(Array(allAnswers.length).fill(AnswerState.DEFAULT, 0, allAnswers.length))
   }, [allAnswers])
 
   // const disableElementByClassName = className => {
@@ -60,9 +57,7 @@ const Answers = () => {
     if (isSelectedAnswer) {
       return
     }
-
     setIsSelectedAnswer(true)
-
     const resultState: AnswerState[] = []
 
     allAnswers.forEach((answerItem: string) => {
@@ -73,9 +68,6 @@ const Answers = () => {
           ? AnswerState.INCORRECT
           : AnswerState.DEFAULT
 
-      // if (answerItem === name){
-      //   setTimeout(() => AnswerState.CORRECT, 1500)
-      // }
       if (currentAnswerState === AnswerState.CORRECT && answer === name) {
         setIsNextQuestion(true)
       }
@@ -92,11 +84,11 @@ const Answers = () => {
       {!!allAnswers &&
         allAnswers.map((answer, idx) => {
           return (
-            <AnswersItem
+            <AnswerItem
               key={idx}
               letter={letterMapping[idx]}
               answer={answer}
-              setAnswerStateValue={answerStateValue[idx]}
+              answerStateValue={answerStateValue[idx]}
               answerClick={() => handleAnswerClick(answer)}
             />
           )
