@@ -13,20 +13,25 @@ interface Props {
 
 const AnswerItem = ({answer, answerClick, answerStateValue, letter}: Props) => {
   const [styleAnswer, setStyleAnswer] = useState('answer ')
+  const concatStyle = `answer ` + answerStateValue
 
   useEffect(() => {
-    const concatStyle = `answer ` + answerStateValue
     if (concatStyle === 'answer correct') {
-      setTimeout(() => {
+
         setStyleAnswer(concatStyle)
-      }, 250)
-    } else {
+    } else if (concatStyle === 'answer incorrect'){
+
       setStyleAnswer(concatStyle)
+      setTimeout(() => {setStyleAnswer(concatStyle)}, 500)
+    } else {
+      setStyleAnswer('answer ')
     }
   }, [answerStateValue])
 
   const handleClick = () => {
+
     answerClick(answer)
+    setStyleAnswer(concatStyle)
   }
 
   return (
