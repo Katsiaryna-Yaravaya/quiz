@@ -102,6 +102,7 @@ const Answers = () => {
         <>
             {!!allAnswers &&
             allAnswers.map((answer, idx) => {
+                console.log('00000000')
                 return (
                     <AnswersItem
                         key={idx}
