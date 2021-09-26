@@ -17,19 +17,16 @@ const AnswerItem = ({answer, answerClick, answerStateValue, letter}: Props) => {
 
   useEffect(() => {
     if (concatStyle === 'answer correct') {
-
-        setStyleAnswer(concatStyle)
+      const timer = setTimeout(() => setStyleAnswer(concatStyle), 250)
+      return () => clearTimeout(timer);
     } else if (concatStyle === 'answer incorrect'){
-
       setStyleAnswer(concatStyle)
-      setTimeout(() => {setStyleAnswer(concatStyle)}, 500)
     } else {
       setStyleAnswer('answer ')
     }
   }, [answerStateValue])
 
   const handleClick = () => {
-
     answerClick(answer)
     setStyleAnswer(concatStyle)
   }
