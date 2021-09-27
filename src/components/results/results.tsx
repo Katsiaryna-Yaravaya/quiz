@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
-import {deleteData, deleteDataIncludeAfterResult} from '../../redux/country/actions'
+import {deleteData, clearAllAnsweredQuestions} from '../../redux/country/actions'
 import { RootState } from '../../redux/root-reducer'
 import { MAIN, SHOW_RESULT_QUIZ_ROUT } from '../../constants/routs.constants'
-import { GENERATE_NUMBER_INDEX_QUESTION_COUNTRY_INFORMATION } from '../../constants/general.constants.'
+import { GENERATE_NUMBER_INDEX_QUESTION_COUNTRY } from '../../constants/general.constants.'
 
 import { imgResults } from '../../asserts/imgIcon'
 
@@ -22,7 +22,7 @@ const Results = () => {
   const handleClickShowResult = e => {
     e.preventDefault()
 
-    dispatch(deleteDataIncludeAfterResult())
+    dispatch(clearAllAnsweredQuestions())
     history.push(SHOW_RESULT_QUIZ_ROUT)
   }
 
@@ -40,7 +40,7 @@ const Results = () => {
         You got
         <span className="quiz-form__text-count">
           {' '}
-          {counter === GENERATE_NUMBER_INDEX_QUESTION_COUNTRY_INFORMATION
+          {counter === GENERATE_NUMBER_INDEX_QUESTION_COUNTRY
             ? counter
             : counter - 1}{' '}
         </span>

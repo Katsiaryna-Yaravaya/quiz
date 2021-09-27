@@ -7,7 +7,7 @@ const Question = () => {
   const {
     currentQuestion: { flag, capital }
   } = useSelector((state: RootState) => state.data)
-  const question = {
+  const basePhraseQuestion = {
     country: ' is the capital of',
     flag: 'Which country does this flag belong to?'
   }
@@ -15,11 +15,11 @@ const Question = () => {
   return (
     <h2 className="question">
       {capital ? (
-        capital + question.country
+        capital + basePhraseQuestion.country
       ) : (
         <>
           <img className="question__title-flag" src={flag} alt="flag" />
-          <p>{question.flag}</p>
+          <p>{basePhraseQuestion.flag}</p>
         </>
       )}
     </h2>

@@ -8,7 +8,7 @@ import { saveQuestionDataAnswer } from '../../redux/country/actions'
 import { AnswerItem, Next } from '../index'
 
 import { RESULTS } from '../../constants/routs.constants'
-import { AnswerState } from '../../enum/AnswerState.enum'
+import { AnswerEnumState } from '../../enum/AnswerState.enum'
 
 const Answers = () => {
   const {
@@ -18,11 +18,11 @@ const Answers = () => {
   const dispatch = useDispatch()
   const [isNextQuestion, setIsNextQuestion] = useState<boolean>(false)
   const [isSelectedAnswer, setIsSelectedAnswer] = useState<boolean>(false)
-  const [answerStateValue, setAnswerStateValue] = useState<AnswerState[]>([
-    AnswerState.DEFAULT,
-    AnswerState.DEFAULT,
-    AnswerState.DEFAULT,
-    AnswerState.DEFAULT
+  const [answerStyleStateValue, setAnswerStyleStateValue] = useState<AnswerEnumState[]>([
+    AnswerEnumState.DEFAULT,
+    AnswerEnumState.DEFAULT,
+    AnswerEnumState.DEFAULT,
+    AnswerEnumState.DEFAULT
   ])
   const letterMapping = ['A', 'B', 'C', 'D']
 
@@ -32,7 +32,7 @@ const Answers = () => {
   }
 
   useEffect(() => {
-    allAnswers && setAnswerStateValue(Array(allAnswers.length).fill(AnswerState.DEFAULT, 0, allAnswers.length))
+    allAnswers && setAnswerStyleStateValue(Array(allAnswers.length).fill(AnswerEnumState.DEFAULT, 0, allAnswers.length))
   }, [allAnswers])
 
   const saveCard = resultState => {
@@ -48,25 +48,25 @@ const Answers = () => {
     }
     setIsSelectedAnswer(true)
 
-    const resultState: AnswerState[] = []
+    const resultState: AnswerEnumState[] = []
     allAnswers?.forEach((answerItem: string) => {
-      const currentAnswerState: AnswerState =
+      const currentAnswerState: AnswerEnumState =
         answerItem === correctAnswer
-          ? AnswerState.CORRECT
+          ? AnswerEnumState.CORRECT
           : answerItem === answer && answer !== correctAnswer
-          ? AnswerState.INCORRECT
-          : AnswerState.DISABLE
+          ? AnswerEnumState.INCORRECT
+          : AnswerEnumState.DISABLE
 
-      if (currentAnswerState === AnswerState.CORRECT && answer === correctAnswer) {
+      if (currentAnswerState === AnswerEnumState.CORRECT && answer === correctAnswer) {
         setIsNextQuestion(true)
       }
-      if (currentAnswerState === AnswerState.INCORRECT) {
+      if (currentAnswerState === AnswerEnumState.INCORRECT) {
         setTimeout(() => history.push(RESULTS), 2000)
       }
       resultState.push(currentAnswerState)
     })
 
-    setAnswerStateValue(resultState)
+    setAnswerStyleStateValue(resultState)
     saveCard(resultState)
   }
 
@@ -79,7 +79,7 @@ const Answers = () => {
               key={idx}
               letter={letterMapping[idx]}
               answer={answer}
-              answerStateValue={answerStateValue[idx]}
+              answerStyleStateValue={answerStyleStateValue[idx]}
               answerClick={() => handleAnswerClick(answer)}
             />
           )

@@ -5,23 +5,23 @@ export const saveCountries = countries => ({
   payload: countries
 })
 
-export const saveGenerateCountriesInformation = countriesInformation => ({
-  type: types.countriesActionTypes.SET_GENERATE_COUNTRIES_INFORMATION,
-  payload: countriesInformation
+export const saveCountriesUserQuestions = countriesUserQuestions => ({
+  type: types.countriesActionTypes.SAVE_COUNTRIES_USER_QUESTIONS,
+  payload: countriesUserQuestions
 })
 
 export const saveCounter = counter => ({
-  type: types.countriesActionTypes.SET_COUNTER,
+  type: types.countriesActionTypes.SAVE_COUNTER,
   payload: counter
 })
 
-export const getCurrentQuestion = currentQuestion => ({
-  type: types.countriesActionTypes.GET_CURRENT_QUESTION,
+export const saveCurrentQuestion = currentQuestion => ({
+  type: types.countriesActionTypes.SAVE_CURRENT_QUESTION,
   payload: currentQuestion
 })
 
 export const showGenerateAnswer = answers => ({
-  type: types.countriesActionTypes.GENERATE_ANSWERS,
+  type: types.countriesActionTypes.SHOW_GENERATE_ANSWERS,
   payload: answers
 })
 
@@ -34,6 +34,6 @@ export const saveQuestionDataAnswer = data => ({
   payload: data
 })
 
-export const deleteDataIncludeAfterResult = () => ({
-  type: types.countriesActionTypes.DELETE_DATA_INCLUDE_AFTER_RESULT
+export const clearAllAnsweredQuestions = () => ({
+  type: types.countriesActionTypes.CLEAR_ALL_ANSWERED_QUESTIONS
 })

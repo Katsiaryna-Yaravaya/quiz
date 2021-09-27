@@ -1,9 +1,9 @@
 import * as types from './types'
-import { CountryState } from '../../interface/countryState.interface'
+import { QuestionState } from '../../interface/questionState.interface'
 
-const INITIAL_STATE: CountryState = {
-  countries: [],
-  generateCountriesInformation: [],
+const INITIAL_STATE: QuestionState = {
+  allServerDataCountries: [],
+  countriesUserQuestions: [],
   counter: 1,
   currentQuestion: {
     correctAnswer: '',
@@ -14,29 +14,29 @@ const INITIAL_STATE: CountryState = {
   allDataAfterResult: []
 }
 
-const countryReducer = (state = INITIAL_STATE, action): CountryState => {
+const countryReducer = (state = INITIAL_STATE, action): QuestionState => {
   switch (action.type) {
     case types.countriesActionTypes.GET_COUNTRIES:
       return {
         ...state,
-        countries: [...action.payload]
+        allServerDataCountries: [...action.payload]
       }
-    case types.countriesActionTypes.SET_GENERATE_COUNTRIES_INFORMATION:
+    case types.countriesActionTypes.SAVE_COUNTRIES_USER_QUESTIONS:
       return {
         ...state,
-        generateCountriesInformation: [...action.payload]
+        countriesUserQuestions: [...action.payload]
       }
-    case types.countriesActionTypes.SET_COUNTER:
+    case types.countriesActionTypes.SAVE_COUNTER:
       return {
         ...state,
         counter: action.payload
       }
-    case types.countriesActionTypes.GET_CURRENT_QUESTION:
+    case types.countriesActionTypes.SAVE_CURRENT_QUESTION:
       return {
         ...state,
         currentQuestion: { ...action.payload }
       }
-    case types.countriesActionTypes.GENERATE_ANSWERS:
+    case types.countriesActionTypes.SHOW_GENERATE_ANSWERS:
       return {
         ...state,
         currentQuestion: {
@@ -47,8 +47,8 @@ const countryReducer = (state = INITIAL_STATE, action): CountryState => {
     case types.countriesActionTypes.DELETE_DATA:
       return {
         ...state,
-        countries: [],
-        generateCountriesInformation: [],
+        allServerDataCountries: [],
+        countriesUserQuestions: [],
         counter: 1,
         currentQuestion: {
           correctAnswer: '',
@@ -63,11 +63,11 @@ const countryReducer = (state = INITIAL_STATE, action): CountryState => {
         ...state,
         allDataAfterResult: [...state.allDataAfterResult, action.payload]
       }
-    case types.countriesActionTypes.DELETE_DATA_INCLUDE_AFTER_RESULT:
+    case types.countriesActionTypes.CLEAR_ALL_ANSWERED_QUESTIONS:
       return {
         ...state,
-        countries: [],
-        generateCountriesInformation: [],
+        allServerDataCountries: [],
+        countriesUserQuestions: [],
         counter: 1,
         currentQuestion: {
           correctAnswer: '',

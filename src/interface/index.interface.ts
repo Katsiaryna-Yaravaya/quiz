@@ -1,5 +1,5 @@
-export type { Countries } from './country.interface'
+export type { Countries } from './countries.interface'
 export type { QuestionDataAnswer } from './questionDataAnswer.interface'
 export type { CurrentQuestion } from './currentQuestion.interface'
-export type { GenerateCountriesInformation } from './generateCountriesInformation.interface'
+export type { CountryUserQuestion } from './countryUserQuestion.interface'
 export type { AllSavedAnswer } from './allSavedAnswer.interface'

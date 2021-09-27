@@ -12,12 +12,12 @@ interface Props {
 }
 
 const Next = ({ isNextQuestionState }: Props) => {
-  const { generateCountriesInformation, counter } = useSelector((state: RootState) => state.data)
+  const { countriesUserQuestions, counter } = useSelector((state: RootState) => state.data)
   const dispatch = useDispatch()
   const history = useHistory()
 
   const handleNextQuestionButton = () => {
-    if (generateCountriesInformation && counter < generateCountriesInformation.length) {
+    if (countriesUserQuestions && counter < countriesUserQuestions.length) {
       isNextQuestionState()
       dispatch(saveCounter(counter + 1))
     } else {

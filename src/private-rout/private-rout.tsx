@@ -5,7 +5,7 @@ import { RootState } from '../redux/root-reducer'
 import { MAIN } from '../constants/routs.constants'
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-  const { countries } = useSelector((state: RootState) => state.data)
+  const { allServerDataCountries } = useSelector((state: RootState) => state.data)
 
   return (
     <Route
@@ -16,6 +16,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     />
   )
 }
-//!countries
+//!allServerDataCountries
 
 export default PrivateRoute

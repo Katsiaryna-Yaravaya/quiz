@@ -4,69 +4,69 @@ import { RootState } from '../../redux/root-reducer'
 
 import { Answers, Question, QuestionCount } from '../index'
 import {
-  getCurrentQuestion,
-  saveGenerateCountriesInformation,
+  saveCurrentQuestion,
+  saveCountriesUserQuestions,
   showGenerateAnswer
 } from '../../redux/country/actions'
 import { generateIndexCountry } from '../../utils'
-import { Countries } from '../../interface/country.interface'
+import { Countries } from '../../interface/countries.interface'
 import {
-  GENERATE_NUMBER_INDEX_QUESTION_COUNTRY_INFORMATION,
-  GENERATE_NUMBER_INDEX_ANSWER_COUNTRY_INFORMATION
+  GENERATE_NUMBER_INDEX_QUESTION_COUNTRY,
+  GENERATE_NUMBER_INDEX_INCORRECT_ANSWER_COUNTRY
 } from '../../constants/general.constants.'
 import { generalIcon } from '../../asserts/imgIcon'
+import {QuestionClass} from "../../dto/questionClass";
 
 import './index.css'
-import {QuestionClass} from "../../dto/questionClass";
 
 const Quiz = () => {
   let {
     counter,
     currentQuestion: { correctAnswer },
-    countries,
-    generateCountriesInformation
+    allServerDataCountries,
+    countriesUserQuestions
   } = useSelector((state: RootState) => state.data)
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (countries.length) {
-      const generateQuestionCountryInformation: Countries[] =
+    if (allServerDataCountries.length) {
+      const generatedUserQuestionCountries: Countries[] =
         generateIndexCountry(
-          countries,
-          GENERATE_NUMBER_INDEX_QUESTION_COUNTRY_INFORMATION
+          allServerDataCountries,
+          GENERATE_NUMBER_INDEX_QUESTION_COUNTRY
         )
       dispatch(
-        saveGenerateCountriesInformation(generateQuestionCountryInformation)
+        saveCountriesUserQuestions(generatedUserQuestionCountries)
       )
     }
-  }, [countries])
+  }, [allServerDataCountries])
 
   useEffect(() => {
-    const currentCountryInformation  = generateCountriesInformation[counter - 1];
+    const currentUserQuestion  = countriesUserQuestions[counter - 1];
 
     dispatch(
-      getCurrentQuestion(new QuestionClass({ ...currentCountryInformation }))
+      saveCurrentQuestion(new QuestionClass({ ...currentUserQuestion }))
     )
-  }, [generateCountriesInformation, counter])
+  }, [countriesUserQuestions, counter])
 
 
   useEffect(() => {
-    if (countries.length && correctAnswer) {
-      const generateAnswerCountryInformation: Countries[] =
+    if (allServerDataCountries.length && correctAnswer) {
+      const generatedIncorrectAnswers: Countries[] =
         generateIndexCountry(
-          countries,
-          GENERATE_NUMBER_INDEX_ANSWER_COUNTRY_INFORMATION,
+          allServerDataCountries,
+          GENERATE_NUMBER_INDEX_INCORRECT_ANSWER_COUNTRY,
             correctAnswer
         )
 
-      const generateAnswer = generateAnswerCountryInformation
+      const generateAnswers = generatedIncorrectAnswers
         .map(item => item.name)
         .concat(correctAnswer)
         .sort(() => {
           return 0.5 - Math.random()
         })
 
-      dispatch(showGenerateAnswer(generateAnswer))
+      dispatch(showGenerateAnswer(generateAnswers))
     }
   }, [correctAnswer])
 

@@ -1,4 +1,4 @@
-import { Countries } from './interface/country.interface'
+import { Countries } from './interface/countries.interface'
 
 export const generateIndexCountry = (
   arrayFindDataObject,

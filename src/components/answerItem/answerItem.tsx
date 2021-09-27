@@ -1,27 +1,27 @@
 import { useEffect, useState } from 'react'
 
-import { AnswerState } from '../../enum/AnswerState.enum'
+import { AnswerEnumState } from '../../enum/AnswerState.enum'
 
 import './index.css'
 
 interface Props {
   answer: string,
-  answerStateValue: AnswerState,
+  answerStyleStateValue: AnswerEnumState,
   answerClick: (answer: string) => void,
   letter: string,
 }
 
-const AnswerItem = ({answer, answerClick, answerStateValue, letter}: Props) => {
+const AnswerItem = ({answer, answerClick, answerStyleStateValue, letter}: Props) => {
   const [styleAnswer, setStyleAnswer] = useState('answer ')
-  const concatStyle = `answer ` + answerStateValue
+  const concatStyle = `answer ` + answerStyleStateValue
 
   useEffect(() => {
     addColorForClassName()
-  }, [answerStateValue])
+  }, [answerStyleStateValue])
 
   useEffect(()=> {
     setStyleAnswer(concatStyle)
-  },[styleAnswer, answerStateValue])
+  },[styleAnswer, answerStyleStateValue])
 
   const handleClick = () => {
     answerClick(answer)
