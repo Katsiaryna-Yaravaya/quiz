@@ -17,11 +17,12 @@ import {
 import { generalIcon } from '../../asserts/imgIcon'
 
 import './index.css'
+import {QuestionClass} from "../../dto/questionClass";
 
 const Quiz = () => {
   let {
     counter,
-    currentQuestion: { name },
+    currentQuestion: { correctAnswer },
     countries,
     generateCountriesInformation
   } = useSelector((state: RootState) => state.data)
@@ -41,28 +42,33 @@ const Quiz = () => {
   }, [countries])
 
   useEffect(() => {
-    dispatch(getCurrentQuestion(generateCountriesInformation[counter - 1]))
+    const currentCountryInformation  = generateCountriesInformation[counter - 1];
+
+    dispatch(
+      getCurrentQuestion(new QuestionClass({ ...currentCountryInformation }))
+    )
   }, [generateCountriesInformation, counter])
 
+
   useEffect(() => {
-    if (countries.length && name) {
+    if (countries.length && correctAnswer) {
       const generateAnswerCountryInformation: Countries[] =
         generateIndexCountry(
           countries,
           GENERATE_NUMBER_INDEX_ANSWER_COUNTRY_INFORMATION,
-          name
+            correctAnswer
         )
 
       const generateAnswer = generateAnswerCountryInformation
         .map(item => item.name)
-        .concat(name)
+        .concat(correctAnswer)
         .sort(() => {
           return 0.5 - Math.random()
         })
 
       dispatch(showGenerateAnswer(generateAnswer))
     }
-  }, [name])
+  }, [correctAnswer])
 
   return (
     <form className="quiz-form">

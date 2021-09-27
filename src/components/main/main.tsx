@@ -13,7 +13,7 @@ const Main = () => {
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const [country, setCountry] = useState([
+  const [countries, setCountries] = useState([
     { name: 'Belarus', capital: 'Minsk' },
     { name: 'Goa', capital: 'Panaji' },
     { name: 'Maharashtra', capital: 'Mumbai' },
@@ -43,7 +43,7 @@ const Main = () => {
 
   const clickCountryHandler = () => {
     // getCountriesCapital('name', 'capital').then(resp => {
-    dispatch(saveCountries(country)) && history.push(COUNTRY_ROUT)
+    dispatch(saveCountries(countries)) && history.push(COUNTRY_ROUT)
     // })
   }
 

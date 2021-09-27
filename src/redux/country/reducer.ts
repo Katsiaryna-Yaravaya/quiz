@@ -6,7 +6,7 @@ const INITIAL_STATE: CountryState = {
   generateCountriesInformation: [],
   counter: 1,
   currentQuestion: {
-    name: '',
+    correctAnswer: '',
     flag: '',
     capital: '',
     allAnswers: []
@@ -51,12 +51,12 @@ const countryReducer = (state = INITIAL_STATE, action): CountryState => {
         generateCountriesInformation: [],
         counter: 1,
         currentQuestion: {
-          name: '',
+          correctAnswer: '',
           flag: '',
           capital: '',
           allAnswers: []
         },
-        allDataAfterResult: [...state.allDataAfterResult]
+        allDataAfterResult: []
       }
     case types.countriesActionTypes.SAVE_QUESTION_DATA_ANSWER:
       return {
@@ -70,7 +70,7 @@ const countryReducer = (state = INITIAL_STATE, action): CountryState => {
         generateCountriesInformation: [],
         counter: 1,
         currentQuestion: {
-          name: '',
+          correctAnswer: '',
           flag: '',
           capital: '',
           allAnswers: []

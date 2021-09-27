@@ -12,7 +12,7 @@ import { AnswerState } from '../../enum/AnswerState.enum'
 
 const Answers = () => {
   const {
-    currentQuestion: { allAnswers, name, capital }
+    currentQuestion: { allAnswers, correctAnswer, capital }
   } = useSelector((state: RootState) => state.data)
   const history = useHistory()
   const dispatch = useDispatch()
@@ -35,22 +35,11 @@ const Answers = () => {
     allAnswers && setAnswerStateValue(Array(allAnswers.length).fill(AnswerState.DEFAULT, 0, allAnswers.length))
   }, [allAnswers])
 
-  // const disableElementByClassName = className => {
-  //   const answerButtons = Array.from(
-  //       document.body.getElementsByClassName(className)
-  //   )
-  //   answerButtons.forEach(el => el.classList.add('disable'))
-  //   return answerButtons
-  // }
-  // const answerButtons = disableElementByClassName('answer')
-
-  const saveCard = answer => {
-    dispatch(
-      saveQuestionDataAnswer({
-        chooseByUser: answer,
-        currentQuestion: { allAnswers, name, capital }
-      })
-    )
+  const saveCard = resultState => {
+    dispatch(saveQuestionDataAnswer({
+        chooseByUser: resultState,
+        currentQuestion: { allAnswers, correctAnswer, capital }
+    }))
   }
 
   const handleAnswerClick = answer => {
@@ -58,17 +47,17 @@ const Answers = () => {
       return
     }
     setIsSelectedAnswer(true)
+
     const resultState: AnswerState[] = []
-
-    allAnswers.forEach((answerItem: string) => {
+    allAnswers?.forEach((answerItem: string) => {
       const currentAnswerState: AnswerState =
-        answerItem === name
+        answerItem === correctAnswer
           ? AnswerState.CORRECT
-          : answerItem === answer && answer !== name
+          : answerItem === answer && answer !== correctAnswer
           ? AnswerState.INCORRECT
-          : AnswerState.DEFAULT
+          : AnswerState.DISABLE
 
-      if (currentAnswerState === AnswerState.CORRECT && answer === name) {
+      if (currentAnswerState === AnswerState.CORRECT && answer === correctAnswer) {
         setIsNextQuestion(true)
       }
       if (currentAnswerState === AnswerState.INCORRECT) {
@@ -76,7 +65,9 @@ const Answers = () => {
       }
       resultState.push(currentAnswerState)
     })
+
     setAnswerStateValue(resultState)
+    saveCard(resultState)
   }
 
   return (

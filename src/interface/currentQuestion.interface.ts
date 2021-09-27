@@ -1,6 +1,6 @@
 export interface CurrentQuestion {
-  name: string
+  correctAnswer: string
   capital?: string
-  allAnswers: string[]
+  allAnswers?: string[]
   flag?: string
 }

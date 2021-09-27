@@ -1,5 +1,6 @@
 export enum AnswerState {
     DEFAULT = 'default',
     CORRECT = 'correct',
-    INCORRECT = 'incorrect'
+    INCORRECT = 'incorrect',
+    DISABLE = 'disable'
 }

@@ -1,6 +1,6 @@
-import { AnswerState } from '../../enum/AnswerState.enum'
-
 import { useEffect, useState } from 'react'
+
+import { AnswerState } from '../../enum/AnswerState.enum'
 
 import './index.css'
 
@@ -16,19 +16,25 @@ const AnswerItem = ({answer, answerClick, answerStateValue, letter}: Props) => {
   const concatStyle = `answer ` + answerStateValue
 
   useEffect(() => {
-    if (concatStyle === 'answer correct') {
-      const timer = setTimeout(() => setStyleAnswer(concatStyle), 250)
-      return () => clearTimeout(timer);
-    } else if (concatStyle === 'answer incorrect'){
-      setStyleAnswer(concatStyle)
-    } else {
-      setStyleAnswer('answer ')
-    }
+    addColorForClassName()
   }, [answerStateValue])
+
+  useEffect(()=> {
+    setStyleAnswer(concatStyle)
+  },[styleAnswer, answerStateValue])
 
   const handleClick = () => {
     answerClick(answer)
     setStyleAnswer(concatStyle)
+  }
+
+  const addColorForClassName = () => {
+    if (concatStyle === 'answer correct') {
+      const timer = setTimeout(() => setStyleAnswer(concatStyle), 250)
+      return () => clearTimeout(timer)
+    } else if (concatStyle === 'answer incorrect') {
+      setStyleAnswer(concatStyle)
+    }
   }
 
   return (

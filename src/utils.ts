@@ -12,7 +12,7 @@ export const generateIndexCountry = (
     //249
     if (
       !uniqueNumber.includes(generateNumber) &&
-      arrayFindDataObject[generateNumber].name !== correctAnswerName
+      arrayFindDataObject[generateNumber-1]?.name !== correctAnswerName
     ) {
       uniqueNumber.push(generateNumber)
     }

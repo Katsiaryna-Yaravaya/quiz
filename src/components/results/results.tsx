@@ -1,15 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
-import {
-  deleteData,
-  deleteDataIncludeAfterResult
-} from '../../redux/country/actions'
+import {deleteData, deleteDataIncludeAfterResult} from '../../redux/country/actions'
 import { RootState } from '../../redux/root-reducer'
 import { MAIN, SHOW_RESULT_QUIZ_ROUT } from '../../constants/routs.constants'
 import { GENERATE_NUMBER_INDEX_QUESTION_COUNTRY_INFORMATION } from '../../constants/general.constants.'
 
 import { imgResults } from '../../asserts/imgIcon'
+
 import './index.css'
 
 const Results = () => {

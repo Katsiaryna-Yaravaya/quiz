@@ -1,6 +1,6 @@
 import { CurrentQuestion } from './index.interface'
 
 export interface QuestionDataAnswer {
-  chooseByUser: string
+  chooseByUser: string[],
   currentQuestion: CurrentQuestion
 }
