@@ -11,7 +11,7 @@ const INITIAL_STATE: QuestionState = {
     capital: '',
     allAnswers: []
   },
-  allDataAfterResult: []
+  questionsResult: []
 }
 
 const countryReducer = (state = INITIAL_STATE, action): QuestionState => {
@@ -56,12 +56,12 @@ const countryReducer = (state = INITIAL_STATE, action): QuestionState => {
           capital: '',
           allAnswers: []
         },
-        allDataAfterResult: []
+        questionsResult: []
       }
     case types.countriesActionTypes.SAVE_QUESTION_DATA_ANSWER:
       return {
         ...state,
-        allDataAfterResult: [...state.allDataAfterResult, action.payload]
+        questionsResult: [...state.questionsResult, action.payload]
       }
     case types.countriesActionTypes.CLEAR_ALL_ANSWERED_QUESTIONS:
       return {
@@ -75,7 +75,7 @@ const countryReducer = (state = INITIAL_STATE, action): QuestionState => {
           capital: '',
           allAnswers: []
         },
-        allDataAfterResult: [...state.allDataAfterResult]
+        questionsResult: [...state.questionsResult]
       }
     default:
       return state

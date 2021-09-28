@@ -1,0 +1,17 @@
+.quiz-form__arrow-icons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.icon {
+    color: aliceblue;
+    font-size: 6rem;
+    cursor: pointer;
+    border-radius: 50%;
+    background: #CEB5E7;
+}
+
+.icon:hover {
+    background: #6A5ACD;
+    box-shadow: 0 0 22px 7px rgb(106 90 205 / 65%);
+}

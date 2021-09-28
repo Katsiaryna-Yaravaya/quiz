@@ -1,7 +1,16 @@
+import { useSelector } from 'react-redux'
+import { RootState } from '../../redux/root-reducer'
+
+import { Answers, ArrowButtons, Question, QuestionCount } from '../index'
+
 import { generalIcon } from '../../asserts/imgIcon'
-import { Answers, Question, QuestionCount } from '../index'
 
 const AnswersQuiz = () => {
+  const { questionsResult, counter } = useSelector((state: RootState) => state.data)
+
+  console.log('questionsResult', questionsResult)
+  console.log('counter', counter)
+
   return (
     <form className="quiz-form">
       <div className="quiz-form__travel-icon">
@@ -10,6 +19,7 @@ const AnswersQuiz = () => {
       <QuestionCount />
       <Question />
       <Answers />
+      <ArrowButtons />
     </form>
   )
 }

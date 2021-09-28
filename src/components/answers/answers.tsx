@@ -7,13 +7,11 @@ import { RootState } from '../../redux/root-reducer'
 import { saveQuestionDataAnswer } from '../../redux/country/actions'
 import { AnswerItem, Next } from '../index'
 
-import { RESULTS } from '../../constants/routs.constants'
 import { AnswerEnumState } from '../../enum/AnswerState.enum'
+import { RESULTS } from '../../constants/routs.constants'
 
 const Answers = () => {
-  const {
-    currentQuestion: { allAnswers, correctAnswer, capital }
-  } = useSelector((state: RootState) => state.data)
+  const {currentQuestion: { allAnswers, correctAnswer, capital }} = useSelector((state: RootState) => state.data)
   const history = useHistory()
   const dispatch = useDispatch()
   const [isNextQuestion, setIsNextQuestion] = useState<boolean>(false)
@@ -42,20 +40,16 @@ const Answers = () => {
     }))
   }
 
-  const handleAnswerClick = answer => {
-    if (isSelectedAnswer) {
-      return
-    }
-    setIsSelectedAnswer(true)
+  const defineAnswersState = (answer): AnswerEnumState[] => {
+    const resultState: AnswerEnumState[] = [];
 
-    const resultState: AnswerEnumState[] = []
     allAnswers?.forEach((answerItem: string) => {
       const currentAnswerState: AnswerEnumState =
         answerItem === correctAnswer
           ? AnswerEnumState.CORRECT
           : answerItem === answer && answer !== correctAnswer
           ? AnswerEnumState.INCORRECT
-          : AnswerEnumState.DISABLE
+          : AnswerEnumState.DISABLED
 
       if (currentAnswerState === AnswerEnumState.CORRECT && answer === correctAnswer) {
         setIsNextQuestion(true)
@@ -64,10 +58,21 @@ const Answers = () => {
         setTimeout(() => history.push(RESULTS), 2000)
       }
       resultState.push(currentAnswerState)
-    })
+    });
 
-    setAnswerStyleStateValue(resultState)
-    saveCard(resultState)
+    return resultState;
+  }
+
+  const handleAnswerClick = answer => {
+    if (isSelectedAnswer) {
+      return
+    }
+    setIsSelectedAnswer(true)
+
+    const newAnswersState: AnswerEnumState[] = defineAnswersState(answer)
+
+    setAnswerStyleStateValue(newAnswersState)
+    saveCard(newAnswersState)
   }
 
   return (

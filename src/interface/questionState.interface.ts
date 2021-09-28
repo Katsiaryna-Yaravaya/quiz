@@ -10,5 +10,5 @@ export interface QuestionState {
   countriesUserQuestions: CountryUserQuestion[]
   counter: number
   currentQuestion: CurrentQuestion
-  allDataAfterResult: QuestionDataAnswer[]
+  questionsResult: QuestionDataAnswer[]
 }

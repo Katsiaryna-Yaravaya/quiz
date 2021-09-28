@@ -6,17 +6,15 @@ import './index.css'
 import { GENERATE_NUMBER_INDEX_QUESTION_COUNTRY } from '../../constants/general.constants.'
 
 const QuestionCount = () => {
-  const { countriesUserQuestions, counter } = useSelector(
-    (state: RootState) => state.data
-  )
+  const { countriesUserQuestions, counter, questionsResult } = useSelector((state: RootState) => state.data)
 
   return (
     <div className="questionCount">
       Question
       {counter ? <span> {counter} </span> : null}
       of
-      {countriesUserQuestions ? (
-        <span> {GENERATE_NUMBER_INDEX_QUESTION_COUNTRY} </span>
+      {countriesUserQuestions || questionsResult ? (
+        <span> {questionsResult.length || GENERATE_NUMBER_INDEX_QUESTION_COUNTRY} </span>
       ) : null}
     </div>
   )
