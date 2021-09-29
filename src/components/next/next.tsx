@@ -16,7 +16,7 @@ const Next = ({ isNextQuestionState }: Props) => {
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const handleNextQuestionButton = () => {
+  const handleNextQuestionButton = (): void => {
     if (countriesUserQuestions && counter < countriesUserQuestions.length) {
       isNextQuestionState()
       dispatch(saveCounter(counter + 1))

@@ -1,0 +1,31 @@
+.return-result{
+    display: flex;
+    justify-content: center;
+    margin-top: -6rem;
+}
+
+.return-result__button {
+    border: 6px solid aliceblue;
+    border-radius: 34px;
+    padding: 0.6rem 1rem;
+    font-size: 2.6rem;
+    cursor: pointer;
+    color: aliceblue;
+    background: #CEB5E7;
+    box-shadow: 0 0 0 1px rgb(206 181 231 / 60%);
+}
+
+.return-result__button:hover {
+    background: #6A5ACD;
+    box-shadow: 0 0 22px 7px rgb(106 90 205 / 65%);
+}
+
+@media (max-width: 42rem) {
+    .return-result{
+        margin-top: 1rem;
+    }
+
+    .return-result__button {
+        font-size: 1.8rem;
+    }
+}

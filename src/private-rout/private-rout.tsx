@@ -7,7 +7,6 @@ import { MAIN } from '../constants/routs.constants'
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const { allServerDataCountries } = useSelector((state: RootState) => state.data)
 
-    console.log(allServerDataCountries)
   return (
     <Route
       {...rest}

@@ -1,19 +1,12 @@
 import { Countries } from './interface/countries.interface'
 
-export const generateIndexCountry = (
-  arrayFindDataObject,
-  num: number,
-  correctAnswerName?: string
-): Countries[] => {
+export const generateIndexCountry = (arrayFindDataObject, num: number, correctAnswerName?: string): Countries[] => {
   let uniqueNumber: number[] = []
 
   while (uniqueNumber.length < num) {
-    let generateNumber = Math.floor(Math.random() * 24) + 1
+    let generateNumber: number = Math.floor(Math.random() * 24) + 1
     //249
-    if (
-      !uniqueNumber.includes(generateNumber) &&
-      arrayFindDataObject[generateNumber-1]?.name !== correctAnswerName
-    ) {
+    if (!uniqueNumber.includes(generateNumber) && arrayFindDataObject[generateNumber-1]?.name !== correctAnswerName) {
       uniqueNumber.push(generateNumber)
     }
   }

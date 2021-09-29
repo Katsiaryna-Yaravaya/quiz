@@ -1,16 +1,18 @@
 import { useSelector } from 'react-redux'
 import { RootState } from '../../redux/root-reducer'
 
+import {BasePhraseQuestion} from '../../interface/index.interface'
+
 import './index.css'
 
 const Question = () => {
   const { currentQuestion: { flag, capital }, questionsResult, counter } = useSelector((state: RootState) => state.data)
-  const basePhraseQuestion = {
+  const basePhraseQuestion: BasePhraseQuestion = {
     country: ' is the capital of',
     flag: 'Which country does this flag belong to?'
   }
 
-  const capitalResult = questionsResult.map(item => {
+  const capitalResult: (string | undefined)[] = questionsResult.map(item => {
     return item.currentQuestion.capital
   })
 

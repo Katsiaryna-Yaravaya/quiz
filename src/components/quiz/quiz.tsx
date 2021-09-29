@@ -7,6 +7,7 @@ import {saveCurrentQuestion, saveCountriesUserQuestions, showGenerateAnswer} fro
 
 import { generateIndexCountry } from '../../utils'
 import { Countries } from '../../interface/countries.interface'
+import {CountryUserQuestion} from '../../interface/countryUserQuestion.interface'
 import { QuestionClass } from '../../dto/questionClass'
 import {
   GENERATE_NUMBER_INDEX_QUESTION_COUNTRY,
@@ -37,7 +38,7 @@ const Quiz = () => {
   }, [allServerDataCountries])
 
   useEffect(() => {
-    const currentUserQuestion = countriesUserQuestions[counter - 1]
+    const currentUserQuestion: CountryUserQuestion = countriesUserQuestions[counter - 1]
     dispatch(saveCurrentQuestion(new QuestionClass({ ...currentUserQuestion })))
   }, [countriesUserQuestions, counter])
 
@@ -49,7 +50,7 @@ const Quiz = () => {
         correctAnswer
       )
 
-      const generateAnswers = generatedIncorrectAnswers
+      const generateAnswers: string[] = generatedIncorrectAnswers
         .map(item => item.name)
         .concat(correctAnswer)
         .sort(() => {

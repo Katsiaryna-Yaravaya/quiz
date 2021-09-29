@@ -22,9 +22,9 @@ const Answers = () => {
     AnswerEnumState.DEFAULT,
     AnswerEnumState.DEFAULT
   ])
-  const letterMapping = ['A', 'B', 'C', 'D']
+  const letterMapping: string[] = ['A', 'B', 'C', 'D']
 
-  const handleIsNextQuestionState = () => {
+  const handleIsNextQuestionState = (): void => {
     setIsSelectedAnswer(false)
     setIsNextQuestion(false)
   }
@@ -33,9 +33,9 @@ const Answers = () => {
     allAnswers && setAnswerStyleStateValue(Array(allAnswers.length).fill(AnswerEnumState.DEFAULT, 0, allAnswers.length))
   }, [allAnswers])
 
-  const saveCard = resultState => {
+  const saveCard = (resultState): void => {
     dispatch(saveQuestionDataAnswer({
-        chooseByUser: resultState,
+        choseByUser: resultState,
         currentQuestion: { allAnswers, correctAnswer, capital }
     }))
   }
@@ -63,7 +63,7 @@ const Answers = () => {
     return resultState;
   }
 
-  const handleAnswerClick = answer => {
+  const handleAnswerClick = (answer): void => {
     if (isSelectedAnswer) {
       return
     }

@@ -1,19 +1,20 @@
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
+import { useState } from 'react'
 
 import { getCountriesCapitals, getCountriesFlags } from '../../backend/api'
 import { saveCountries } from '../../redux/country/actions'
 
 import { COUNTRY_ROUT, FLAG_ROUT } from '../../constants/routs.constants'
+import {Countries} from '../../interface/countries.interface'
 
 import './index.css'
-import { useState } from 'react'
 
 const Main = () => {
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const [countries, setCountries] = useState([
+  const [countries, setCountries] = useState<Countries[]>([
     { name: 'Belarus', capital: 'Minsk' },
     { name: 'Goa', capital: 'Panaji' },
     { name: 'Maharashtra', capital: 'Mumbai' },
@@ -41,13 +42,13 @@ const Main = () => {
     { name: 'Ukraine', capital: 'Kiev' }
   ])
 
-  const clickCountryHandler = () => {
+  const clickCountryHandler = (): void => {
     // getCountriesCapitals('name', 'capital').then(resp => {
     dispatch(saveCountries(countries)) && history.push(COUNTRY_ROUT)
     // })
   }
 
-  const clickFlagHandler = () => {
+  const clickFlagHandler = (): void => {
     getCountriesFlags('name', 'flag').then(resp => {
       dispatch(saveCountries(resp))
       history.push(FLAG_ROUT)

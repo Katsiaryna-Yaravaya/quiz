@@ -12,8 +12,8 @@ interface Props {
 }
 
 const AnswerItem = ({answer, answerClick, answerStyleStateValue, letter}: Props) => {
-  const [styleAnswer, setStyleAnswer] = useState('answer ')
-  const concatStyle = `answer ` + (answerStyleStateValue)
+  const [styleAnswer, setStyleAnswer] = useState<string>('answer ')
+  const concatStyle: string = `answer ` + (answerStyleStateValue)
 
   useEffect(() => {
     addColorForClassName()
@@ -23,7 +23,7 @@ const AnswerItem = ({answer, answerClick, answerStyleStateValue, letter}: Props)
     setStyleAnswer(concatStyle)
   },[styleAnswer, answerStyleStateValue])
 
-  const handleClick = () => {
+  const handleClick = (): void => {
     if (answer && answerClick){
         answerClick(answer)
     }
@@ -32,8 +32,8 @@ const AnswerItem = ({answer, answerClick, answerStyleStateValue, letter}: Props)
 
   const addColorForClassName = () => {
     if (concatStyle === 'answer correct') {
-      const timer = setTimeout(() => setStyleAnswer(concatStyle), 250)
-      return () => clearTimeout(timer)
+      const timer: NodeJS.Timeout = setTimeout(() => setStyleAnswer(concatStyle), 250)
+      return (): void => clearTimeout(timer)
     } else if (concatStyle === 'answer incorrect') {
       setStyleAnswer(concatStyle)
     }

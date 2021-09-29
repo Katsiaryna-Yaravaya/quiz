@@ -3,17 +3,12 @@ import { Switch, Route, BrowserRouter } from 'react-router-dom'
 import PrivateRoute from './private-rout/private-rout'
 import { Main, Quiz, Results, AnswersQuiz } from './components'
 
-import {
-  COUNTRY_ROUT,
-  FLAG_ROUT,
-  MAIN,
-  RESULTS,
-  SHOW_RESULT_QUIZ_ROUT
-} from './constants/routs.constants'
+import {COUNTRY_ROUT, FLAG_ROUT, MAIN, RESULTS, SHOW_RESULT_QUIZ_ROUT} from './constants/routs.constants'
 
 import './index.css'
 
 const App = () => {
+
   return (
     <BrowserRouter>
       <div className="app main">

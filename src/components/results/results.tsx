@@ -11,19 +11,28 @@ import { imgResults } from '../../asserts/imgIcon'
 import './index.css'
 
 const Results = () => {
-  const { counter } = useSelector((state: RootState) => state.data)
+  const { questionsResult, countriesUserQuestions, counter } = useSelector((state: RootState) => state.data)
   const history = useHistory()
   const dispatch = useDispatch()
 
-  const handleClickRepeat = () => {
+  const handleClickRepeat = (): void => {
     dispatch(deleteData())
     history.push(MAIN)
   }
-  const handleClickShowResult = e => {
+  const handleClickShowResult = (e): void => {
     e.preventDefault()
 
     dispatch(clearAllAnsweredQuestions())
     history.push(SHOW_RESULT_QUIZ_ROUT)
+  }
+
+  const showUserCorrectAnswers = (): number | undefined => {
+    if (countriesUserQuestions.length) {
+      return counter === GENERATE_NUMBER_INDEX_QUESTION_COUNTRY ? counter : counter - 1
+    }
+    if (questionsResult.length) {
+      return questionsResult.length - 1
+    }
   }
 
   return (
@@ -39,10 +48,7 @@ const Results = () => {
       <p className="quiz-form__text">
         You got
         <span className="quiz-form__text-count">
-          {' '}
-          {counter === GENERATE_NUMBER_INDEX_QUESTION_COUNTRY
-            ? counter
-            : counter - 1}{' '}
+          {' '}{showUserCorrectAnswers()}{' '}
         </span>
         correct answers
       </p>

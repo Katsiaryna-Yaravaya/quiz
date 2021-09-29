@@ -1,6 +1,7 @@
 .quiz-form__arrow-icons {
     display: flex;
     justify-content: space-between;
+    margin-top: 8rem;
 }
 
 .icon {
@@ -14,4 +15,14 @@
 .icon:hover {
     background: #6A5ACD;
     box-shadow: 0 0 22px 7px rgb(106 90 205 / 65%);
+}
+
+@media (max-width: 42rem) {
+    .quiz-form__arrow-icons {
+        margin-top: 0;
+    }
+
+    .icon {
+        font-size: 4.8rem;
+    }
 }
