@@ -7,15 +7,15 @@ import { MAIN } from '../constants/routs.constants'
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const { allServerDataCountries } = useSelector((state: RootState) => state.data)
 
+    console.log(allServerDataCountries)
   return (
     <Route
       {...rest}
       render={props =>
-        false ? <Redirect to={MAIN} /> : <Component {...props} />
+          !allServerDataCountries.length ? <Redirect to={MAIN} /> : <Component {...props} />
       }
     />
   )
 }
-//!allServerDataCountries
 
 export default PrivateRoute

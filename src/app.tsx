@@ -24,10 +24,7 @@ const App = () => {
             <PrivateRoute path={FLAG_ROUT} component={Quiz} />
             <PrivateRoute path={COUNTRY_ROUT} component={Quiz} />
             <PrivateRoute path={RESULTS} component={Results} />
-            <PrivateRoute
-              path={SHOW_RESULT_QUIZ_ROUT}
-              component={AnswersQuiz}
-            />
+            <PrivateRoute path={SHOW_RESULT_QUIZ_ROUT} component={AnswersQuiz}/>
           </Switch>
         </div>
       </div>

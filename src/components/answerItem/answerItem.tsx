@@ -6,14 +6,14 @@ import './index.css'
 
 interface Props {
   answer: string,
-  answerStyleStateValue: AnswerEnumState,
-  answerClick: (answer: string) => void,
+  answerStyleStateValue: AnswerEnumState | string,
+  answerClick?: (answer: string) => void,
   letter: string,
 }
 
 const AnswerItem = ({answer, answerClick, answerStyleStateValue, letter}: Props) => {
   const [styleAnswer, setStyleAnswer] = useState('answer ')
-  const concatStyle = `answer ` + answerStyleStateValue
+  const concatStyle = `answer ` + (answerStyleStateValue)
 
   useEffect(() => {
     addColorForClassName()
@@ -24,7 +24,9 @@ const AnswerItem = ({answer, answerClick, answerStyleStateValue, letter}: Props)
   },[styleAnswer, answerStyleStateValue])
 
   const handleClick = () => {
-    answerClick(answer)
+    if (answer && answerClick){
+        answerClick(answer)
+    }
     setStyleAnswer(concatStyle)
   }
 

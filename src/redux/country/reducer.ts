@@ -66,7 +66,6 @@ const countryReducer = (state = INITIAL_STATE, action): QuestionState => {
     case types.countriesActionTypes.CLEAR_ALL_ANSWERED_QUESTIONS:
       return {
         ...state,
-        allServerDataCountries: [],
         countriesUserQuestions: [],
         counter: 1,
         currentQuestion: {
