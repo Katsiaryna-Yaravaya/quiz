@@ -5,48 +5,44 @@ import { AnswerEnumState } from '../../enum/AnswerState.enum'
 import './index.css'
 
 interface Props {
-  answer: string,
-  answerStyleStateValue: AnswerEnumState | string,
-  answerClick?: (answer: string) => void,
-  letter: string,
+  answer: string;
+  answerStyleStateValue: AnswerEnumState | string;
+  answerClick?: (answer: string) => void;
+  numeric: number;
 }
 
-const AnswerItem = ({answer, answerClick, answerStyleStateValue, letter}: Props) => {
+const AnswerItem = ({answer, answerClick, answerStyleStateValue, numeric}: Props) => {
   const [styleAnswer, setStyleAnswer] = useState<string>('answer ')
-  const concatStyle: string = `answer ` + (answerStyleStateValue)
+  const newStateValue: string = `answer ` + (answerStyleStateValue)
 
   useEffect(() => {
-    addColorForClassName()
+    updateAnswerStyleState();
   }, [answerStyleStateValue])
 
   useEffect(()=> {
-    setStyleAnswer(concatStyle)
+    setStyleAnswer(newStateValue)
   },[styleAnswer, answerStyleStateValue])
 
   const handleClick = (): void => {
-    if (answer && answerClick){
+    if (answerClick){
         answerClick(answer)
     }
-    setStyleAnswer(concatStyle)
+    setStyleAnswer(newStateValue)
   }
 
-  const addColorForClassName = () => {
-    if (concatStyle === 'answer correct') {
-      const timer: NodeJS.Timeout = setTimeout(() => setStyleAnswer(concatStyle), 250)
-      return (): void => clearTimeout(timer)
-    } else if (concatStyle === 'answer incorrect') {
-      setStyleAnswer(concatStyle)
+  const updateAnswerStyleState = (): void => {
+    if (answerStyleStateValue === AnswerEnumState.CORRECT) {
+      const timer = setTimeout(() => setStyleAnswer(newStateValue), 250)
+      clearTimeout(timer)
+    } else if (answerStyleStateValue === AnswerEnumState.INCORRECT) {
+      setStyleAnswer(newStateValue)
     }
   }
 
   return (
     <div onClick={handleClick} className={styleAnswer}>
-      <span className="answer__letter">{letter}</span>
-
-      <span title={answer} className="answer__text">
-        {' '}
-        {answer}{' '}
-      </span>
+      <span className="answer__letter">{numeric}</span>
+      <span title={answer} className="answer__text">{answer}</span>
     </div>
   )
 }

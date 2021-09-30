@@ -19,7 +19,9 @@
 }
 
 .answer__letter {
+    margin-left: 2rem;
     margin-right: 4.6rem;
+    font-size: x-large;
 }
 
 .answer__text {

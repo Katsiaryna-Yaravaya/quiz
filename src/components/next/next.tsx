@@ -8,17 +8,17 @@ import { RESULTS } from '../../constants/routs.constants'
 import './index.css'
 
 interface Props {
-  isNextQuestionState: () => void
+  resetQuestionState: () => void
 }
 
-const Next = ({ isNextQuestionState }: Props) => {
+const Next = ({ resetQuestionState }: Props) => {
   const { countriesUserQuestions, counter } = useSelector((state: RootState) => state.data)
   const dispatch = useDispatch()
   const history = useHistory()
 
   const handleNextQuestionButton = (): void => {
     if (countriesUserQuestions && counter < countriesUserQuestions.length) {
-      isNextQuestionState()
+      resetQuestionState()
       dispatch(saveCounter(counter + 1))
     } else {
       history.push(RESULTS)

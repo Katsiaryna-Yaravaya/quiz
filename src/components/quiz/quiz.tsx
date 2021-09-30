@@ -7,7 +7,7 @@ import {saveCurrentQuestion, saveCountriesUserQuestions, showGenerateAnswer} fro
 
 import { generateIndexCountry } from '../../utils'
 import { Countries } from '../../interface/countries.interface'
-import {CountryUserQuestion} from '../../interface/countryUserQuestion.interface'
+import { CountryUserQuestion } from '../../interface/countryUserQuestion.interface'
 import { QuestionClass } from '../../dto/questionClass'
 import {
   GENERATE_NUMBER_INDEX_QUESTION_COUNTRY,
@@ -61,14 +61,21 @@ const Quiz = () => {
   }, [correctAnswer])
 
   return (
-    <form className="quiz-form">
-      <div className="quiz-form__travel-icon">
-        <img className="quiz-form__icon" src={generalIcon} alt="generalIcon" />
-      </div>
-      <QuestionCount />
-      <Question />
-      <Answers />
-    </form>
+    <>
+      <h1 className="main__title">COUNTRY QUIZ</h1>
+      <form className="quiz-form">
+        <div className="quiz-form__travel-icon">
+          <img
+            className="quiz-form__icon"
+            src={generalIcon}
+            alt="generalIcon"
+          />
+        </div>
+        <QuestionCount />
+        <Question />
+        <Answers />
+      </form>
+    </>
   )
 }
 

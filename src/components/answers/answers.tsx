@@ -14,19 +14,13 @@ const Answers = () => {
   const {currentQuestion: { allAnswers, correctAnswer, capital }} = useSelector((state: RootState) => state.data)
   const history = useHistory()
   const dispatch = useDispatch()
-  const [isNextQuestion, setIsNextQuestion] = useState<boolean>(false)
+  const [isNextButtonVisible, setIsNextButtonVisible] = useState<boolean>(false)
   const [isSelectedAnswer, setIsSelectedAnswer] = useState<boolean>(false)
-  const [answerStyleStateValue, setAnswerStyleStateValue] = useState<AnswerEnumState[]>([
-    AnswerEnumState.DEFAULT,
-    AnswerEnumState.DEFAULT,
-    AnswerEnumState.DEFAULT,
-    AnswerEnumState.DEFAULT
-  ])
-  const letterMapping: string[] = ['A', 'B', 'C', 'D']
+  const [answerStyleStateValue, setAnswerStyleStateValue] = useState<AnswerEnumState[]>([])
 
-  const handleIsNextQuestionState = (): void => {
+  const resetQuestionState = (): void => {
     setIsSelectedAnswer(false)
-    setIsNextQuestion(false)
+    setIsNextButtonVisible(false)
   }
 
   useEffect(() => {
@@ -52,7 +46,7 @@ const Answers = () => {
           : AnswerEnumState.DISABLED
 
       if (currentAnswerState === AnswerEnumState.CORRECT && answer === correctAnswer) {
-        setIsNextQuestion(true)
+        setIsNextButtonVisible(true)
       }
       if (currentAnswerState === AnswerEnumState.INCORRECT) {
         setTimeout(() => history.push(RESULTS), 2000)
@@ -82,7 +76,7 @@ const Answers = () => {
           return (
             <AnswerItem
               key={idx}
-              letter={letterMapping[idx]}
+              numeric={idx + 1}
               answer={answer}
               answerStyleStateValue={answerStyleStateValue[idx]}
               answerClick={() => handleAnswerClick(answer)}
@@ -90,8 +84,8 @@ const Answers = () => {
           )
         })}
 
-      {isNextQuestion ? (
-        <Next isNextQuestionState={handleIsNextQuestionState} />
+      {isNextButtonVisible ? (
+        <Next resetQuestionState={resetQuestionState} />
       ) : null}
     </>
   )

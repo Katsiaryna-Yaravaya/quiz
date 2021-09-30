@@ -1,9 +1,9 @@
 import { Switch, Route, BrowserRouter } from 'react-router-dom'
 
 import PrivateRoute from './private-rout/private-rout'
-import { Main, Quiz, Results, AnswersQuiz } from './components'
+import {CountryQuiz, Quiz, Results, AnswersQuiz, Main} from './components'
 
-import {COUNTRY_ROUT, FLAG_ROUT, MAIN, RESULTS, SHOW_RESULT_QUIZ_ROUT} from './constants/routs.constants'
+import {COUNTRY_ROUT, FLAG_ROUT, COUNTRY_QUIZ_ROUT, RESULTS, SHOW_RESULT_QUIZ_ROUT, MAIN} from './constants/routs.constants'
 
 import './index.css'
 
@@ -13,9 +13,9 @@ const App = () => {
     <BrowserRouter>
       <div className="app main">
         <div className="main__heading">
-          <h1 className="main__title">COUNTRY QUIZ</h1>
           <Switch>
             <Route exact path={MAIN} component={Main} />
+            <PrivateRoute path={COUNTRY_QUIZ_ROUT} component={CountryQuiz} />
             <PrivateRoute path={FLAG_ROUT} component={Quiz} />
             <PrivateRoute path={COUNTRY_ROUT} component={Quiz} />
             <PrivateRoute path={RESULTS} component={Results} />
@@ -26,5 +26,4 @@ const App = () => {
     </BrowserRouter>
   )
 }
-
 export default App
