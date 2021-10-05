@@ -29,3 +29,4 @@ export const REGISTRATION_FORM = [
     className: "login-buttons__signUp button",
   },
 ];
+

@@ -9,10 +9,9 @@ interface Props {
   name: string;
   placeholder?: string | undefined;
   onchange?: (e) => void;
-  clickHandler?: (e) => void;
 }
 
-const CredentialUserForm = ({title, className, type, value, autoComplete, name, placeholder, onchange, clickHandler,}: Props) => {
+const CredentialUserForm = ({title, className, type, value, autoComplete, name, placeholder, onchange}: Props) => {
   return (
     <input
       title={title}
@@ -23,7 +22,6 @@ const CredentialUserForm = ({title, className, type, value, autoComplete, name, 
       name={name}
       placeholder={placeholder}
       onChange={onchange}
-      onClick={clickHandler}
     />
   );
 };
