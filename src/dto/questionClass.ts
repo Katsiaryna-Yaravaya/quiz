@@ -5,14 +5,14 @@ export class QuestionClass {
   allAnswers: string[];
 
   constructor(options: {
-    flag: string,
-    capital: string,
-    name: string,
-    allAnswers?: string[]
+    flag: string;
+    capital: string;
+    name: string;
+    allAnswers?: string[];
   }) {
-        this.flag = options.flag;
-        this.capital = options.capital;
-        this.correctAnswer = options.name;
-        this.allAnswers = options.allAnswers || [];
-    }
+    this.flag = options.flag;
+    this.capital = options.capital;
+    this.correctAnswer = options.name;
+    this.allAnswers = options.allAnswers || [];
+  }
 }

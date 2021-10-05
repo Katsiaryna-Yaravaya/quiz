@@ -1,5 +1,5 @@
 export interface Countries {
-  name: string
-  capital?: string
-  flag?: string
+  name: string;
+  capital?: string;
+  flag?: string;
 }

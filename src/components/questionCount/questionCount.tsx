@@ -1,13 +1,13 @@
-import { useSelector } from 'react-redux'
+import { useSelector } from "react-redux";
 
-import { RootState } from '../../redux/root-reducer'
+import { RootState } from "../../redux/root-reducer";
 
-import { GENERATE_NUMBER_INDEX_QUESTION_COUNTRY } from '../../constants/general.constants.'
+import { GENERATE_NUMBER_INDEX_QUESTION_COUNTRY } from "../../constants/general.constants.";
 
-import './index.css'
+import "./index.css";
 
 const QuestionCount = () => {
-  const { countriesUserQuestions, counter, questionsResult } = useSelector((state: RootState) => state.data)
+  const { countriesUserQuestions, counter, questionsResult } = useSelector((state: RootState) => state.data);
 
   return (
     <div className="questionCount">
@@ -15,10 +15,14 @@ const QuestionCount = () => {
       {counter ? <span> {counter} </span> : null}
       of
       {countriesUserQuestions || questionsResult ? (
-        <span> {countriesUserQuestions.length ? GENERATE_NUMBER_INDEX_QUESTION_COUNTRY : questionsResult.length} </span>
+        <span>{" "}
+            {countriesUserQuestions.length
+            ? GENERATE_NUMBER_INDEX_QUESTION_COUNTRY
+            : questionsResult.length}
+        </span>
       ) : null}
     </div>
-  )
-}
+  );
+};
 
-export default QuestionCount
+export default QuestionCount;

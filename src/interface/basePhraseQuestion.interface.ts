@@ -1,4 +1,4 @@
-export interface BasePhraseQuestion{
-    country: string,
-    flag: string
+export interface BasePhraseQuestion {
+  country: string;
+  flag: string;
 }

@@ -1,4 +1,4 @@
-import './index.css'
+import "./index.css";
 
 interface Props {
   title?: string | undefined;
@@ -12,21 +12,20 @@ interface Props {
   clickHandler?: (e) => void;
 }
 
-const CredentialUserForm = ({title, className, type, value, autoComplete, name, placeholder, onchange, clickHandler}: Props) => {
-
+const CredentialUserForm = ({title, className, type, value, autoComplete, name, placeholder, onchange, clickHandler,}: Props) => {
   return (
-      <input
-        title={title}
-        className={className}
-        type={type}
-        value={value}
-        autoComplete={autoComplete}
-        name={name}
-        placeholder={placeholder}
-        onChange={onchange}
-        onClick={clickHandler}
-      />
-  )
-}
+    <input
+      title={title}
+      className={className}
+      type={type}
+      value={value}
+      autoComplete={autoComplete}
+      name={name}
+      placeholder={placeholder}
+      onChange={onchange}
+      onClick={clickHandler}
+    />
+  );
+};
 
-export default CredentialUserForm
+export default CredentialUserForm;

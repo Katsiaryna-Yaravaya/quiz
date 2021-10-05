@@ -1,54 +1,54 @@
-import * as types from './types'
-import { QuestionState } from '../../interface/questionState.interface'
+import * as types from "./types";
+import { QuestionState } from "../../interface/questionState.interface";
 
 const INITIAL_STATE: QuestionState = {
   allServerDataCountries: [],
   countriesUserQuestions: [],
   counter: 1,
   currentQuestion: {
-    correctAnswer: '',
-    flag: '',
-    capital: '',
-    allAnswers: []
+    correctAnswer: "",
+    flag: "",
+    capital: "",
+    allAnswers: [],
   },
   questionsResult: [],
   credentials: [],
   credentialUser: {
-    email: '',
-    password: ''
-  }
-}
+    email: "",
+    password: "",
+  },
+};
 
 const countryReducer = (state = INITIAL_STATE, action): QuestionState => {
   switch (action.type) {
     case types.countriesActionTypes.GET_COUNTRIES:
       return {
         ...state,
-        allServerDataCountries: [...action.payload]
-      }
+        allServerDataCountries: [...action.payload],
+      };
     case types.countriesActionTypes.SAVE_COUNTRIES_USER_QUESTIONS:
       return {
         ...state,
-        countriesUserQuestions: [...action.payload]
-      }
+        countriesUserQuestions: [...action.payload],
+      };
     case types.countriesActionTypes.SAVE_COUNTER:
       return {
         ...state,
-        counter: action.payload
-      }
+        counter: action.payload,
+      };
     case types.countriesActionTypes.SAVE_CURRENT_QUESTION:
       return {
         ...state,
-        currentQuestion: { ...action.payload }
-      }
+        currentQuestion: { ...action.payload },
+      };
     case types.countriesActionTypes.SHOW_GENERATE_ANSWERS:
       return {
         ...state,
         currentQuestion: {
           ...state.currentQuestion,
-          allAnswers: [...action.payload]
-        }
-      }
+          allAnswers: [...action.payload],
+        },
+      };
     case types.countriesActionTypes.DELETE_DATA:
       return {
         ...state,
@@ -56,47 +56,47 @@ const countryReducer = (state = INITIAL_STATE, action): QuestionState => {
         countriesUserQuestions: [],
         counter: 1,
         currentQuestion: {
-          correctAnswer: '',
-          flag: '',
-          capital: '',
-          allAnswers: []
+          correctAnswer: "",
+          flag: "",
+          capital: "",
+          allAnswers: [],
         },
-        questionsResult: []
-      }
+        questionsResult: [],
+      };
     case types.countriesActionTypes.SAVE_QUESTION_DATA_ANSWER:
       return {
         ...state,
-        questionsResult: [...state.questionsResult, action.payload]
-      }
+        questionsResult: [...state.questionsResult, action.payload],
+      };
     case types.countriesActionTypes.CLEAR_ALL_ANSWERED_QUESTIONS:
       return {
         ...state,
         countriesUserQuestions: [],
         counter: 1,
         currentQuestion: {
-          correctAnswer: '',
-          flag: '',
-          capital: '',
-          allAnswers: []
+          correctAnswer: "",
+          flag: "",
+          capital: "",
+          allAnswers: [],
         },
-        questionsResult: [...state.questionsResult]
-      }
+        questionsResult: [...state.questionsResult],
+      };
     case types.countriesActionTypes.GET_CREDENTIALS:
-      console.log(action.payload)
+      console.log(action.payload);
       return {
         ...state,
-        credentials: [...action.payload]
-      }
+        credentials: [...action.payload],
+      };
     case types.countriesActionTypes.SAVE_CREDENTIAL_USER:
-      console.log(action.payload)
+      console.log(action.payload);
       return {
         ...state,
-        credentialUser: { ...action.payload }
-      }
+        credentialUser: { ...action.payload },
+      };
 
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default countryReducer
+export default countryReducer;

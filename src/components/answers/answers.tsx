@@ -1,38 +1,38 @@
-import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { useEffect, useState } from "react";
 
-import { RootState } from '../../redux/root-reducer'
+import { RootState } from "../../redux/root-reducer";
 
-import { saveQuestionDataAnswer } from '../../redux/country/actions'
-import { AnswerItem, Next } from '../index'
+import { saveQuestionDataAnswer } from "../../redux/country/actions";
+import { AnswerItem, Next } from "../index";
 
-import { AnswerEnumState } from '../../enum/AnswerState.enum'
-import { RESULTS } from '../../constants/routs.constants'
+import { AnswerEnumState } from "../../enum/AnswerState.enum";
+import { RESULTS } from "../../constants/routs.constants";
 
 const Answers = () => {
-  const {currentQuestion: { allAnswers, correctAnswer, capital }} = useSelector((state: RootState) => state.data)
-  const history = useHistory()
-  const dispatch = useDispatch()
-  const [isNextButtonVisible, setIsNextButtonVisible] = useState<boolean>(false)
-  const [isSelectedAnswer, setIsSelectedAnswer] = useState<boolean>(false)
-  const [answerStyleStateValue, setAnswerStyleStateValue] = useState<AnswerEnumState[]>([])
+  const {currentQuestion: { allAnswers, correctAnswer, capital },} = useSelector((state: RootState) => state.data);
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const [isNextButtonVisible, setIsNextButtonVisible] = useState<boolean>(false);
+  const [isSelectedAnswer, setIsSelectedAnswer] = useState<boolean>(false);
+  const [answerStyleStateValue, setAnswerStyleStateValue] = useState<AnswerEnumState[]>([]);
 
   const resetQuestionState = (): void => {
-    setIsSelectedAnswer(false)
-    setIsNextButtonVisible(false)
-  }
+    setIsSelectedAnswer(false);
+    setIsNextButtonVisible(false);
+  };
 
   useEffect(() => {
-    allAnswers && setAnswerStyleStateValue(Array(allAnswers.length).fill(AnswerEnumState.DEFAULT, 0, allAnswers.length))
-  }, [allAnswers])
+    allAnswers && setAnswerStyleStateValue(Array(allAnswers.length).fill(AnswerEnumState.DEFAULT, 0, allAnswers.length));
+  }, [allAnswers]);
 
   const saveCard = (resultState): void => {
     dispatch(saveQuestionDataAnswer({
         choseByUser: resultState,
-        currentQuestion: { allAnswers, correctAnswer, capital }
-    }))
-  }
+        currentQuestion: { allAnswers, correctAnswer, capital },
+    }));
+  };
 
   const defineAnswersState = (answer): AnswerEnumState[] => {
     const resultState: AnswerEnumState[] = [];
@@ -43,52 +43,48 @@ const Answers = () => {
           ? AnswerEnumState.CORRECT
           : answerItem === answer && answer !== correctAnswer
           ? AnswerEnumState.INCORRECT
-          : AnswerEnumState.DISABLED
+          : AnswerEnumState.DISABLED;
 
       if (currentAnswerState === AnswerEnumState.CORRECT && answer === correctAnswer) {
-        setIsNextButtonVisible(true)
+        setIsNextButtonVisible(true);
       }
       if (currentAnswerState === AnswerEnumState.INCORRECT) {
-        setTimeout(() => history.push(RESULTS), 2000)
+        setTimeout(() => history.push(RESULTS), 2000);
       }
-      resultState.push(currentAnswerState)
+      resultState.push(currentAnswerState);
     });
-
     return resultState;
-  }
+  };
 
   const handleAnswerClick = (answer): void => {
     if (isSelectedAnswer) {
-      return
+      return;
     }
-    setIsSelectedAnswer(true)
+    setIsSelectedAnswer(true);
 
-    const newAnswersState: AnswerEnumState[] = defineAnswersState(answer)
+    const newAnswersState: AnswerEnumState[] = defineAnswersState(answer);
 
-    setAnswerStyleStateValue(newAnswersState)
-    saveCard(newAnswersState)
-  }
+    setAnswerStyleStateValue(newAnswersState);
+    saveCard(newAnswersState);
+  };
 
   return (
     <>
-      {!!allAnswers &&
-        allAnswers.map((answer, idx) => {
-          return (
-            <AnswerItem
-              key={idx}
-              numeric={idx + 1}
-              answer={answer}
-              answerStyleStateValue={answerStyleStateValue[idx]}
-              answerClick={() => handleAnswerClick(answer)}
-            />
-          )
-        })}
+      {!!allAnswers && allAnswers.map((answer, idx) => {
+        return (
+          <AnswerItem
+            key={idx}
+            numeric={idx + 1}
+            answer={answer}
+            answerStyleStateValue={answerStyleStateValue[idx]}
+            answerClick={() => handleAnswerClick(answer)}
+          />
+        );
+      })}
 
-      {isNextButtonVisible ? (
-        <Next resetQuestionState={resetQuestionState} />
-      ) : null}
+      {isNextButtonVisible ? (<Next resetQuestionState={resetQuestionState} />) : null}
     </>
-  )
-}
+  );
+};
 
-export default Answers
+export default Answers;

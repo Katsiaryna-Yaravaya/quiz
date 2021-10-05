@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react";
 
-import { AnswerEnumState } from '../../enum/AnswerState.enum'
+import { AnswerEnumState } from "../../enum/AnswerState.enum";
 
-import './index.css'
+import "./index.css";
 
 interface Props {
   answer: string;
@@ -11,40 +11,40 @@ interface Props {
   numeric: number;
 }
 
-const AnswerItem = ({answer, answerClick, answerStyleStateValue, numeric}: Props) => {
-  const [styleAnswer, setStyleAnswer] = useState<string>('answer ')
-  const newStateValue: string = `answer ` + (answerStyleStateValue)
+const AnswerItem = ({answer, answerClick, answerStyleStateValue, numeric,}: Props) => {
+  const [styleAnswer, setStyleAnswer] = useState<string>("answer ");
+  const newStateValue: string = `answer ` + answerStyleStateValue;
 
   useEffect(() => {
     updateAnswerStyleState();
-  }, [answerStyleStateValue])
+  }, [answerStyleStateValue]);
 
-  useEffect(()=> {
-    setStyleAnswer(newStateValue)
-  },[styleAnswer, answerStyleStateValue])
+  useEffect(() => {
+    setStyleAnswer(newStateValue);
+  }, [styleAnswer, answerStyleStateValue]);
 
   const handleClick = (): void => {
-    if (answerClick){
-        answerClick(answer)
+    if (answerClick) {
+      answerClick(answer);
     }
-    setStyleAnswer(newStateValue)
-  }
+    setStyleAnswer(newStateValue);
+  };
 
   const updateAnswerStyleState = (): void => {
     if (answerStyleStateValue === AnswerEnumState.CORRECT) {
-      const timer = setTimeout(() => setStyleAnswer(newStateValue), 250)
-      clearTimeout(timer)
+      const timer = setTimeout(() => setStyleAnswer(newStateValue), 250);
+      clearTimeout(timer);
     } else if (answerStyleStateValue === AnswerEnumState.INCORRECT) {
-      setStyleAnswer(newStateValue)
+      setStyleAnswer(newStateValue);
     }
-  }
+  };
 
   return (
     <div onClick={handleClick} className={styleAnswer}>
       <span className="answer__letter">{numeric}</span>
       <span title={answer} className="answer__text">{answer}</span>
     </div>
-  )
-}
+  );
+};
 
-export default AnswerItem
+export default AnswerItem;
