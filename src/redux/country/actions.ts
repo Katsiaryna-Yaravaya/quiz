@@ -38,3 +38,13 @@ export const saveQuestionDataAnswer = (data): {payload: QuestionDataAnswer[], ty
 export const clearAllAnsweredQuestions = (): {type: string} => ({
   type: types.countriesActionTypes.CLEAR_ALL_ANSWERED_QUESTIONS
 })
+
+export const saveCredentials = ( credentials ) => ({
+  type: types.countriesActionTypes.GET_CREDENTIALS,
+  payload: credentials
+})
+
+export const saveCredentialUser = ( credentialUser ) => ({
+  type: types.countriesActionTypes.SAVE_CREDENTIAL_USER,
+  payload: credentialUser
+})

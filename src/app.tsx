@@ -23,8 +23,8 @@ const App = () => {
         <div className="main__heading">
           <Switch>
             <Route exact path={MAIN} component={Main} />
-            <PrivateRoute path={COUNTRY_QUIZ_ROUT} component={CountryQuiz} />
-            <PrivateRoute path={SIGN_UP_ROUT} component={SignUp} />
+            <Route path={COUNTRY_QUIZ_ROUT} component={CountryQuiz} />
+            <Route path={SIGN_UP_ROUT} component={SignUp} />
             <PrivateRoute path={FLAG_ROUT} component={Quiz} />
             <PrivateRoute path={COUNTRY_ROUT} component={Quiz} />
             <PrivateRoute path={RESULTS} component={Results} />

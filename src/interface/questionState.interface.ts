@@ -2,7 +2,7 @@ import {
   Countries,
   CurrentQuestion,
   CountryUserQuestion,
-  QuestionDataAnswer
+  QuestionDataAnswer, Credentials, CredentialUser
 } from './index.interface'
 
 export interface QuestionState {
@@ -10,5 +10,7 @@ export interface QuestionState {
   countriesUserQuestions: CountryUserQuestion[]
   counter: number
   currentQuestion: CurrentQuestion
-  questionsResult: QuestionDataAnswer[]
+  questionsResult: QuestionDataAnswer[],
+  credentials: Credentials[],
+  credentialUser: CredentialUser
 }

@@ -11,7 +11,12 @@ const INITIAL_STATE: QuestionState = {
     capital: '',
     allAnswers: []
   },
-  questionsResult: []
+  questionsResult: [],
+  credentials: [],
+  credentialUser: {
+    email: '',
+    password: ''
+  }
 }
 
 const countryReducer = (state = INITIAL_STATE, action): QuestionState => {
@@ -76,6 +81,19 @@ const countryReducer = (state = INITIAL_STATE, action): QuestionState => {
         },
         questionsResult: [...state.questionsResult]
       }
+    case types.countriesActionTypes.GET_CREDENTIALS:
+      console.log(action.payload)
+      return {
+        ...state,
+        credentials: [...action.payload]
+      }
+    case types.countriesActionTypes.SAVE_CREDENTIAL_USER:
+      console.log(action.payload)
+      return {
+        ...state,
+        credentialUser: { ...action.payload }
+      }
+
     default:
       return state
   }

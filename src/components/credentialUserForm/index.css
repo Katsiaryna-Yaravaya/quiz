@@ -1,0 +1,45 @@
+.input {
+    background: #ffe4e1;
+    padding: 2rem;
+    border: 2px solid #6a5acd;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    font-size: 3rem;
+    color: #191970;
+    outline: none;
+}
+
+.input:focus {
+    border: 2px solid #191970;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: #191970 !important;
+}
+
+.button {
+    background: #ffe4e1;
+    padding: 1.6rem 2.4rem;
+    font-size: 2rem;
+    border-radius: 16px;
+    border: 2px solid #6a5acd;
+    color: #191970;
+    cursor: pointer;
+    margin-right: 4rem;
+}
+
+.button:hover {
+    border: 2px solid #ffe4e1;
+    color: #ffe4e1;
+    background: #191970;
+}
+
+@media (max-width: 58rem) {
+    .button {
+        margin-right: 0;
+    }
+}
