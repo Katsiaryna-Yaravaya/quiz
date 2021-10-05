@@ -43,7 +43,7 @@ const Results = () => {
         <h2 className="quiz-form__title">Results</h2>
         <p className="quiz-form__text">
           You got
-          <span className="quiz-form__text-count">` ${showUserCorrectAnswers()} `</span>
+          <span className="quiz-form__text-count"> {showUserCorrectAnswers()} </span>
           correct answers
         </p>
         <div className="quiz-form__try-again">
