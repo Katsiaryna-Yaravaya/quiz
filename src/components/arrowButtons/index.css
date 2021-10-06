@@ -1,7 +1,6 @@
 .quiz-form__arrow-icons {
     display: flex;
     justify-content: space-between;
-    margin-top: 8rem;
 }
 
 .icon {
@@ -18,10 +17,6 @@
 }
 
 @media (max-width: 42rem) {
-    .quiz-form__arrow-icons {
-        margin-top: 0;
-    }
-
     .icon {
         font-size: 4.8rem;
     }

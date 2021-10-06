@@ -1,4 +1,5 @@
 import { useHistory } from "react-router-dom";
+import {useDispatch} from "react-redux";
 import { useState } from "react";
 
 import {COUNTRY_QUIZ_ROUT, MAIN} from "../../constants/routs.constants";
@@ -6,11 +7,12 @@ import {COUNTRY_QUIZ_ROUT, MAIN} from "../../constants/routs.constants";
 import { Credentials, RegistrationDataUser } from "../../interface/index.interface";
 import {ButtonRegistrationUserEnum} from "../../enum/ButtonRegistrationUser.enum";
 
-import {isEmailValid} from "../../utils";
+import {isEmailValid, isNameOrSurnameValid} from "../../utils";
 
 import "./index.css";
 
 const SignUp = () => {
+  const dispatch = useDispatch()
   const history = useHistory();
   const [apiUserCredentialsMock, setApiUserCredentialsMock] = useState<Credentials[]>([
     {
@@ -42,22 +44,38 @@ const SignUp = () => {
     });
   };
 
+  //добавить юзера в диспатч в общую базу данных
   const createUser = () => {
-    !validRegistrationFields ? setCredentialsError("email is not valid") : history.push(COUNTRY_QUIZ_ROUT);
+    validRegistrationFields()
+  //  dispatch()
   };
 
-  //проверить все поля на валидность
   const validRegistrationFields = () => {
-    isEmailValid(registrationDataUser)
+    if (!isEmailValid(registrationDataUser)) {
+     return setCredentialsError("email is not valid")
+    }
+    if (!isNameOrSurnameValid(registrationDataUser)) {
+      return setCredentialsError("name or surname not valid")
+    }
+    if(password.length < 6) {
+      return setCredentialsError("short password")
+    }
+    if (password !== newPassword){
+      return setCredentialsError("password mismatch")
+    }
   }
-
-  //добавить юзера в БД
-
 
   const checkDataByEmail = () => {
     apiUserCredentialsMock.find((item) => {
-      item.email !== email ? setCredentialsError("user already exists") : createUser();
-    });
+      if (item.email === email) {
+        setCredentialsError("user already exists");
+      } else {
+        createUser();
+        if (credentialsError==="") {
+          history.push(COUNTRY_QUIZ_ROUT)
+        }
+      }
+    })
   }
 
   const checkTheFieldForEmptiness = (e) => {
@@ -66,7 +84,8 @@ const SignUp = () => {
     if (e.target.value === ButtonRegistrationUserEnum.BACK) {
       history.push(MAIN)
     } else {
-      Object.values(registrationDataUser).find((item) => {!item
+      Object.values(registrationDataUser).find((item) => {
+        !item
           ? setCredentialsError("fill in all empty fields")
           : checkDataByEmail();
       });

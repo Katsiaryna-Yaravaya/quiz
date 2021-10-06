@@ -30,4 +30,9 @@ export const isEmailValid = ({ email }) => {
   return regex.test(email);
 };
 
+export const isNameOrSurnameValid = ({ name, surname }) => {
+  const regex = /[A-Za-z]/;
+  return regex.test(name) && regex.test(surname);
+};
+
 export const isNotRequestValid = (statusText) => statusText !== "OK";

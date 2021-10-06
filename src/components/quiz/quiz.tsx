@@ -21,7 +21,7 @@ import "./index.css";
 const Quiz = () => {
   let {
     counter,
-    currentQuestion: { correctAnswer },
+    currentQuestion: { correctAnswer, capital, flag },
     allServerDataCountries,
     countriesUserQuestions,
   } = useSelector((state: RootState) => state.data);
@@ -68,7 +68,7 @@ const Quiz = () => {
           <img className="quiz-form__icon" src={generalIcon} alt="generalIcon"/>
         </div>
         <QuestionCount />
-        <Question />
+        <Question capital={capital} flag={flag} />
         <Answers />
       </form>
     </>

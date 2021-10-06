@@ -22,7 +22,7 @@ const AnswersQuiz = () => {
           <img className="quiz-form__icon" src={generalIcon} alt="generalIcon"/>
         </div>
         <QuestionCount />
-        <Question />
+        <Question capital={questionsResult[counter-1].currentQuestion.capital} flag={questionsResult[counter-1].currentQuestion.flag}/>
 
         {questionsResult.map((itemResult, idxResult) => {
           if (idxResult === counter - 1) {

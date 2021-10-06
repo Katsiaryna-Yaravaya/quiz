@@ -1,10 +1,11 @@
-.return-result{
+.return-result {
     display: flex;
     justify-content: center;
     margin-top: -6rem;
 }
 
 .return-result__button {
+    user-select: none;
     border: 6px solid aliceblue;
     border-radius: 34px;
     padding: 0.6rem 1rem;
