@@ -45,11 +45,14 @@ const SignUp = () => {
   const createUser = () => {
     !validRegistrationFields ? setCredentialsError("email is not valid") : history.push(COUNTRY_QUIZ_ROUT);
   };
+
   //проверить все поля на валидность
   const validRegistrationFields = () => {
     isEmailValid(registrationDataUser)
-
   }
+
+  //добавить юзера в БД
+
 
   const checkDataByEmail = () => {
     apiUserCredentialsMock.find((item) => {

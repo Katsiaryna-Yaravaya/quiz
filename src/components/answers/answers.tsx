@@ -11,7 +11,7 @@ import { AnswerEnumState } from "../../enum/AnswerState.enum";
 import { RESULTS } from "../../constants/routs.constants";
 
 const Answers = () => {
-  const {currentQuestion: { allAnswers, correctAnswer, capital },} = useSelector((state: RootState) => state.data);
+  const {currentQuestion: { allAnswers, correctAnswer, capital, flag },} = useSelector((state: RootState) => state.data);
   const history = useHistory();
   const dispatch = useDispatch();
   const [isNextButtonVisible, setIsNextButtonVisible] = useState<boolean>(false);
@@ -28,10 +28,17 @@ const Answers = () => {
   }, [allAnswers]);
 
   const saveCard = (resultState): void => {
-    dispatch(saveQuestionDataAnswer({
+    if (!!capital){
+      dispatch(saveQuestionDataAnswer({
         choseByUser: resultState,
         currentQuestion: { allAnswers, correctAnswer, capital },
-    }));
+      }));
+    } else {
+      dispatch(saveQuestionDataAnswer({
+          choseByUser: resultState,
+          currentQuestion: { allAnswers, correctAnswer, flag },
+      }));
+    }
   };
 
   const defineAnswersState = (answer): AnswerEnumState[] => {

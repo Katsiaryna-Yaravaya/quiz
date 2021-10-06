@@ -6,23 +6,32 @@ import { BasePhraseQuestion } from "../../interface/index.interface";
 import "./index.css";
 
 const Question = () => {
-  const {currentQuestion: { flag, capital }, questionsResult, counter} = useSelector((state: RootState) => state.data);
+  const {currentQuestion: { flag, capital }, questionsResult, counter,} = useSelector((state: RootState) => state.data);
   const basePhraseQuestion: BasePhraseQuestion = {
     country: " is the capital of",
     flag: "Which country does this flag belong to?",
   };
+  let flagResult: (string | undefined)[] = [];
+  let capitalResult: (string | undefined)[] = [];
 
-  const capitalResult: (string | undefined)[] = questionsResult.map((item) => {
-    return item.currentQuestion.capital;
-  });
-
+  if (capital?.length) {
+    capitalResult = questionsResult.map((item) => {
+      return item.currentQuestion.capital;
+    });
+  }
+  if (flag) {
+    flagResult = questionsResult.map((item) => {
+      return item.currentQuestion.flag;
+    });
+  }
+  console.log(flagResult)
   return (
     <h2 className="question">
-      {capital || capitalResult ? (
+      {capital || capitalResult.length ? (
         (capital || capitalResult[counter - 1]) + basePhraseQuestion.country
       ) : (
         <>
-          <img className="question__title-flag" src={flag} alt="flag" />
+          <img className="question__title-flag" src={flag || flagResult[counter - 1]} alt="flag"/>
           <p>{basePhraseQuestion.flag}</p>
         </>
       )}

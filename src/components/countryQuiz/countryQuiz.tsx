@@ -42,9 +42,10 @@ const CountryQuiz = () => {
   ]);
 
   const clickCountryHandler = (): void => {
-    // getCountriesCapitals('name', 'capital').then(resp => {
-    dispatch(saveCountries(countries)) && history.push(COUNTRY_ROUT);
-    // })
+    getCountriesCapitals("name", "capital").then((resp) => {
+      dispatch(saveCountries(resp));
+      history.push(COUNTRY_ROUT);
+    });
   };
 
   const clickFlagHandler = (): void => {

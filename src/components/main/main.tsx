@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-import {saveCredentials, saveCredentialUser} from "../../redux/country/actions";
+import {saveCredentialUser} from "../../redux/country/actions";
 
 import { CredentialUserForm } from "../index";
 
@@ -47,7 +47,6 @@ const Main = () => {
 
   const checkPassword = (passwordValue: string): void => {
     if (passwordValue === password) {
-      getCredentials();
       setCredentialUser();
       history.push(COUNTRY_QUIZ_ROUT);
     } else {
@@ -57,10 +56,6 @@ const Main = () => {
 
   const setCredentialUser = (): void => {
     dispatch(saveCredentialUser(credential));
-  };
-
-  const getCredentials = (): void => {
-    dispatch(saveCredentials(apiUserCredentialsMock));
   };
 
   const handleChange = (e): void => {
