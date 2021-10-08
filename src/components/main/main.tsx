@@ -7,7 +7,7 @@ import {saveCredentialUser} from "../../redux/country/actions";
 import { CredentialUserForm } from "../index";
 
 import {COUNTRY_QUIZ_ROUT, SIGN_UP_ROUT,} from "../../constants/routs.constants";
-import { REGISTRATION_FORM } from "../../constants/registrationForm.constants";
+import { CREDENTIAL_FORM } from "../../constants/registrationForm.constants";
 
 import { ButtonRegistrationUserEnum } from "../../enum/ButtonRegistrationUser.enum";
 
@@ -17,40 +17,30 @@ import { CredentialUser } from "../../interface/credentialUser.interface";
 import { iconGlobe, iconBeach } from "../../asserts/imgIcon";
 
 import "./index.css";
+import {getUser} from "../../backend/api";
 
 const Main = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const [credentialsError, setCredentialsError] = useState<string>("");
-  const [apiUserCredentialsMock, setApiUserCredentialsMock] = useState<Credentials[]>([
-    {
-      name: "1111",
-      surname: "1111",
-      age: "20",
-      email: "1111@mail.com",
-      password: "1111",
-    },
-  ]);
   const [credential, setCredential] = useState<CredentialUser>({
     email: "",
-    password: "",
+    pass: "",
   });
-  const { password, email } = credential;
+  const { pass, email } = credential;
 
   const signIn = (): void => {
-    apiUserCredentialsMock.find((item) => {
-      item.email === email
-        ? checkPassword(item.password)
-        : setCredentialsError("check email or sign up");
-    });
+    getUser(email).then(res => {
+      return res?.email === email ? checkPassword(res.pass) : setCredentialsError("check email or sign up");
+    })
   };
 
   const checkPassword = (passwordValue: string): void => {
-    if (passwordValue === password) {
+    if (passwordValue === pass) {
       setCredentialUser();
       history.push(COUNTRY_QUIZ_ROUT);
     } else {
-      setCredentialsError("password entered incorrectly");
+      setCredentialsError("pass entered incorrectly");
     }
   };
 
@@ -77,7 +67,7 @@ const Main = () => {
     <form className="quiz-form">
       {credentialsError ? (<span className="login__error-message">{credentialsError}</span>) : null}
       <div className="login">
-        {REGISTRATION_FORM.map(
+        {CREDENTIAL_FORM.map(
           ({ title, type, name, value, className, autocomplete, placeholder }, idx) => {
             if (type !== "submit")
               return (
@@ -98,7 +88,7 @@ const Main = () => {
       </div>
 
       <div className="login-buttons" onClick={handleClick}>
-        {REGISTRATION_FORM.map(({ title, type, name, value, className, autocomplete, placeholder }, idx) => {
+        {CREDENTIAL_FORM.map(({ title, type, name, value, className, autocomplete, placeholder }, idx) => {
             if (type === "submit")
               return (
                 <CredentialUserForm

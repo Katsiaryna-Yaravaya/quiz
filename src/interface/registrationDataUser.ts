@@ -3,6 +3,6 @@ export interface RegistrationDataUser {
   surname: string;
   age: string;
   email: string;
-  password: string;
+  pass: string;
   newPassword: string;
 }

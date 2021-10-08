@@ -11,3 +11,11 @@ export const getCountriesFlags = (name, flag) => {
     .get(`https://restcountries.com/v2/all?fields=${name},${flag};`)
     .then((resp) => resp.data);
 };
+
+export const getUser = (email) => {
+  return axios.get(`http://localhost:3001/users`).then((resp) => {
+    return resp.data.find((item) => {
+      return item.email === email ? resp.data : null;
+    });
+  });
+};

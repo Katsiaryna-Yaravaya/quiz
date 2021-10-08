@@ -3,5 +3,5 @@ export interface Credentials {
   surname: string;
   age: string;
   email: string;
-  password: string;
+  pass: string;
 }

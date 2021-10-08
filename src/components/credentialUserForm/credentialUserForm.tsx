@@ -6,7 +6,7 @@ interface Props {
   type: string;
   value: string;
   autoComplete?: string | undefined;
-  name: string;
+  name?: string;
   placeholder?: string | undefined;
   onchange?: (e) => void;
 }
