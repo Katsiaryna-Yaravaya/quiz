@@ -11,7 +11,6 @@ import { CREDENTIAL_FORM } from "../../constants/registrationForm.constants";
 
 import { ButtonRegistrationUserEnum } from "../../enum/ButtonRegistrationUser.enum";
 
-import { Credentials } from "../../interface/credentials.interface";
 import { CredentialUser } from "../../interface/credentialUser.interface";
 
 import { iconGlobe, iconBeach } from "../../asserts/imgIcon";

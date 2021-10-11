@@ -12,10 +12,9 @@ const INITIAL_STATE: QuestionState = {
     allAnswers: [],
   },
   questionsResult: [],
-  credentials: [],
   credentialUser: {
     email: "",
-    password: "",
+    pass: "",
   },
 };
 
@@ -80,11 +79,6 @@ const countryReducer = (state = INITIAL_STATE, action): QuestionState => {
           allAnswers: [],
         },
         questionsResult: [...state.questionsResult],
-      };
-    case types.countriesActionTypes.GET_CREDENTIALS:
-      return {
-        ...state,
-        credentials: [...action.payload],
       };
     case types.countriesActionTypes.SAVE_CREDENTIAL_USER:
       return {

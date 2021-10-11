@@ -1,22 +1,24 @@
 import { useHistory } from "react-router-dom";
-import {useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { useState } from "react";
 
-import {CredentialUserForm} from "../index";
+import { getUser, postUser } from "../../backend/api";
+import { saveCredentialUser } from "../../redux/country/actions";
 
-import {COUNTRY_QUIZ_ROUT, MAIN} from "../../constants/routs.constants";
-import {REGISTRATION_BUTTONS_FORM, REGISTRATION_FORM} from "../../constants/registrationForm.constants";
+import { CredentialUserForm } from "../index";
 
-import { Credentials, RegistrationDataUser } from "../../interface/index.interface";
-import {ButtonRegistrationUserEnum} from "../../enum/ButtonRegistrationUser.enum";
+import { COUNTRY_QUIZ_ROUT, MAIN } from "../../constants/routs.constants";
+import { REGISTRATION_BUTTONS_FORM, REGISTRATION_FORM } from "../../constants/registrationForm.constants";
 
-import {isEmailValid, isNameOrSurnameValid} from "../../utils";
+import { RegistrationDataUser } from "../../interface/index.interface";
+import { ButtonRegistrationUserEnum } from "../../enum/ButtonRegistrationUser.enum";
+
+import { isEmailValid, isNameOrSurnameValid } from "../../utils";
 
 import "./index.css";
-import {getUser} from "../../backend/api";
 
 const SignUp = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const history = useHistory();
   const [credentialsError, setCredentialsError] = useState<string>("");
   const [registrationDataUser, setRegistrationDataUser] = useState<RegistrationDataUser>({
@@ -26,11 +28,11 @@ const SignUp = () => {
     email: "",
     pass: "",
     newPassword: "",
-  })
-  const {name, surname, age, email, pass, newPassword} = registrationDataUser
+  });
+  const { email, pass, newPassword } = registrationDataUser;
 
   const handleChange = (e): void => {
-    setCredentialsError("")
+    setCredentialsError("");
     let { name, value } = e.target;
 
     setRegistrationDataUser({
@@ -39,49 +41,56 @@ const SignUp = () => {
     });
   };
 
-  //добавить юзера в диспатч в общую базу данных
   const createUser = (): void => {
-    validRegistrationFields()
+    validRegistrationFields();
+    if (!credentialsError) {
+      addUserInBD(registrationDataUser);
+    }
+  };
 
-  //  dispatch()
-
-    // if (credentialsError === "") {
-    //   history.push(COUNTRY_QUIZ_ROUT)
-    // }
+  const addUserInBD = (newUser): void => {
+    postUser(newUser).then((requestedUser) => {
+      dispatch(saveCredentialUser(JSON.parse(requestedUser.config.data)));
+      history.push(COUNTRY_QUIZ_ROUT);
+    });
   };
 
   const validRegistrationFields = (): void => {
     if (!isEmailValid(registrationDataUser)) {
-     return setCredentialsError("email is not valid")
+      return setCredentialsError("email is not valid");
     }
     if (!isNameOrSurnameValid(registrationDataUser)) {
-      return setCredentialsError("name or surname only in english letters")
+      return setCredentialsError("name or surname only in english letters");
     }
-    if(pass.length < 6) {
-      return setCredentialsError("short pass")
+    if (pass.length < 6) {
+      return setCredentialsError("short pass");
     }
-    if (pass !== newPassword){
-      return setCredentialsError("pass mismatch")
+    if (pass !== newPassword) {
+      return setCredentialsError("pass mismatch");
     }
-  }
+  };
 
   const checkDataByEmail = (): void => {
-    getUser(email).then(res => {
-      return res?.email === email ? setCredentialsError("user already exists") : createUser();
-    })
+    getUser(email).then((res) => {
+      return res?.email === email
+        ? setCredentialsError("user already exists")
+        : createUser();
+    });
   };
 
   const checkTheFieldForEmptiness = (e): void => {
-    e.preventDefault()
+    e.preventDefault();
 
     if (e.target.value === ButtonRegistrationUserEnum.BACK) {
-      history.push(MAIN)
+      history.push(MAIN);
     } else {
       Object.values(registrationDataUser).find((item) => {
-        !item ? setCredentialsError("fill in all empty fields") : checkDataByEmail();
+        !item
+          ? setCredentialsError("fill in all empty fields")
+          : checkDataByEmail();
       });
     }
-  }
+  };
 
   return (
     <form className="quiz-form">
@@ -109,7 +118,7 @@ const SignUp = () => {
       </div>
 
       <div className="form__sign-up-buttons" onClick={checkTheFieldForEmptiness}>
-        {REGISTRATION_BUTTONS_FORM.map(({type, value, className }, idx) => {
+        {REGISTRATION_BUTTONS_FORM.map(({ type, value, className }, idx) => {
           return (
             <CredentialUserForm
               key={idx}

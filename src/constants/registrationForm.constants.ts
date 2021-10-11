@@ -12,7 +12,7 @@ export const CREDENTIAL_FORM = [
     type: "password",
     name: "pass",
     value: "pass",
-    autocomplete: "current-password",
+    autocomplete: "current-pass",
     className: "login__password input",
     placeholder: "password",
   },
@@ -66,15 +66,15 @@ export const REGISTRATION_FORM = [
     value: "pass",
     className: "sign-up__user",
     placeholder: "password",
-    autocomplete: "new-password",
+    autocomplete: "new-pass",
   },
   {
     type: "password",
     name: "newPassword",
     value: "newPassword",
     className: "sign-up__user",
-    placeholder: "repeat password",
-    autocomplete: "new-password",
+    placeholder: "repeat pass",
+    autocomplete: "new-pass",
   },
 ];
 

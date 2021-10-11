@@ -6,6 +6,5 @@ export interface QuestionState {
   counter: number;
   currentQuestion: CurrentQuestion;
   questionsResult: QuestionDataAnswer[];
-  credentials: Credentials[];
   credentialUser: CredentialUser;
 }

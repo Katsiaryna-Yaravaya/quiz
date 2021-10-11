@@ -15,8 +15,7 @@ const QuestionCount = () => {
       {counter ? <span> {counter} </span> : null}
       of
       {countriesUserQuestions || questionsResult ? (
-        <span>{" "}
-            {countriesUserQuestions.length
+        <span> {countriesUserQuestions.length
             ? GENERATE_NUMBER_INDEX_QUESTION_COUNTRY
             : questionsResult.length}
         </span>

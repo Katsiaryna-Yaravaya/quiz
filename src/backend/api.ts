@@ -19,3 +19,7 @@ export const getUser = (email) => {
     });
   });
 };
+
+export const postUser = (data) => {
+  return axios.post(`http://localhost:3001/add-user`, data)
+};
