@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
+import {logIn} from "../../backend/api";
+
 import {saveCredentialUser} from "../../redux/country/actions";
 
 import { CredentialUserForm } from "../index";
@@ -16,7 +18,6 @@ import { CredentialUser } from "../../interface/credentialUser.interface";
 import { iconGlobe, iconBeach } from "../../asserts/imgIcon";
 
 import "./index.css";
-import {getUser} from "../../backend/api";
 
 const Main = () => {
   const history = useHistory();
@@ -26,25 +27,16 @@ const Main = () => {
     email: "",
     pass: "",
   });
-  const { pass, email } = credential;
 
   const signIn = (): void => {
-    getUser(email).then(res => {
-      return res?.email === email ? checkPassword(res.pass) : setCredentialsError("check email or sign up");
+    logIn(credential).then(res => {
+      if (res.data) {
+        dispatch(saveCredentialUser(credential));
+        history.push(COUNTRY_QUIZ_ROUT);
+      }
+    }).catch(e => {
+      console.log(e)
     })
-  };
-
-  const checkPassword = (passwordValue: string): void => {
-    if (passwordValue === pass) {
-      setCredentialUser();
-      history.push(COUNTRY_QUIZ_ROUT);
-    } else {
-      setCredentialsError("pass entered incorrectly");
-    }
-  };
-
-  const setCredentialUser = (): void => {
-    dispatch(saveCredentialUser(credential));
   };
 
   const handleChange = (e): void => {

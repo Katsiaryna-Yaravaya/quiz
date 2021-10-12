@@ -77,16 +77,3 @@ export const REGISTRATION_FORM = [
     autocomplete: "new-pass",
   },
 ];
-
-export const REGISTRATION_BUTTONS_FORM = [
-  {
-    type: "submit",
-    value: "back",
-    className: "form__sign-up-button",
-  },
-  {
-    type: "submit",
-    value: "register",
-    className: "form__sign-up-button",
-  },
-];

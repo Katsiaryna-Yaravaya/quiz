@@ -6,9 +6,7 @@ export const generateIndexCountry = (arrayFindDataObject, num: number, correctAn
   while (uniqueNumber.length < num) {
     let generateNumber: number = Math.floor(Math.random() * 249) + 1;
 
-    if (!uniqueNumber.includes(generateNumber) &&
-      arrayFindDataObject[generateNumber - 1]?.name !== correctAnswerName
-    ) {
+    if (!uniqueNumber.includes(generateNumber) && arrayFindDataObject[generateNumber - 1]?.name !== correctAnswerName) {
       uniqueNumber.push(generateNumber);
     }
   }

@@ -12,14 +12,10 @@ export const getCountriesFlags = (name, flag) => {
     .then((resp) => resp.data);
 };
 
-export const getUser = (email) => {
-  return axios.get(`http://localhost:3001/users`).then((resp) => {
-    return resp.data.find((item) => {
-      return item.email === email ? resp.data : null;
-    });
-  });
+export const logIn = (data) => {
+  return axios.post(`http://localhost:3001/login`, data)
 };
 
-export const postUser = (data) => {
+export const addNewUser = (data) => {
   return axios.post(`http://localhost:3001/add-user`, data)
 };

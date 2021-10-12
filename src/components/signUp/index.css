@@ -1,29 +1,29 @@
-.registration__error-message {
-    position: absolute;
-    word-wrap: normal;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #c70606;
-    font-size: 2rem;
-    font-weight: bold;
-}
-
 .form__sign-up {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 3rem;
 }
 
 .sign-up__user {
     background: rgba(65, 105, 225, 0.2);
     border: 2px solid #6a5acd;
     color: #191970;
-    padding: 1.2rem;
+    padding: 1rem;
     border-radius: 11px;
     font-size: 2.6rem;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
     outline: none;
+}
+
+.sign-up__user-error {
+    position: relative;
+    margin-top: -2.6rem;
+    margin-bottom: 1rem;
+    color: red;
+}
+
+.error {
+    border: 2px solid red;
 }
 
 .sign-up__user:focus {
@@ -72,10 +72,6 @@ input::-webkit-inner-spin-button {
 }
 
 @media (max-width: 42rem) {
-    .registration__error-message {
-        font-size: 1.4rem;
-    }
-
     .sign-up__user {
         font-size: 1.6rem;
     }
