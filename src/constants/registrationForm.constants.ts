@@ -30,50 +30,70 @@ export const CREDENTIAL_FORM = [
   },
 ];
 
-export const REGISTRATION_FORM = [
+export const REGISTRATION_FORM = [{
+  className: 'sign-up__user',
+  errorClassName: 'sign-up__user-error',
+  errorNotification: 'Обязательное поле для ввода латинскими буквами',
+  fieldName: 'name',
+  options: {
+    required: true,
+    pattern: /[A-Za-z]/
+  },
+},
   {
-    type: "text",
-    name: "name",
-    value: "name",
-    className: "sign-up__user",
-    placeholder: "name",
+    className: 'sign-up__user',
+    errorClassName: 'sign-up__user-error',
+    errorNotification: 'Обязательное поле для ввода латинскими буквами',
+    fieldName: 'surName',
+    options: {
+      required: true,
+      pattern: /[A-Za-z]/
+    },
   },
   {
-    type: "text",
-    name: "surname",
-    value: "surname",
-    className: "sign-up__user",
-    placeholder: "surname",
+    className: 'sign-up__user',
+    errorClassName: 'sign-up__user-error',
+    errorNotification: 'Обязательное числовое поле от 2 до 9',
+    fieldName: 'age',
+    options: {
+      required: true,
+      pattern: /\d?\d/,
+      min: 2,
+      max: 99
+    },
   },
   {
-    type: "number",
-    name: "age",
-    value: "age",
-    className: "sign-up__user",
-    placeholder: "age",
+    className: 'sign-up__user',
+    errorClassName: 'sign-up__user-error',
+    errorNotification: 'Обязательное поле для ввода e-mail',
+    fieldName: 'email',
+    autoComplete: "username",
+    options: {
+      required: true,
+      pattern: /^\w+@\w+\.\w{2,}$/,
+    },
   },
   {
-    type: "email",
-    name: "email",
-    value: "email",
-    className: "sign-up__user",
-    placeholder: "email",
-    autocomplete: "username",
+    className: 'sign-up__user',
+    errorClassName: 'sign-up__user-error',
+    errorNotification: 'Обязательное поле для ввода пароля мин 6 симмволов',
+    fieldName: 'pass',
+    autoComplete: "new-password",
+    options: {
+      required: true,
+      minLength: 6,
+    },
+    type: "password"
   },
   {
-    type: "password",
-    name: "pass",
-    value: "pass",
-    className: "sign-up__user",
-    placeholder: "password",
-    autocomplete: "new-pass",
-  },
-  {
-    type: "password",
-    name: "newPassword",
-    value: "newPassword",
-    className: "sign-up__user",
-    placeholder: "repeat pass",
-    autocomplete: "new-pass",
+    className: 'sign-up__user',
+    errorClassName: 'sign-up__user-error',
+    errorNotification: 'Обязательное поле для ввода повторного пароля',
+    fieldName: 'repeatPassword',
+    autoComplete: "new-password",
+    options: {
+      required: true,
+    },
+    type: "password"
   },
 ];

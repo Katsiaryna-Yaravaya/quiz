@@ -79,19 +79,10 @@ const Main = () => {
       </div>
 
       <div className="login-buttons" onClick={handleClick}>
-        {CREDENTIAL_FORM.map(({ title, type, name, value, className, autocomplete, placeholder }, idx) => {
-            if (type === "submit")
-              return (
-                <CredentialUserForm
-                  key={idx}
-                  className={className}
-                  type={type}
-                  value={value}
-                  name={name}
-                />
-              );
-          }
-        )}
+        {CREDENTIAL_FORM.map((item, idx) => {
+          if (item.type === "submit")
+            return <CredentialUserForm key={idx} {...item}/>
+        })}
       </div>
 
       <div className="login__block-icon-globe">
