@@ -1,39 +1,44 @@
-import {useForm, ValidationRule} from "react-hook-form";
+import {FieldValues, UseFormRegister, ValidationRule} from "react-hook-form";
+
 import {useEffect, useState} from "react";
-import './index.css'
 
 interface Props {
-  className: string,
-  fieldName: string,
-  errorClassName:string,
-  errorNotification: string,
-  autoComplete?: string,
-  type?: string,
-  options: {
-    required?: boolean,
-    pattern?:  ValidationRule<RegExp> | undefined,
-    min?: number,
-    max?: number,
-    minLength?: number
-  }
+    className: string,
+    fieldName: string,
+    errorClassName: string,
+    placeholder?: string,
+    errorNotification: string,
+    autoComplete?: string,
+    type?: string,
+    options: {
+        required?: boolean,
+        pattern?: ValidationRule<RegExp> | undefined,
+        min?: number,
+        max?: number,
+        minLength?: number,
+        validate?: any
+    },
+    error: { [p: string]: any },
+    register: UseFormRegister<FieldValues>,
 }
 
-const RegistrationsInput = ({className,  fieldName, errorClassName, errorNotification, options: {required, pattern, min, max}, autoComplete }: Props) => {
-  const { register, formState: {errors} } = useForm({mode:'onBlur'});
+const RegistrationsInput = ({className, error, fieldName, errorClassName, errorNotification,
+                                options: {required, pattern, min, max, minLength, validate},
+                                autoComplete, placeholder, type, register}: Props) => {
 
-  const [errorMessage, setErrorMessage]=useState('')
-  const emptyOrder = !Object.keys(errors).length
+    const [errorMessage, setErrorMessage] = useState('')
 
-  useEffect(()=> {
-    !emptyOrder ? setErrorMessage(' error') : setErrorMessage('')
-  },[emptyOrder] )
+    useEffect(() => {
+        !!error ? setErrorMessage(' error') : setErrorMessage('')
+    }, [error])
 
-  return(
-      <>
-          <input className={className + errorMessage} autoComplete={autoComplete} {...register(fieldName, {required, pattern, min, max})}/>
-          {!emptyOrder && <span className={errorClassName}>{errorNotification}</span>}
-      </>
-  )
+    return (
+        <>
+            <input className={className + errorMessage} type={type} placeholder={placeholder}
+                   autoComplete={autoComplete} {...register(fieldName, {required, pattern, min, max, minLength, validate})}/>
+            {!!error && <span className={errorClassName}>{errorNotification}</span>}
+        </>
+    )
 }
 
 export default RegistrationsInput

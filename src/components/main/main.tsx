@@ -34,8 +34,8 @@ const Main = () => {
         dispatch(saveCredentialUser(credential));
         history.push(COUNTRY_QUIZ_ROUT);
       }
-    }).catch(e => {
-      console.log(e)
+    }).catch(err => {
+      setCredentialsError(err.response.data)
     })
   };
 

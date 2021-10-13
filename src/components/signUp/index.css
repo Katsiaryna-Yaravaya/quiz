@@ -4,6 +4,15 @@
     align-items: center;
 }
 
+.sign-up__user-error-message {
+    color: red;
+    position: absolute;
+    top: 19%;
+    font-size: 1.4rem;
+    font-weight: bold;
+    left: 40%;
+}
+
 .sign-up__user {
     background: rgba(65, 105, 225, 0.2);
     border: 2px solid #6a5acd;
@@ -69,6 +78,11 @@ input::-webkit-inner-spin-button {
     .sign-up__user {
         font-size: 2rem;
     }
+
+    .sign-up__user-error-message {
+        top: 21%;
+        left: 35%;
+    }
 }
 
 @media (max-width: 42rem) {
@@ -79,5 +93,10 @@ input::-webkit-inner-spin-button {
     .form__sign-up-button {
         margin-top: 2rem;
         font-size: 1.6rem;
+    }
+
+    .sign-up__user-error-message {
+        top: 21%;
+        font-size: 1rem;
     }
 }
