@@ -63,7 +63,8 @@ export const REGISTRATION_FORM = [
             required: true,
             pattern: /\d?\d/,
             min: 2,
-            max: 99
+            max: 99,
+            maxLength: 2,
         },
     },
     {
@@ -104,4 +105,3 @@ export const REGISTRATION_FORM = [
         type: "password"
     },
 ];
-// validate: value => value === pass

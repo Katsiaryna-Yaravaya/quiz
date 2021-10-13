@@ -16,14 +16,14 @@ interface Props {
         min?: number,
         max?: number,
         minLength?: number,
-        validate?: any
+        maxLength?: number
     },
     error: { [p: string]: any },
     register: UseFormRegister<FieldValues>,
 }
 
 const RegistrationsInput = ({className, error, fieldName, errorClassName, errorNotification,
-                                options: {required, pattern, min, max, minLength, validate},
+                                options: {required, pattern, min, max, minLength, maxLength},
                                 autoComplete, placeholder, type, register}: Props) => {
 
     const [errorMessage, setErrorMessage] = useState('')
@@ -35,7 +35,7 @@ const RegistrationsInput = ({className, error, fieldName, errorClassName, errorN
     return (
         <>
             <input className={className + errorMessage} type={type} placeholder={placeholder}
-                   autoComplete={autoComplete} {...register(fieldName, {required, pattern, min, max, minLength, validate})}/>
+                   autoComplete={autoComplete} {...register(fieldName, {required, pattern, min, max, minLength, maxLength})}/>
             {!!error && <span className={errorClassName}>{errorNotification}</span>}
         </>
     )

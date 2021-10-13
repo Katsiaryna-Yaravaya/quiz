@@ -6,6 +6,7 @@ import {CountryQuiz, Quiz, Results, AnswersQuiz, Main, SignUp,} from "./componen
 import {COUNTRY_ROUT, FLAG_ROUT, COUNTRY_QUIZ_ROUT, RESULTS, SHOW_RESULT_QUIZ_ROUT, MAIN, SIGN_UP_ROUT,} from "./constants/routs.constants";
 
 import "./index.css";
+import {Button} from "react-bootstrap";
 
 const App = () => {
   return (
