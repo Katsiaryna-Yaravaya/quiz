@@ -5,9 +5,8 @@ import { RootState } from "../redux/root-reducer";
 import { MAIN } from "../constants/routs.constants";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-  const { credentialUser } = useSelector((state: RootState) => state.data);
-  const {email, pass} = credentialUser
-  
+  const { credentialUser: {email, pass} } = useSelector((state: RootState) => state.data);
+
   return (
     <Route
       {...rest}

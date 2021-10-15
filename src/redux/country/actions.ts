@@ -1,5 +1,11 @@
 import * as types from "./types";
-import {Countries, CountryUserQuestion, CurrentQuestion, QuestionDataAnswer,} from "../../interface/index.interface";
+import {
+  Countries,
+  CountryUserQuestion,
+  CredentialUser,
+  CurrentQuestion,
+  QuestionDataAnswer,
+} from "../../interface/index.interface";
 
 export const saveCountries = (countries): { payload: Countries[]; type: string } => ({
   type: types.countriesActionTypes.GET_COUNTRIES,
@@ -39,7 +45,7 @@ export const clearAllAnsweredQuestions = (): { type: string } => ({
   type: types.countriesActionTypes.CLEAR_ALL_ANSWERED_QUESTIONS,
 });
 
-export const saveCredentialUser = (credentialUser) => ({
+export const saveCredentialUser = (credentialUser): {payload: CredentialUser, type: string} => ({
   type: types.countriesActionTypes.SAVE_CREDENTIAL_USER,
   payload: credentialUser,
 });

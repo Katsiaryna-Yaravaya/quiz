@@ -12,7 +12,7 @@ const QuestionCount = () => {
   return (
     <div className="questionCount">
       Question
-      {counter ? <span> {counter} </span> : null}
+      <span> {counter} </span>
       of
       {countriesUserQuestions || questionsResult ? (
         <span> {countriesUserQuestions.length

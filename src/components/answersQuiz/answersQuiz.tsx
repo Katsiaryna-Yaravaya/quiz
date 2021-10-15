@@ -28,12 +28,7 @@ const AnswersQuiz = () => {
           if (idxResult === counter - 1) {
             return itemResult.currentQuestion.allAnswers?.map((item, idx) => {
               return (
-                <AnswerItem
-                  numeric={idx + 1}
-                  key={idx}
-                  answerStyleStateValue={itemResult.choseByUser[idx]}
-                  answer={item}
-                />
+                <AnswerItem numeric={idx + 1} key={idx} answerStyleStateValue={itemResult.choseByUser[idx]} answer={item}/>
               );
             });
           }

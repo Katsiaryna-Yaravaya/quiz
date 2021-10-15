@@ -12,7 +12,7 @@ export const CREDENTIAL_FORM = [
         type: "password",
         name: "pass",
         value: "pass",
-        autocomplete: "current-pass",
+        autocomplete: "current-password",
         className: "login__password input",
         placeholder: "password",
     },
@@ -101,6 +101,7 @@ export const REGISTRATION_FORM = [
         autoComplete: "new-password",
         options: {
             required: true,
+            minLength: 6,
         },
         type: "password"
     },

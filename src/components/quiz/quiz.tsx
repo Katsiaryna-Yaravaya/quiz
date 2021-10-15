@@ -31,7 +31,7 @@ const Quiz = () => {
     if (allServerDataCountries.length) {
       const generatedUserQuestionCountries: Countries[] = generateIndexCountry(
         allServerDataCountries,
-        GENERATE_NUMBER_INDEX_QUESTION_COUNTRY
+        GENERATE_NUMBER_INDEX_QUESTION_COUNTRY,
       );
       dispatch(saveCountriesUserQuestions(generatedUserQuestionCountries));
     }

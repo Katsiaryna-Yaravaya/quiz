@@ -56,26 +56,20 @@ const Main = () => {
 
   return (
     <form className="quiz-form">
-      {credentialsError ? (<span className="login__error-message">{credentialsError}</span>) : null}
+      <span className="login__error-message">{credentialsError}</span>
       <div className="login">
-        {CREDENTIAL_FORM.map(
-          ({ title, type, name, value, className, autocomplete, placeholder }, idx) => {
-            if (type !== "submit")
-              return (
-                <CredentialUserForm
-                  key={idx}
-                  title={name === "email" ? credential["email"] : undefined}
-                  className={className}
-                  type={type}
-                  value={credential[value]}
-                  autoComplete={autocomplete}
-                  name={name}
-                  placeholder={placeholder}
-                  onchange={handleChange}
-                />
-              );
-          }
-        )}
+        {CREDENTIAL_FORM.map((item, idx) => {
+          if (item.type !== "submit")
+            return (
+              <CredentialUserForm
+                key={idx}
+                {...item}
+                title={item.name === "email" ? credential["email"] : undefined}
+                value={credential[item.value]}
+                onchange={handleChange}
+              />
+            );
+        })}
       </div>
 
       <div className="login-buttons" onClick={handleClick}>

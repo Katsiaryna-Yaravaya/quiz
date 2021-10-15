@@ -27,8 +27,9 @@ const Answers = () => {
     allAnswers && setAnswerStyleStateValue(Array(allAnswers.length).fill(AnswerEnumState.DEFAULT, 0, allAnswers.length));
   }, [allAnswers]);
 
+  //Todo if not split into different functions, then the second value will be undefined
   const saveCard = (resultState): void => {
-    if (!!capital){
+    if (capital){
       saveReduxQuestionDataAnswer({
         choseByUser: resultState,
         currentQuestion: { allAnswers, correctAnswer, capital },
@@ -53,8 +54,8 @@ const Answers = () => {
         answerItem === correctAnswer
           ? AnswerEnumState.CORRECT
           : answerItem === answer && answer !== correctAnswer
-          ? AnswerEnumState.INCORRECT
-          : AnswerEnumState.DISABLED;
+            ? AnswerEnumState.INCORRECT
+            : AnswerEnumState.DISABLED;
 
       if (currentAnswerState === AnswerEnumState.CORRECT && answer === correctAnswer) {
         setIsNextButtonVisible(true);

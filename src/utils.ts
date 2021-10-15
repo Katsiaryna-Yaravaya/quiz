@@ -1,4 +1,4 @@
-import { Countries } from "./interface/countries.interface";
+import {Countries} from "./interface/countries.interface";
 
 export const generateIndexCountry = (arrayFindDataObject, num: number, correctAnswerName?: string): Countries[] => {
   let uniqueNumber: number[] = [];
@@ -6,7 +6,11 @@ export const generateIndexCountry = (arrayFindDataObject, num: number, correctAn
   while (uniqueNumber.length < num) {
     let generateNumber: number = Math.floor(Math.random() * 249) + 1;
 
-    if (!uniqueNumber.includes(generateNumber) && arrayFindDataObject[generateNumber - 1]?.name !== correctAnswerName) {
+    if (
+      !uniqueNumber.includes(generateNumber)
+      && arrayFindDataObject[generateNumber - 1]?.name !== correctAnswerName
+      && (arrayFindDataObject[generateNumber - 1]?.capital || arrayFindDataObject[generateNumber - 1]?.flag)
+    ) {
       uniqueNumber.push(generateNumber);
     }
   }
@@ -22,15 +26,3 @@ export const generateIndexCountry = (arrayFindDataObject, num: number, correctAn
   }
   return [];
 };
-
-export const isEmailValid = ({ email }) => {
-  const regex = /^\w+@\w+\.\w{2,}$/;
-  return regex.test(email);
-};
-
-export const isNameOrSurnameValid = ({ name, surname }) => {
-  const regex = /[A-Za-z]/;
-  return regex.test(name) && regex.test(surname);
-};
-
-export const isNotRequestValid = (statusText) => statusText !== "OK";

@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 
-import { AnswerEnumState } from "../../enum/AnswerState.enum";
+import {AnswerEnumState} from "../../enum/AnswerState.enum";
 
 import "./index.css";
 
@@ -11,9 +11,9 @@ interface Props {
   numeric: number;
 }
 
-const AnswerItem = ({answer, answerClick, answerStyleStateValue, numeric,}: Props) => {
-  const [styleAnswer, setStyleAnswer] = useState<string>("answer ");
-  const newStateValue: string = `answer ` + answerStyleStateValue;
+const AnswerItem = ({answer, answerClick, answerStyleStateValue, numeric}: Props) => {
+  const [styleAnswer, setStyleAnswer] = useState<string>("answer");
+  const newStateValue: string = "answer " + answerStyleStateValue;
 
   useEffect(() => {
     updateAnswerStyleState();
@@ -32,8 +32,7 @@ const AnswerItem = ({answer, answerClick, answerStyleStateValue, numeric,}: Prop
 
   const updateAnswerStyleState = (): void => {
     if (answerStyleStateValue === AnswerEnumState.CORRECT) {
-      const timer = setTimeout(() => setStyleAnswer(newStateValue), 250);
-      clearTimeout(timer);
+      setStyleAnswer(newStateValue)
     } else if (answerStyleStateValue === AnswerEnumState.INCORRECT) {
       setStyleAnswer(newStateValue);
     }
