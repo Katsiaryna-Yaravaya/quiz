@@ -16,7 +16,7 @@ const AnswerItem = ({answer, answerClick, answerStyleStateValue, numeric}: Props
   const newStateValue: string = "answer " + answerStyleStateValue;
 
   useEffect(() => {
-    updateAnswerStyleState();
+    setStyleAnswer(newStateValue);
   }, [answerStyleStateValue]);
 
   useEffect(() => {
@@ -28,14 +28,6 @@ const AnswerItem = ({answer, answerClick, answerStyleStateValue, numeric}: Props
       answerClick(answer);
     }
     setStyleAnswer(newStateValue);
-  };
-
-  const updateAnswerStyleState = (): void => {
-    if (answerStyleStateValue === AnswerEnumState.CORRECT) {
-      setStyleAnswer(newStateValue)
-    } else if (answerStyleStateValue === AnswerEnumState.INCORRECT) {
-      setStyleAnswer(newStateValue);
-    }
   };
 
   return (

@@ -6,11 +6,13 @@ import {CountryQuiz, Quiz, Results, AnswersQuiz, Main, SignUp,} from "./componen
 import {COUNTRY_ROUT, FLAG_ROUT, COUNTRY_QUIZ_ROUT, RESULTS, SHOW_RESULT_QUIZ_ROUT, MAIN, SIGN_UP_ROUT,} from "./constants/routs.constants";
 
 import "./index.css";
+import {ToastContainer} from "react-toastify";
 
 const App = () => {
   return (
     <BrowserRouter>
       <div className="app main">
+        <ToastContainer position="top-center" autoClose={4000}/>
         <div className="main__heading">
           <Switch>
             <Route exact path={MAIN} component={Main} />

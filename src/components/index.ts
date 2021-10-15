@@ -10,5 +10,3 @@ export { default as AnswerItem } from "./answerItem/answerItem";
 export { default as ArrowButtons } from "./arrowButtons/arrowButtons";
 export { default as Main } from "./main/main";
 export { default as SignUp } from "./signUp/signUp";
-export { default as FormInputControl } from "./signUp/formInputControl/formInputControl";
-export { default as CredentialUserForm } from "./credentialUserForm/credentialUserForm";

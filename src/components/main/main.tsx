@@ -6,10 +6,7 @@ import {logIn} from "../../backend/api";
 
 import {saveCredentialUser} from "../../redux/country/actions";
 
-import { CredentialUserForm } from "../index";
-
 import {COUNTRY_QUIZ_ROUT, SIGN_UP_ROUT,} from "../../constants/routs.constants";
-import { CREDENTIAL_FORM } from "../../constants/registrationForm.constants";
 
 import { ButtonRegistrationUserEnum } from "../../enum/ButtonRegistrationUser.enum";
 
@@ -27,6 +24,7 @@ const Main = () => {
     email: "",
     pass: "",
   });
+  const {email, pass} = credential
 
   const signIn = (): void => {
     logIn(credential).then(res => {
@@ -58,25 +56,31 @@ const Main = () => {
     <form className="quiz-form">
       <span className="login__error-message">{credentialsError}</span>
       <div className="login">
-        {CREDENTIAL_FORM.map((item, idx) => {
-          if (item.type !== "submit")
-            return (
-              <CredentialUserForm
-                key={idx}
-                {...item}
-                title={item.name === "email" ? credential["email"] : undefined}
-                value={credential[item.value]}
-                onchange={handleChange}
-              />
-            );
-        })}
+        <input
+          className="login__email input"
+          type="email"
+          title={email}
+          value={email}
+          autoComplete="on"
+          name="email"
+          placeholder="e-mail"
+          onChange={handleChange}
+        />
+
+        <input
+          className="login__password input"
+          type="password"
+          value={pass}
+          autoComplete="current-password"
+          name="pass"
+          placeholder="password"
+          onChange={handleChange}
+        />
       </div>
 
       <div className="login-buttons" onClick={handleClick}>
-        {CREDENTIAL_FORM.map((item, idx) => {
-          if (item.type === "submit")
-            return <CredentialUserForm key={idx} {...item}/>
-        })}
+        <input className="login-buttons__signIn button" type="submit" value="sign in" name="signIn"/>
+        <input className="buttons__signUp button" type="submit" value="sign up" name="signUp"/>
       </div>
 
       <div className="login__block-icon-globe">
