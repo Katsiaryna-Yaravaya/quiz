@@ -1,16 +1,10 @@
-import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import {useForm} from "react-hook-form";
 
-import {logIn} from "../../backend/api";
+import {logIn} from "../../core/api";
 
-import {saveCredentialUser} from "../../redux/country/actions";
-
-import {COUNTRY_QUIZ_ROUT, SIGN_UP_ROUT,} from "../../constants/routs.constants";
-
-import { ButtonRegistrationUserEnum } from "../../enum/ButtonRegistrationUser.enum";
-
-import { CredentialUser } from "../../interface/credentialUser.interface";
+import {SIGN_UP_ROUT} from "../../constants/routs.constants";
 
 import { iconGlobe, iconBeach } from "../../asserts/imgIcon";
 
@@ -19,68 +13,27 @@ import "./index.css";
 const Main = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const [credentialsError, setCredentialsError] = useState<string>("");
-  const [credential, setCredential] = useState<CredentialUser>({
-    email: "",
-    pass: "",
-  });
-  const {email, pass} = credential
+  const {register, handleSubmit, watch} = useForm({mode: 'onBlur'});
 
-  const signIn = (): void => {
-    logIn(credential).then(res => {
-      if (res.data) {
-        dispatch(saveCredentialUser(credential));
-        history.push(COUNTRY_QUIZ_ROUT);
-      }
-    }).catch(err => {
-      setCredentialsError(err.response.data)
-    })
-  };
+  const email = watch('email')
 
-  const handleChange = (e): void => {
-    setCredentialsError("");
-    let { name, value } = e.target;
-
-    setCredential({
-      ...credential,
-      [name]: value,
-    });
-  };
-
-  const handleClick = (e): void => {
-    e.preventDefault();
-    e.target.value === ButtonRegistrationUserEnum.SIGN_IN ? signIn() : history.push(SIGN_UP_ROUT);
+  const onSubmit = (data): void => {
+    dispatch(logIn(data))
   };
 
   return (
-    <form className="quiz-form">
-      <span className="login__error-message">{credentialsError}</span>
+    <form className="quiz-form" onSubmit={handleSubmit(onSubmit)}>
       <div className="login">
-        <input
-          className="login__email input"
-          type="email"
-          title={email}
-          value={email}
-          autoComplete="on"
-          name="email"
-          placeholder="e-mail"
-          onChange={handleChange}
-        />
+        <input className='login__email input' placeholder='E-mail' title={email}
+               autoComplete="username" {...register('email', {required: true})}/>
 
-        <input
-          className="login__password input"
-          type="password"
-          value={pass}
-          autoComplete="current-password"
-          name="pass"
-          placeholder="password"
-          onChange={handleChange}
-        />
+        <input className="login__password input" placeholder='Password' type="password"
+               autoComplete="new-password" {...register('pass', {required: true})}/>
       </div>
 
-      <div className="login-buttons" onClick={handleClick}>
+      <div className="login-buttons">
         <input className="login-buttons__signIn button" type="submit" value="sign in" name="signIn"/>
-        <input className="buttons__signUp button" type="submit" value="sign up" name="signUp"/>
+        <input className="buttons__signUp button" type="submit" value="sign up" name="signUp" onClick={()=> history.push(SIGN_UP_ROUT)}/>
       </div>
 
       <div className="login__block-icon-globe">

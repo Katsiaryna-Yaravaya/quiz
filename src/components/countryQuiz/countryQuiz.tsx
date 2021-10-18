@@ -1,29 +1,18 @@
-import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-import { getCountriesCapitals, getCountriesFlags } from "../../backend/api";
-import { saveCountries } from "../../redux/country/actions";
-
-import { COUNTRY_ROUT, FLAG_ROUT } from "../../constants/routs.constants";
+import { getCountriesCapitals, getCountriesFlags } from "../../core/api";
 
 import "./index.css";
 
 const CountryQuiz = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const clickCountryHandler = (): void => {
-    getCountriesCapitals("name", "capital").then((resp) => {
-      dispatch(saveCountries(resp));
-      history.push(COUNTRY_ROUT);
-    });
+    dispatch(getCountriesCapitals("name", "capital"))
   };
 
   const clickFlagHandler = (): void => {
-    getCountriesFlags("name", "flag").then((resp) => {
-      dispatch(saveCountries(resp));
-      history.push(FLAG_ROUT);
-    });
+    dispatch(getCountriesFlags("name", "flag"))
   };
 
   return (

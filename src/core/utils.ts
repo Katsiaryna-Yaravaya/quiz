@@ -1,4 +1,4 @@
-import {Countries} from "./interface/countries.interface";
+import {Countries} from "../interface/countries.interface";
 
 export const generateIndexCountry = (arrayFindDataObject, num: number, correctAnswerName?: string): Countries[] => {
   let uniqueNumber: number[] = [];

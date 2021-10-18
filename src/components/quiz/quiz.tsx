@@ -5,7 +5,7 @@ import { RootState } from "../../redux/root-reducer";
 import { Answers, Question, QuestionCount } from "../index";
 import {saveCurrentQuestion, saveCountriesUserQuestions, showGenerateAnswer} from "../../redux/country/actions";
 
-import { generateIndexCountry } from "../../utils";
+import { generateIndexCountry } from "../../core/utils";
 import { Countries } from "../../interface/countries.interface";
 import { CountryUserQuestion } from "../../interface/countryUserQuestion.interface";
 import { QuestionClass } from "../../dto/questionClass";
