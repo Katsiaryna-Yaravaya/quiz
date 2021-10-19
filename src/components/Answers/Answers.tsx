@@ -1,3 +1,4 @@
+import {FC} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -10,7 +11,7 @@ import { AnswerItem, Next } from "../index";
 import { AnswerEnumState } from "../../enum/AnswerState.enum";
 import { RESULTS } from "../../constants/routs.constants";
 
-const Answers = () => {
+const Answers: FC = () => {
   const {currentQuestion: { allAnswers, correctAnswer, capital, flag }} = useSelector((state: RootState) => state.data);
   const history = useHistory();
   const dispatch = useDispatch();

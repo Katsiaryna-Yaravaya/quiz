@@ -1,5 +1,5 @@
 import * as types from "./types";
-import { QuestionState } from "../../interface/questionState.interface";
+import {QuestionState} from "../../interface/questionState.interface";
 
 const INITIAL_STATE: QuestionState = {
   allServerDataCountries: [],
@@ -38,7 +38,7 @@ const countryReducer = (state = INITIAL_STATE, action): QuestionState => {
     case types.countriesActionTypes.SAVE_CURRENT_QUESTION:
       return {
         ...state,
-        currentQuestion: { ...action.payload },
+        currentQuestion: {...action.payload},
       };
     case types.countriesActionTypes.SHOW_GENERATE_ANSWERS:
       return {
@@ -83,7 +83,7 @@ const countryReducer = (state = INITIAL_STATE, action): QuestionState => {
     case types.countriesActionTypes.SAVE_CREDENTIAL_USER:
       return {
         ...state,
-        credentialUser: { ...action.payload },
+        credentialUser: {...action.payload},
       };
 
     default:

@@ -1,3 +1,4 @@
+import {FC} from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import {useForm} from "react-hook-form";
@@ -10,7 +11,7 @@ import { iconGlobe, iconBeach } from "../../asserts/imgIcon";
 
 import "./index.css";
 
-const Main = () => {
+const Main: FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const {register, handleSubmit, watch} = useForm({mode: 'onBlur'});

@@ -1,3 +1,4 @@
+import {FC} from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { RootState } from "../../redux/root-reducer";
@@ -10,7 +11,7 @@ import { generalIcon } from "../../asserts/imgIcon";
 
 import "./index.css";
 
-const AnswersQuiz = () => {
+const AnswersQuiz: FC = () => {
   const { questionsResult, counter } = useSelector((state: RootState) => state.data);
   const history = useHistory();
 

@@ -1,10 +1,11 @@
+import {FC} from "react";
 import { useDispatch } from "react-redux";
 
 import { getCountriesCapitals, getCountriesFlags } from "../../core/api";
 
 import "./index.css";
 
-const CountryQuiz = () => {
+const CountryQuiz: FC = () => {
   const dispatch = useDispatch();
 
   const clickCountryHandler = (): void => {

@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+import {FC} from "react";
 import { RootState } from "../../redux/root-reducer";
 import { useHistory } from "react-router-dom";
 
@@ -11,7 +12,7 @@ interface Props {
   resetQuestionState: () => void;
 }
 
-const Next = ({ resetQuestionState }: Props) => {
+const Next: FC<Props> = ({ resetQuestionState }) => {
   const { countriesUserQuestions, counter } = useSelector((state: RootState) => state.data);
   const dispatch = useDispatch();
   const history = useHistory();

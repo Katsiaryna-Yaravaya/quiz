@@ -1,3 +1,4 @@
+import {FC} from "react";
 import {useHistory} from "react-router-dom";
 import {useForm} from "react-hook-form";
 
@@ -7,7 +8,7 @@ import {MAIN} from "../../constants/routs.constants";
 
 import "./index.css";
 
-const SignUp = () => {
+const SignUp: FC = () => {
   const history = useHistory();
   const {register, handleSubmit, formState: {errors}, watch} = useForm({mode: 'onBlur'});
 

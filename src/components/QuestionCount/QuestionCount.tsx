@@ -1,12 +1,13 @@
+import {FC} from "react";
 import { useSelector } from "react-redux";
 
 import { RootState } from "../../redux/root-reducer";
 
-import { GENERATE_NUMBER_INDEX_QUESTION_COUNTRY } from "../../constants/general.constants.";
+import { GENERATE_NUMBER_INDEX_QUESTION_COUNTRY } from "../../constants/general.constants";
 
 import "./index.css";
 
-const QuestionCount = () => {
+const QuestionCount: FC = () => {
   const { countriesUserQuestions, counter, questionsResult } = useSelector((state: RootState) => state.data);
 
   return (

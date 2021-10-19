@@ -1,3 +1,4 @@
+import {FC} from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/root-reducer";
@@ -12,13 +13,13 @@ import { QuestionClass } from "../../dto/questionClass";
 import {
   GENERATE_NUMBER_INDEX_QUESTION_COUNTRY,
   GENERATE_NUMBER_INDEX_INCORRECT_ANSWER_COUNTRY,
-} from "../../constants/general.constants.";
+} from "../../constants/general.constants";
 
 import { generalIcon } from "../../asserts/imgIcon";
 
 import "./index.css";
 
-const Quiz = () => {
+const Quiz: FC = () => {
   let {
     counter,
     currentQuestion: { correctAnswer, capital, flag },

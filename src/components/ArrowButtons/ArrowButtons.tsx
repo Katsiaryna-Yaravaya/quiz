@@ -1,3 +1,4 @@
+import {FC} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faArrowAltCircleLeft, faArrowAltCircleRight,} from "@fortawesome/free-regular-svg-icons";
 
@@ -8,7 +9,7 @@ import { saveCounter } from "../../redux/country/actions";
 
 import "./index.css";
 
-const ArrowButtons = () => {
+const ArrowButtons: FC = () => {
   const { questionsResult, counter } = useSelector((state: RootState) => state.data);
   const dispatch = useDispatch();
 

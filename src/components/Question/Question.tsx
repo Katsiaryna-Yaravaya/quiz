@@ -1,3 +1,5 @@
+import {FC} from "react";
+
 import { BasePhraseQuestion } from "../../interface/index.interface";
 
 import "./index.css";
@@ -7,7 +9,7 @@ interface Props {
   capital: string | undefined;
 }
 
-const Question = ({ flag, capital }: Props) => {
+const Question: FC<Props> = ({ flag, capital }) => {
   const basePhraseQuestion: BasePhraseQuestion = {
     country: " is the capital of",
     flag: "Which country does this flag belong to?",

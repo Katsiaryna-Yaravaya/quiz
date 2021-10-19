@@ -1,16 +1,17 @@
+import {FC} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import {deleteData, clearAllAnsweredQuestions} from "../../redux/country/actions";
 import { RootState } from "../../redux/root-reducer";
 import {COUNTRY_QUIZ_ROUT, SHOW_RESULT_QUIZ_ROUT} from "../../constants/routs.constants";
-import { GENERATE_NUMBER_INDEX_QUESTION_COUNTRY } from "../../constants/general.constants.";
+import { GENERATE_NUMBER_INDEX_QUESTION_COUNTRY } from "../../constants/general.constants";
 
 import { imgResults } from "../../asserts/imgIcon";
 
 import "./index.css";
 
-const Results = () => {
+const Results: FC = () => {
   const { questionsResult, countriesUserQuestions, counter } = useSelector((state: RootState) => state.data);
   const history = useHistory();
   const dispatch = useDispatch();

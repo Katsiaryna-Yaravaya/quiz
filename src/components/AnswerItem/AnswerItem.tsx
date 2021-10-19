@@ -1,3 +1,4 @@
+import {FC} from "react";
 import {useEffect, useState} from "react";
 
 import {AnswerEnumState} from "../../enum/AnswerState.enum";
@@ -11,7 +12,7 @@ interface Props {
   numeric: number;
 }
 
-const AnswerItem = ({answer, answerClick, answerStyleStateValue, numeric}: Props) => {
+const AnswerItem: FC<Props> = ({answer, answerClick, answerStyleStateValue, numeric}) => {
   const [styleAnswer, setStyleAnswer] = useState<string>("answer");
   const newStateValue: string = "answer " + answerStyleStateValue;
 

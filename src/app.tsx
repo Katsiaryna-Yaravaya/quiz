@@ -1,7 +1,7 @@
 import { Switch, Route } from "react-router-dom";
 import {ToastContainer} from "react-toastify";
 
-import PrivateRoute from "./private-rout/private-rout";
+import PrivateRoute from "./private-route/private-route";
 import {CountryQuiz, Quiz, Results, AnswersQuiz, Main, SignUp,} from "./components";
 
 import {COUNTRY_ROUT, FLAG_ROUT, COUNTRY_QUIZ_ROUT, RESULTS, SHOW_RESULT_QUIZ_ROUT, MAIN, SIGN_UP_ROUT,} from "./constants/routs.constants";
