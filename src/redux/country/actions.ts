@@ -1,20 +1,11 @@
-import * as types from "./types";
-import {Countries, CountryUserQuestion, CredentialUser, CurrentQuestion, QuestionDataAnswer} from "../../interface/index.interface";
+import {createAction} from "@reduxjs/toolkit";
 
-export const saveCountries = (payload): { payload: Countries[]; type: string } => ({type: types.countriesActionTypes.GET_COUNTRIES, payload});
-
-export const saveCountriesUserQuestions = (payload): { payload: CountryUserQuestion[]; type: string } => ({type: types.countriesActionTypes.SAVE_COUNTRIES_USER_QUESTIONS, payload});
-
-export const saveCounter = (payload): { payload: number; type: string } => ({type: types.countriesActionTypes.SAVE_COUNTER, payload});
-
-export const saveCurrentQuestion = (payload): { payload: CurrentQuestion; type: string } => ({type: types.countriesActionTypes.SAVE_CURRENT_QUESTION, payload});
-
-export const showGenerateAnswer = (payload): { payload: string[]; type: string } => ({type: types.countriesActionTypes.SHOW_GENERATE_ANSWERS, payload});
-
-export const deleteData = (): { type: string } => ({type: types.countriesActionTypes.DELETE_DATA});
-
-export const saveQuestionDataAnswer = (payload): { payload: QuestionDataAnswer[]; type: string } => ({type: types.countriesActionTypes.SAVE_QUESTION_DATA_ANSWER, payload});
-
-export const clearAllAnsweredQuestions = (): { type: string } => ({type: types.countriesActionTypes.CLEAR_ALL_ANSWERED_QUESTIONS});
-
-export const saveCredentialUser = (payload): {payload: CredentialUser, type: string} => ({type: types.countriesActionTypes.SAVE_CREDENTIAL_USER, payload});
+export const saveCountries = createAction('GET_COUNTRIES')
+export const saveCountriesUserQuestions = createAction("SAVE_COUNTRIES_USER_QUESTIONS")
+export const saveCounter = createAction("SAVE_COUNTER")
+export const saveCurrentQuestion = createAction("SAVE_CURRENT_QUESTION")
+export const showGenerateAnswer = createAction("SHOW_GENERATE_ANSWERS")
+export const deleteData = createAction("DELETE_DATA")
+export const saveQuestionDataAnswer = createAction("SAVE_QUESTION_DATA_ANSWER")
+export const clearAllAnsweredQuestions = createAction("DELETE_DATA_INCLUDE_AFTER_RESULT")
+export const saveCredentialUser = createAction("SAVE_CREDENTIAL_USER")

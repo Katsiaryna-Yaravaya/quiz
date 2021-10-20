@@ -11,7 +11,8 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={(props) =>
-        !email && !pass ? <Redirect to={MAIN} /> : <Component {...props} />
+        // !email && !pass
+         false ? <Redirect to={MAIN} /> : <Component {...props} />
       }
     />
   );

@@ -57,7 +57,7 @@ const Quiz: FC = () => {
         .sort(() => {
           return 0.5 - Math.random();
         });
-      dispatch(showGenerateAnswer(generateAnswers));
+      dispatch(showGenerateAnswer({ number: 3 }));
     }
   }, [correctAnswer]);
 
