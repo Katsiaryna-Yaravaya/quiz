@@ -4,14 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/root-reducer";
 
 import { Answers, Question, QuestionCount } from "../index";
-import {saveCurrentQuestion, saveCountriesUserQuestions, showGenerateAnswer} from "../../redux/country/actions";
+import {saveCurrentQuestion, showGenerateAnswer} from "../../redux/country/actions";
+
+import {qwerty} from "./effect";
 
 import { generateIndexCountry } from "../../core/utils";
 import { Countries } from "../../interface/countries.interface";
-import { CountryUserQuestion } from "../../interface/countryUserQuestion.interface";
-import { QuestionClass } from "../../dto/questionClass";
 import {
-  GENERATE_NUMBER_INDEX_QUESTION_COUNTRY,
   GENERATE_NUMBER_INDEX_INCORRECT_ANSWER_COUNTRY,
 } from "../../constants/general.constants";
 
@@ -20,7 +19,7 @@ import { generalIcon } from "../../asserts/imgIcon";
 import "./index.css";
 
 const Quiz: FC = () => {
-  let {
+  const {
     counter,
     currentQuestion: { correctAnswer, capital, flag },
     allServerDataCountries,
@@ -29,18 +28,15 @@ const Quiz: FC = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (allServerDataCountries.length) {
-      const generatedUserQuestionCountries: Countries[] = generateIndexCountry(
-        allServerDataCountries,
-        GENERATE_NUMBER_INDEX_QUESTION_COUNTRY,
-      );
-      dispatch(saveCountriesUserQuestions(generatedUserQuestionCountries));
-    }
+      dispatch(qwerty());
   }, [allServerDataCountries]);
 
   useEffect(() => {
-    const currentUserQuestion: CountryUserQuestion = countriesUserQuestions[counter - 1];
-    dispatch(saveCurrentQuestion(new QuestionClass({ ...currentUserQuestion })));
+      const currentUserQuestion: Countries = countriesUserQuestions[counter - 1];
+      if (currentUserQuestion) {
+        const { name, capital, flag} =  currentUserQuestion;
+        dispatch(saveCurrentQuestion({correctAnswer: name, capital, flag} ))
+      }
   }, [countriesUserQuestions, counter]);
 
   useEffect(() => {
@@ -57,7 +53,7 @@ const Quiz: FC = () => {
         .sort(() => {
           return 0.5 - Math.random();
         });
-      dispatch(showGenerateAnswer({ number: 3 }));
+      dispatch(showGenerateAnswer(generateAnswers));
     }
   }, [correctAnswer]);
 

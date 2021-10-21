@@ -1,10 +1,10 @@
 import {Countries} from "../interface/countries.interface";
 
 export const generateIndexCountry = (arrayFindDataObject, num: number, correctAnswerName?: string): Countries[] => {
-  let uniqueNumber: number[] = [];
+  const uniqueNumber: number[] = [];
 
   while (uniqueNumber.length < num) {
-    let generateNumber: number = Math.floor(Math.random() * 249) + 1;
+    const generateNumber: number = Math.floor(Math.random() * 249) + 1;
 
     if (
       !uniqueNumber.includes(generateNumber)

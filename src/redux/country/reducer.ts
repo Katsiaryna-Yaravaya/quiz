@@ -5,8 +5,10 @@ import {
   deleteData,
   saveCounter,
   saveCountries,
-  saveCountriesUserQuestions, saveCredentialUser,
-  saveCurrentQuestion, saveQuestionDataAnswer,
+  saveCountriesUserQuestions,
+  saveCredentialUser,
+  saveCurrentQuestion,
+  saveQuestionDataAnswer,
   showGenerateAnswer
 } from "./actions";
 
@@ -28,45 +30,45 @@ const INITIAL_STATE: QuestionState = {
 };
 
 export const countryReducer = createReducer(INITIAL_STATE, {
-// @ts-ignore
-  [saveCountries]: (state, action) => {
-    state.allServerDataCountries = action.payload
-  },
-// @ts-ignore
-  [saveCountriesUserQuestions]: (state, action) => {
-    state.countriesUserQuestions = action.payload;
-  },
-// @ts-ignore
-  [saveCounter]: (state, action) => {
-    state.counter = action.payload
-  },
-// @ts-ignore
-  [saveCurrentQuestion]: (state, action) => {
-    console.log(action.payload)
 
-    state.currentQuestion = action.payload
+  [saveCountries.type]: (state, action) => {state.allServerDataCountries = action.payload},
+
+  [saveCountriesUserQuestions.type]: (state, action) => {state.countriesUserQuestions = action.payload},
+
+  [saveCounter.type]: (state, action) => {state.counter = action.payload},
+
+  [saveCurrentQuestion.type]: (state, action) => {state.currentQuestion = action.payload},
+
+  [showGenerateAnswer.type]: (state, action) => {state.currentQuestion.allAnswers = action.payload},
+
+  [deleteData.type]: (state) => {
+    state.allServerDataCountries = [];
+    state.countriesUserQuestions = [];
+    state.counter = 1;
+    state.currentQuestion = {
+      correctAnswer: "",
+      flag: "",
+      capital: "",
+      allAnswers: [],
+    };
+    state.questionsResult = [];
   },
-// @ts-ignore
-  [showGenerateAnswer]: (state, action) => {
-    console.log(action.payload)
-    console.log(action)
-    // state.currentQuestion.allAnswers.push(action.payload)
+
+  [saveQuestionDataAnswer.type]: (state, action) => {state.questionsResult.push(action.payload)},
+
+  [clearAllAnsweredQuestions.type]: (state) => {
+    state.allServerDataCountries = [];
+    state.countriesUserQuestions = [];
+    state.counter = 1;
+    state.currentQuestion = {
+      correctAnswer: "",
+      flag: "",
+      capital: "",
+      allAnswers: [],
+    };
   },
-// @ts-ignore
-  [deleteData]: (state, action) => {
-  },
-// @ts-ignore
-  [saveQuestionDataAnswer]: (state, action) => {
-    state.questionsResult.push(action.payload)
-  },
-// @ts-ignore
-  [clearAllAnsweredQuestions]: (state, action) => {
-  },
-// @ts-ignore
-  [saveCredentialUser]: (state, action) => {
-    state.credentialUser = {...action.payload}
-  },
+
+  [saveCredentialUser.type]: (state, action) => {state.credentialUser = {...action.payload}},
 })
-
 
 export default countryReducer;

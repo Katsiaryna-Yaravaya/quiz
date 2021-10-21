@@ -1,8 +1,8 @@
-import {Countries, CurrentQuestion, CountryUserQuestion, QuestionDataAnswer, Credentials, CredentialUser,} from "./index.interface";
+import {Countries, CurrentQuestion, QuestionDataAnswer, CredentialUser,} from "./index.interface";
 
 export interface QuestionState {
   allServerDataCountries: Countries[];
-  countriesUserQuestions: CountryUserQuestion[];
+  countriesUserQuestions: Countries[];
   counter: number;
   currentQuestion: CurrentQuestion;
   questionsResult: QuestionDataAnswer[];
