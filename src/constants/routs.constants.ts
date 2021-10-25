@@ -5,3 +5,4 @@ export const RESULTS: string = "/Results";
 export const SHOW_RESULT_QUIZ_ROUT: string = "/show-result-Quiz";
 export const MAIN: string = "/";
 export const SIGN_UP_ROUT: string = "/sign-up-form";
+export const SHOW_RESULTS_USERS: string = "/show-results-users";

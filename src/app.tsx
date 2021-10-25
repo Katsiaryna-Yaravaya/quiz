@@ -3,7 +3,7 @@ import { ToastContainer } from "react-toastify";
 
 import PrivateRoute from "./private-route/private-route";
 import {
-  CountryQuiz, Quiz, Results, AnswersQuiz, Main, SignUp,
+  CountryQuiz, Quiz, Results, AnswersQuiz, Main, SignUp, ShowResultsUsers,
 } from "./components";
 
 import {
@@ -13,7 +13,7 @@ import {
   RESULTS,
   SHOW_RESULT_QUIZ_ROUT,
   MAIN,
-  SIGN_UP_ROUT,
+  SIGN_UP_ROUT, SHOW_RESULTS_USERS,
 } from "./constants/routs.constants";
 
 import "react-toastify/dist/ReactToastify.css";
@@ -26,6 +26,7 @@ const App = () => (
       <Switch>
         <Route exact path={MAIN} component={Main} />
         <Route path={SIGN_UP_ROUT} component={SignUp} />
+        <Route path={SHOW_RESULTS_USERS} component={ShowResultsUsers} />
         <PrivateRoute path={COUNTRY_QUIZ_ROUT} component={CountryQuiz} />
         <PrivateRoute path={FLAG_ROUT} component={Quiz} />
         <PrivateRoute path={COUNTRY_ROUT} component={Quiz} />
