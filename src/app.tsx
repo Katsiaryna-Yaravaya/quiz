@@ -22,7 +22,7 @@ import "./index.css";
 const App = () => (
   <div className="app main">
     <ToastContainer position="top-center" autoClose={4000} />
-    <div className="main__heading">
+    <div>
       <Switch>
         <Route exact path={MAIN} component={Main} />
         <Route path={SIGN_UP_ROUT} component={SignUp} />

@@ -5,8 +5,11 @@ const ShowResultsUsers: FC = () => (
   <table className="table">
     <tbody className="table__body">
       <tr className="table__row">
-        <td>example</td>
+        <td>user name</td>
+        <td>best result</td>
+        <td>number of games</td>
       </tr>
+      <tr className="table__row" />
     </tbody>
   </table>
 );

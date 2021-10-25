@@ -1,5 +1,23 @@
 .table {
+  table-layout: fixed;
+  border-collapse: collapse;
+  position: absolute;top: 6rem;
+  transform: translate(-50%);
 
+}
+
+.table__row td{
+  padding: 1rem;
+  font-size: 2rem;
+  border: 2px solid lightcyan;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #ffe4e1;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #cfacfc;
 }
 
 .table__body{
@@ -7,5 +25,5 @@
 }
 
 .table__row{
-
+  color: midnightblue;
 }
