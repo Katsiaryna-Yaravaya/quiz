@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-import {FC} from "react";
-import { RootState } from "../../redux/root-reducer";
+import { FC } from "react";
 import { useHistory } from "react-router-dom";
+import { RootState } from "../../redux/root-reducer";
 
 import { saveCounter } from "../../redux/country/actions";
 import { RESULTS } from "../../constants/routs.constants";
@@ -35,4 +35,4 @@ const Next: FC<Props> = ({ resetQuestionState }) => {
   );
 };
 
-export default Next
+export default Next;

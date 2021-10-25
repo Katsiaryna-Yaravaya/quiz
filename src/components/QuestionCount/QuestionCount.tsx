@@ -1,4 +1,4 @@
-import {FC} from "react";
+import { FC } from "react";
 import { useSelector } from "react-redux";
 
 import { RootState } from "../../redux/root-reducer";
@@ -13,14 +13,18 @@ const QuestionCount: FC = () => {
   return (
     <div className="questionCount">
       Question
-      <span> {counter} </span>
+      <span>
+        {" "}
+        {counter}
+        {" "}
+      </span>
       of
-      {countriesUserQuestions || questionsResult ? (
-        <span> {countriesUserQuestions.length
-            ? GENERATE_NUMBER_INDEX_QUESTION_COUNTRY
-            : questionsResult.length}
-        </span>
-      ) : null}
+      <span>
+        {" "}
+        {countriesUserQuestions.length
+          ? GENERATE_NUMBER_INDEX_QUESTION_COUNTRY
+          : questionsResult.length}
+      </span>
     </div>
   );
 };

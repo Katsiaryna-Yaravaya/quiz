@@ -1,7 +1,6 @@
-import {FC} from "react";
+import { FC, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { useEffect, useState } from "react";
 
 import { RootState } from "../../redux/root-reducer";
 
@@ -12,51 +11,48 @@ import { AnswerEnumState } from "../../enum/AnswerState.enum";
 import { RESULTS } from "../../constants/routs.constants";
 
 const Answers: FC = () => {
-  const {currentQuestion: { allAnswers, correctAnswer, capital, flag }} = useSelector((state: RootState) => state.data);
+  const {
+    currentQuestion: {
+      allAnswers, correctAnswer, capital, flag,
+    },
+  } = useSelector((state: RootState) => state.data);
   const history = useHistory();
   const dispatch = useDispatch();
   const [isNextButtonVisible, setIsNextButtonVisible] = useState<boolean>(false);
   const [isSelectedAnswer, setIsSelectedAnswer] = useState<boolean>(false);
   const [answerStyleStateValue, setAnswerStyleStateValue] = useState<AnswerEnumState[]>([]);
 
+  useEffect(() => {
+    allAnswers && setAnswerStyleStateValue(Array(allAnswers.length).fill(AnswerEnumState.DEFAULT, 0, allAnswers.length));
+  }, [allAnswers]);
+
   const resetQuestionState = (): void => {
     setIsSelectedAnswer(false);
     setIsNextButtonVisible(false);
   };
 
-  useEffect(() => {
-    allAnswers && setAnswerStyleStateValue(Array(allAnswers.length).fill(AnswerEnumState.DEFAULT, 0, allAnswers.length));
-  }, [allAnswers]);
-
-  //Todo if not split into different functions, then the second value will be undefined
   const saveCard = (resultState): void => {
-    if (capital){
-      saveReduxQuestionDataAnswer({
-        choseByUser: resultState,
-        currentQuestion: { allAnswers, correctAnswer, capital },
-      });
-    } else {
-      saveReduxQuestionDataAnswer({
-          choseByUser: resultState,
-          currentQuestion: { allAnswers, correctAnswer, flag },
-      });
-    }
+    saveReduxQuestionDataAnswer({
+      choseByUser: resultState,
+      currentQuestion: {
+        allAnswers, correctAnswer, capital, flag,
+      },
+    });
   };
 
   const saveReduxQuestionDataAnswer = (dataAnswer) => {
     dispatch(saveQuestionDataAnswer(dataAnswer));
-  }
+  };
 
   const defineAnswersState = (answer): AnswerEnumState[] => {
     const resultState: AnswerEnumState[] = [];
 
     allAnswers?.forEach((answerItem: string) => {
-      const currentAnswerState: AnswerEnumState =
-        answerItem === correctAnswer
-          ? AnswerEnumState.CORRECT
-          : answerItem === answer && answer !== correctAnswer
-            ? AnswerEnumState.INCORRECT
-            : AnswerEnumState.DISABLED;
+      const currentAnswerState: AnswerEnumState = answerItem === correctAnswer
+        ? AnswerEnumState.CORRECT
+        : answerItem === answer && answer !== correctAnswer
+          ? AnswerEnumState.INCORRECT
+          : AnswerEnumState.DISABLED;
 
       if (currentAnswerState === AnswerEnumState.CORRECT && answer === correctAnswer) {
         setIsNextButtonVisible(true);
@@ -83,17 +79,15 @@ const Answers: FC = () => {
 
   return (
     <>
-      {!!allAnswers && allAnswers.map((answer, idx) => {
-        return (
-          <AnswerItem
-            key={idx}
-            numeric={idx + 1}
-            answer={answer}
-            answerStyleStateValue={answerStyleStateValue[idx]}
-            answerClick={() => handleAnswerClick(answer)}
-          />
-        );
-      })}
+      {!!allAnswers && allAnswers.map((answer, idx) => (
+        <AnswerItem
+          key={idx}
+          numeric={idx + 1}
+          answer={answer}
+          answerStyleStateValue={answerStyleStateValue[idx]}
+          answerClick={() => handleAnswerClick(answer)}
+        />
+      ))}
 
       {isNextButtonVisible ? (<Next resetQuestionState={resetQuestionState} />) : null}
     </>

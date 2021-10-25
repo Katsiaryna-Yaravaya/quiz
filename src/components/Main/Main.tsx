@@ -1,11 +1,11 @@
-import {FC} from "react";
+import { FC } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import {useForm} from "react-hook-form";
+import { useForm } from "react-hook-form";
 
-import {logIn} from "../../core/api";
+import { logIn } from "../../core/api";
 
-import {SIGN_UP_ROUT} from "../../constants/routs.constants";
+import { SIGN_UP_ROUT } from "../../constants/routs.constants";
 
 import { iconGlobe, iconBeach } from "../../asserts/imgIcon";
 
@@ -14,27 +14,37 @@ import "./index.css";
 const Main: FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const {register, handleSubmit, watch} = useForm({mode: 'onBlur'});
+  const { register, handleSubmit, watch } = useForm({ mode: "onBlur" });
 
-  const email = watch('email')
+  const email = watch("email");
 
   const onSubmit = (data): void => {
-    dispatch(logIn(data))
+    dispatch(logIn(data));
   };
 
   return (
     <form className="quiz-form" onSubmit={handleSubmit(onSubmit)}>
       <div className="login">
-        <input className='login__email input' placeholder='E-mail' title={email}
-               autoComplete="username" {...register('email', {required: true})}/>
+        <input
+          className="login__email input"
+          placeholder="E-mail"
+          title={email}
+          autoComplete="username"
+          {...register("email", { required: true })}
+        />
 
-        <input className="login__password input" placeholder='Password' type="password"
-               autoComplete="new-password" {...register('pass', {required: true})}/>
+        <input
+          className="login__password input"
+          placeholder="Password"
+          type="password"
+          autoComplete="new-password"
+          {...register("pass", { required: true })}
+        />
       </div>
 
       <div className="login-buttons">
-        <input className="login-buttons__signIn button" type="submit" value="sign in" name="signIn"/>
-        <input className="buttons__signUp button" type="submit" value="sign up" name="signUp" onClick={()=> history.push(SIGN_UP_ROUT)}/>
+        <input className="login-buttons__signIn button" type="submit" value="sign in" name="signIn" />
+        <input className="buttons__signUp button" type="submit" value="sign up" name="signUp" onClick={() => history.push(SIGN_UP_ROUT)} />
       </div>
 
       <div className="login__block-icon-globe">

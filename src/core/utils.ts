@@ -1,4 +1,4 @@
-import {Countries} from "../interface/countries.interface";
+import { Countries } from "../interface/countries.interface";
 
 export const generateIndexCountry = (arrayFindDataObject, num: number, correctAnswerName?: string): Countries[] => {
   const uniqueNumber: number[] = [];
@@ -16,13 +16,11 @@ export const generateIndexCountry = (arrayFindDataObject, num: number, correctAn
   }
 
   if (arrayFindDataObject.length) {
-    return uniqueNumber.map((item) => {
-      return arrayFindDataObject.find((country, idx) => {
-        if (item === idx + 1) {
-          return country;
-        }
-      });
-    });
+    return uniqueNumber.map((item) => arrayFindDataObject.find((country, idx) => {
+      if (item === idx + 1) {
+        return country;
+      }
+    }));
   }
   return [];
 };

@@ -1,9 +1,11 @@
-import {FC} from "react";
+import { FC } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { RootState } from "../../redux/root-reducer";
 
-import { AnswerItem, ArrowButtons, Question, QuestionCount } from "../index";
+import {
+  AnswerItem, ArrowButtons, Question, QuestionCount,
+} from "../index";
 
 import { RESULTS } from "../../constants/routs.constants";
 
@@ -20,18 +22,16 @@ const AnswersQuiz: FC = () => {
       <h1 className="main__title">COUNTRY QUIZ</h1>
       <form className="quiz-form">
         <div className="quiz-form__travel-icon">
-          <img className="quiz-form__icon" src={generalIcon} alt="generalIcon"/>
+          <img className="quiz-form__icon" src={generalIcon} alt="generalIcon" />
         </div>
         <QuestionCount />
-        <Question capital={questionsResult[counter-1].currentQuestion.capital} flag={questionsResult[counter-1].currentQuestion.flag}/>
+        <Question capital={questionsResult[counter - 1].currentQuestion.capital} flag={questionsResult[counter - 1].currentQuestion.flag} />
 
         {questionsResult.map((itemResult, idxResult) => {
           if (idxResult === counter - 1) {
-            return itemResult.currentQuestion.allAnswers?.map((item, idx) => {
-              return (
-                <AnswerItem numeric={idx + 1} key={idx} answerStyleStateValue={itemResult.choseByUser[idx]} answer={item}/>
-              );
-            });
+            return itemResult.currentQuestion.allAnswers?.map((item, idx) => (
+              <AnswerItem numeric={idx + 1} key={idx} answerStyleStateValue={itemResult.choseByUser[idx]} answer={item} />
+            ));
           }
         })}
 

@@ -1,7 +1,6 @@
-import {FC} from "react";
-import {useEffect, useState} from "react";
+import { FC, useEffect, useState } from "react";
 
-import {AnswerEnumState} from "../../enum/AnswerState.enum";
+import { AnswerEnumState } from "../../enum/AnswerState.enum";
 
 import "./index.css";
 
@@ -12,29 +11,31 @@ interface Props {
   numeric: number;
 }
 
-const AnswerItem: FC<Props> = ({answer, answerClick, answerStyleStateValue, numeric}) => {
+const AnswerItem: FC<Props> = ({
+  answer, answerClick, answerStyleStateValue, numeric,
+}) => {
   const [styleAnswer, setStyleAnswer] = useState<string>("answer");
-  const newStateValue: string = "answer " + answerStyleStateValue;
+  const newStateValue: string = `answer ${answerStyleStateValue}`;
 
   useEffect(() => {
     setStyleAnswer(newStateValue);
-  }, [answerStyleStateValue]);
+  }, [answerStyleStateValue, newStateValue]);
 
   useEffect(() => {
     setStyleAnswer(newStateValue);
-  }, [styleAnswer, answerStyleStateValue]);
+  }, [styleAnswer, answerStyleStateValue, newStateValue]);
 
   const handleClick = (): void => {
-    if (answerClick) {
-      answerClick(answer);
-    }
+    answerClick?.(answer);
     setStyleAnswer(newStateValue);
   };
 
   return (
     <div onClick={handleClick} className={styleAnswer}>
       <span className="answer__letter">{numeric}</span>
-      <span title={answer} className="answer__text">{answer}</span>
+      <span title={answer} className="answer__text">
+        {answer}
+      </span>
     </div>
   );
 };

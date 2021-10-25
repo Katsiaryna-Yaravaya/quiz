@@ -1,5 +1,5 @@
-import {QuestionState} from "../../interface/questionState.interface";
-import {createReducer} from "@reduxjs/toolkit";
+import { createReducer } from "@reduxjs/toolkit";
+import { QuestionState } from "../../interface/questionState.interface";
 import {
   clearAllAnsweredQuestions,
   deleteData,
@@ -9,7 +9,7 @@ import {
   saveCredentialUser,
   saveCurrentQuestion,
   saveQuestionDataAnswer,
-  showGenerateAnswer
+  showGenerateAnswer,
 } from "./actions";
 
 const INITIAL_STATE: QuestionState = {
@@ -31,15 +31,15 @@ const INITIAL_STATE: QuestionState = {
 
 export const countryReducer = createReducer(INITIAL_STATE, {
 
-  [saveCountries.type]: (state, action) => {state.allServerDataCountries = action.payload},
+  [saveCountries.type]: (state, action) => { state.allServerDataCountries = action.payload; },
 
-  [saveCountriesUserQuestions.type]: (state, action) => {state.countriesUserQuestions = action.payload},
+  [saveCountriesUserQuestions.type]: (state, action) => { state.countriesUserQuestions = action.payload; },
 
-  [saveCounter.type]: (state, action) => {state.counter = action.payload},
+  [saveCounter.type]: (state, action) => { state.counter = action.payload; },
 
-  [saveCurrentQuestion.type]: (state, action) => {state.currentQuestion = action.payload},
+  [saveCurrentQuestion.type]: (state, action) => { state.currentQuestion = action.payload; },
 
-  [showGenerateAnswer.type]: (state, action) => {state.currentQuestion.allAnswers = action.payload},
+  [showGenerateAnswer.type]: (state, action) => { state.currentQuestion.allAnswers = action.payload; },
 
   [deleteData.type]: (state) => {
     state.allServerDataCountries = [];
@@ -54,7 +54,7 @@ export const countryReducer = createReducer(INITIAL_STATE, {
     state.questionsResult = [];
   },
 
-  [saveQuestionDataAnswer.type]: (state, action) => {state.questionsResult.push(action.payload)},
+  [saveQuestionDataAnswer.type]: (state, action) => { state.questionsResult.push(action.payload); },
 
   [clearAllAnsweredQuestions.type]: (state) => {
     state.allServerDataCountries = [];
@@ -68,7 +68,7 @@ export const countryReducer = createReducer(INITIAL_STATE, {
     };
   },
 
-  [saveCredentialUser.type]: (state, action) => {state.credentialUser = {...action.payload}},
-})
+  [saveCredentialUser.type]: (state, action) => { state.credentialUser = { ...action.payload }; },
+});
 
 export default countryReducer;
