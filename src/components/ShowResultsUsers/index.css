@@ -1,9 +1,31 @@
+.back {
+  position: absolute;
+  left: 21%;
+  top: 3%;
+  transform: translate(-50%);
+}
+
+.back__button {
+  cursor: pointer;
+  padding: 1.2rem;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  border: 2px solid #cfacfc;
+  color: #cfacfc;
+  background: midnightblue;
+}
+
+.back__button:hover {
+  color: midnightblue;
+  border: 2px solid midnightblue;
+  background: #cfacfc;
+}
+
 .table {
   table-layout: fixed;
   border-collapse: collapse;
   position: absolute;top: 6rem;
   transform: translate(-50%);
-
 }
 
 .table__row td{
