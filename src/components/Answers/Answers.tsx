@@ -9,9 +9,11 @@ import { AnswerItem, Next } from "../index";
 
 import { AnswerEnumState } from "../../enum/AnswerState.enum";
 import { RESULTS } from "../../constants/routs.constants";
+import { updateUser } from "../../core/api";
 
 const Answers: FC = () => {
   const {
+    credentialUser: { email },
     currentQuestion: {
       allAnswers, correctAnswer, capital, flag,
     },
@@ -58,7 +60,10 @@ const Answers: FC = () => {
         setIsNextButtonVisible(true);
       }
       if (currentAnswerState === AnswerEnumState.INCORRECT) {
-        setTimeout(() => history.push(RESULTS), 2000);
+        setTimeout(() => {
+          // updateUser(email, );
+          history.push(RESULTS);
+        }, 2000);
       }
       resultState.push(currentAnswerState);
     });

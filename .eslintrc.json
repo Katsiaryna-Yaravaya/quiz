@@ -54,6 +54,8 @@
     "no-shadow": "off",
     "implicit-arrow-linebreak": "off",
     "no-constant-condition": "off",
-    "no-param-reassign": "off"
+    "no-param-reassign": "off",
+    "react/jsx-indent": "off",
+    "no-trailing-spaces": "off"
   }
 }

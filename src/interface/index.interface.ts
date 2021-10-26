@@ -6,3 +6,4 @@ export type { BasePhraseQuestion } from "./basePhraseQuestion.interface";
 export type { CredentialUser } from "./credentialUser.interface";
 export type { Credentials } from "./credentials.interface";
 export type { RegistrationDataUser } from "./registrationDataUser";
+export type { ShowResultUser } from "./showResultUser";

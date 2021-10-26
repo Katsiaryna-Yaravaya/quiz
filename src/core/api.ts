@@ -36,3 +36,11 @@ export const addNewUser = (data) => {
     .then(() => history.push(MAIN))
     .catch((err) => toast(err.response.data));
 };
+
+export const getAllUser = () => axios.get("http://localhost:3001/users");
+
+export const updateUser = (email, data) => {
+  axios.patch(`http://localhost:3001/users/${email}`, data)
+    .then((data) => data.data)
+    .catch((err) => toast(err.response.data));
+};
