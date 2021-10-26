@@ -7,6 +7,7 @@ import { MAIN } from "../../constants/routs.constants";
 import { ShowResultUser } from "../../interface/showResultUser";
 
 import "./index.css";
+import { QuestionDataAnswer } from "../../interface/questionDataAnswer.interface";
 
 const ShowResultsUsers: FC = () => {
   const history = useHistory();
@@ -26,6 +27,14 @@ const ShowResultsUsers: FC = () => {
   // const b = a.map((item) => item);
   // .sort((a, b) => b - a);
 
+  const getHighersScore = (userGames: any[]) => {
+    let result = 0;
+    userGames.forEach((item: any[]) => {
+      result = Math.max(item.length, result);
+    });
+    return result;
+  };
+
   return (
     <>
       <div className="back">
@@ -41,7 +50,7 @@ const ShowResultsUsers: FC = () => {
         {!!data && data.map((item: ShowResultUser, idx: number) => (
           <tr className="table__row" key={idx}>
             <td>{item.name}</td>
-            <td>{item.userGames.length ? item.userGames[1].length : null}</td>
+            <td>{getHighersScore(item.userGames)}</td>
             <td>{item.userGames.length}</td>
           </tr>
         ))}
