@@ -6,5 +6,6 @@ export interface ShowResultUser {
   name: string;
   pass: string;
   surname: string;
-  userGames: QuestionDataAnswer[];
+  id: number;
+  userGames: QuestionDataAnswer[][];
 }
