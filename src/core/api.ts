@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { saveCountries, saveCredentialUser } from "../redux/country/actions";
 import { history } from "./common";
 import {
-  COUNTRY_QUIZ_ROUT, COUNTRY_ROUT, FLAG_ROUT, MAIN,
+  COUNTRY_QUIZ_ROUT, COUNTRY_ROUT, FLAG_ROUT, MAIN, 
 } from "../constants/routs.constants";
 
 export const getCountriesCapitals = (name, capital) => (dispatch) => {
@@ -41,9 +41,6 @@ export const getAllUser = () => axios.get("http://localhost:3001/users");
 
 export const updateUser = (email, data) => {
   axios.patch(`http://localhost:3001/users/${email}`, data)
-    .then((data) => {
-      data.data;
-      // history.push(RESULTS);
-    })
+    .then((data) => data.data)
     .catch((err) => toast(err.response.data));
 };

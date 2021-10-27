@@ -1,11 +1,15 @@
-import { useDispatch, useSelector } from "react-redux";
 import { FC } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+
 import { RootState } from "../../redux/root-reducer";
 
+import { updateUser } from "../../core/api";
+
+import { RESULTS } from "../../constants/routs.constants";
 import { saveCounter } from "../../redux/country/actions";
 
 import "./index.css";
-import { updateUser } from "../../core/api";
 
 interface Props {
   resetQuestionState: () => void;
@@ -19,6 +23,7 @@ const Next: FC<Props> = ({ resetQuestionState }) => {
     credentialUser: { email },
   } = useSelector((state: RootState) => state.data);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleNextQuestionButton = (): void => {
     if (countriesUserQuestions && counter < countriesUserQuestions.length) {
@@ -26,6 +31,7 @@ const Next: FC<Props> = ({ resetQuestionState }) => {
       dispatch(saveCounter(counter + 1));
     } else {
       updateUser(email, questionsResult);
+      history.push(RESULTS);
     }
   };
 

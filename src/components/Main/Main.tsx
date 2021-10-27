@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 
 import { logIn } from "../../core/api";
 
-import { SHOW_RESULTS_USERS, SIGN_UP_ROUT } from "../../constants/routs.constants";
+import { RESULTS_USERS, SIGN_UP_ROUT } from "../../constants/routs.constants";
 
 import { iconGlobe, iconBeach } from "../../asserts/imgIcon";
 
@@ -24,8 +24,8 @@ const Main: FC = () => {
 
   return (
     <form className="quiz-form" onSubmit={handleSubmit(onSubmit)}>
-      <div className="quiz-form_user-results" onClick={() => history.push(SHOW_RESULTS_USERS)}>
-        <button className="quiz-form_user-results-button">Show users results</button>
+      <div className="quiz-form_user-results">
+        <button onClick={() => history.push(RESULTS_USERS)} className="quiz-form_user-results-button">Show users results</button>
       </div>
       <div className="login">
         <input

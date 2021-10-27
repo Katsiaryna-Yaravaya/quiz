@@ -11,3 +11,5 @@ export { default as ArrowButtons } from "./ArrowButtons/ArrowButtons";
 export { default as Main } from "./Main/Main";
 export { default as SignUp } from "./SignUp/SignUp";
 export { default as ShowResultsUsers } from "./ShowResultsUsers/ShowResultsUsers";
+export { default as GamesUser } from "./GamesUser/GamesUser";
+export { default as UserGameResult } from "./UserGameResult/UserGameResult";

@@ -29,30 +29,25 @@ const Answers: FC = () => {
     allAnswers && setAnswerStyleStateValue(Array(allAnswers.length).fill(AnswerEnumState.DEFAULT, 0, allAnswers.length));
   }, [allAnswers]);
 
-  // useEffect(() => {
-  //   updateUser(email, questionsResult);
-  //   console.log(questionsResult);
-  // }, [questionsResult]);
-
   const resetQuestionState = (): void => {
     setIsSelectedAnswer(false);
     setIsNextButtonVisible(false);
   };
 
-  const saveCard = (resultState): void => {
+  const saveCard = (resultState: AnswerEnumState[]): void => {
     saveReduxQuestionDataAnswer({
-      choseByUser: resultState,
+      answerState: resultState,
       currentQuestion: {
         allAnswers, correctAnswer, capital, flag,
       },
     });
   };
 
-  const saveReduxQuestionDataAnswer = (dataAnswer) => {
+  const saveReduxQuestionDataAnswer = (dataAnswer): void => {
     dispatch(saveQuestionDataAnswer(dataAnswer));
   };
 
-  const defineAnswersState = (answer): AnswerEnumState[] => {
+  const defineAnswersState = (answer: string): AnswerEnumState[] => {
     const resultState: AnswerEnumState[] = [];
 
     allAnswers?.forEach((answerItem: string) => {
@@ -75,7 +70,7 @@ const Answers: FC = () => {
     return resultState;
   };
 
-  const handleAnswerClick = (answer): void => {
+  const handleAnswerClick = (answer: string): void => {
     if (isSelectedAnswer) {
       return;
     }
@@ -87,7 +82,7 @@ const Answers: FC = () => {
       updateUser(email, [
         ...questionsResult,
         {
-          choseByUser: newAnswersState,
+          answerState: newAnswersState,
           currentQuestion: {
             allAnswers, correctAnswer, capital, flag,
           },
@@ -101,7 +96,7 @@ const Answers: FC = () => {
 
   return (
         <>
-            {!!allAnswers && allAnswers.map((answer, idx) => (
+            {!!allAnswers && allAnswers.map((answer: string, idx: number) => (
                 <AnswerItem
                   key={idx}
                   numeric={idx + 1}

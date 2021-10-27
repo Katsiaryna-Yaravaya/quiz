@@ -9,4 +9,5 @@ export interface QuestionState {
   currentQuestion: CurrentQuestion;
   questionsResult: QuestionDataAnswer[];
   credentialUser: CredentialUser;
+  userGames: QuestionDataAnswer[][];
 }

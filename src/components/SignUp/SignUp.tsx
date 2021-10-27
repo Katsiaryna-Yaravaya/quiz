@@ -11,14 +11,17 @@ import "./index.css";
 const SignUp: FC = () => {
   const history = useHistory();
   const {
-    register, handleSubmit, formState: { errors }, watch, 
+    register, handleSubmit, formState: { errors }, watch,
   } = useForm({ mode: "onBlur" });
 
   const pass = watch("pass");
 
   const getErrorMessage = (value): string => (errors[value] ? "sign-up__user error" : "sign-up__user");
 
-  const onSubmit = (data): void => addNewUser({ ...data, userGames: [] });
+  const onSubmit = (data): void => {
+    delete data.repeatPassword;
+    addNewUser(data);
+  };
 
   return (
     <>

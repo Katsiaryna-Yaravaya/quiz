@@ -1,0 +1,18 @@
+.games_list {
+  position: absolute;
+  transform: translate(-50%, -100%);
+}
+
+.game {
+  cursor: pointer;
+  display: flex;
+  font-size: 2rem;
+  color: #add8e6;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 1rem;
+  border: 1px  solid #add8e6;
+  margin-bottom: 2rem;
+  border-radius: 10px;
+  width: 425px;
+}

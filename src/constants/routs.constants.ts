@@ -1,8 +1,10 @@
-export const FLAG_ROUT: string = "/flag-Quiz";
-export const COUNTRY_ROUT: string = "/country-Quiz";
-export const COUNTRY_QUIZ_ROUT: string = "/country-Quiz-flag-or-capital";
-export const RESULTS: string = "/Results";
-export const SHOW_RESULT_QUIZ_ROUT: string = "/show-result-Quiz";
+export const FLAG_ROUT: string = "/flag-quiz";
+export const COUNTRY_ROUT: string = "/country-quiz";
+export const COUNTRY_QUIZ_ROUT: string = "/country-quiz-flag-or-capital";
+export const RESULTS: string = "/results";
+export const SHOW_RESULT_QUIZ_ROUT: string = "/result-quiz";
 export const MAIN: string = "/";
 export const SIGN_UP_ROUT: string = "/sign-up-form";
-export const SHOW_RESULTS_USERS: string = "/show-results-users";
+export const RESULTS_USERS: string = "/results-users";
+export const GAME_RESULT: string = "/game-result";
+export const USER_GAMES = (id) => `/${id}/games`;

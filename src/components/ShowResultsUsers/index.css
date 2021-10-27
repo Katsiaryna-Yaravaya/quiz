@@ -42,8 +42,13 @@ tbody tr:nth-child(even) {
   background-color: #cfacfc;
 }
 
-.table__body{
+.table__link {
+  text-decoration: underline;
+  cursor: pointer;
+}
 
+.table__link:hover {
+  color: green;
 }
 
 .table__row{
