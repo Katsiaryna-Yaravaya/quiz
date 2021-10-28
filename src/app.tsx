@@ -1,4 +1,6 @@
-import { Switch, Route, Redirect } from "react-router-dom";
+import {
+  Switch, Route, Redirect, useParams, generatePath, 
+} from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { useSelector } from "react-redux";
 import { RootState } from "./redux/root-reducer";
@@ -34,7 +36,7 @@ const App = () => {
           <Route exact path={MAIN} component={Main} />
           <Route path={SIGN_UP_ROUT} component={SignUp} />
           <Route path={RESULTS_USERS} component={ShowResultsUsers} />
-          <Route path={USER_GAMES(":id")}>{!userGames.length ? <Redirect to={RESULTS_USERS} /> : <GamesUser />}</Route>
+          <Route path={USER_GAMES}>{!userGames.length ? <Redirect to={RESULTS_USERS} /> : <GamesUser />}</Route>
           <Route path={GAME_RESULT}>{!userGames.length ? <Redirect to={RESULTS_USERS} /> : <UserGameResult />}</Route>
           <PrivateRoute path={COUNTRY_QUIZ_ROUT} component={CountryQuiz} />
           <PrivateRoute path={FLAG_ROUT} component={Quiz} />

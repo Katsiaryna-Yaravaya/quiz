@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { generatePath, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { saveUserGames } from "../../redux/country/actions";
@@ -42,7 +42,7 @@ const ShowResultsUsers: FC = () => {
     }
     if (userGames.length) {
       dispatch(saveUserGames(userGames));
-      history.push(USER_GAMES(id));
+      history.push(generatePath(USER_GAMES, { id }));
     }
   };
 

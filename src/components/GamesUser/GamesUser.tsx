@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { generatePath, useHistory, useParams } from "react-router-dom";
 
 import { RootState } from "../../redux/root-reducer";
 
@@ -14,12 +14,11 @@ const GamesUser:FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { userGames } = useSelector((state: RootState) => state.data);
+  const { id } = useParams();
 
-  const handleListClick = (game: QuestionDataAnswer[], index: number): void => {
+  const handleListClick = (game: QuestionDataAnswer[], idx: number): void => {
     dispatch(saveResultUserQuestionDataAnswer(game));
-    // const currentPath = history.location.pathname;
-
-    history.push(GAME_RESULT);
+    history.push(generatePath(GAME_RESULT, { id, idx }));
   };
   const handleClick = (): void => {
     dispatch(deleteResultUserQuestionDataAnswer());
@@ -33,7 +32,7 @@ const GamesUser:FC = () => {
       </div>
       <ul className="games_list">
         {userGames.map((item: QuestionDataAnswer[], idx) => (
-          <li className="game" key={idx} onClick={() => handleListClick(item, idx)}>
+          <li className="game" key={idx} onClick={() => handleListClick(item, idx + 1)}>
             game №
             {idx + 1}
           </li>

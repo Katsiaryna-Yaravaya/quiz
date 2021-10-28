@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useHistory } from "react-router-dom";
+import { generatePath, useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { RootState } from "../../redux/root-reducer";
@@ -20,10 +20,11 @@ const UserGameResult: FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { questionsResult, counter } = useSelector((state: RootState) => state.data);
+  const { id } = useParams();
 
   const handleClick = (): void => {
     dispatch(deleteUserGames());
-    history.push(USER_GAMES(":id"));
+    history.push(generatePath(USER_GAMES, { id }));
   };
 
   return (
