@@ -15,11 +15,12 @@ const GamesUser:FC = () => {
   const dispatch = useDispatch();
   const { userGames } = useSelector((state: RootState) => state.data);
 
-  const handleListClick = (game: QuestionDataAnswer[]): void => {
+  const handleListClick = (game: QuestionDataAnswer[], index: number): void => {
     dispatch(saveResultUserQuestionDataAnswer(game));
+    // const currentPath = history.location.pathname;
+
     history.push(GAME_RESULT);
   };
-
   const handleClick = (): void => {
     dispatch(deleteResultUserQuestionDataAnswer());
     history.push(RESULTS_USERS);
@@ -32,7 +33,7 @@ const GamesUser:FC = () => {
       </div>
       <ul className="games_list">
         {userGames.map((item: QuestionDataAnswer[], idx) => (
-          <li className="game" key={idx} onClick={() => handleListClick(item)}>
+          <li className="game" key={idx} onClick={() => handleListClick(item, idx)}>
             game №
             {idx + 1}
           </li>

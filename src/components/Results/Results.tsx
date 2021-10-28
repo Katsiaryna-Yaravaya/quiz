@@ -10,7 +10,6 @@ import { GENERATE_NUMBER_INDEX_QUESTION_COUNTRY } from "../../constants/general.
 import { imgResults } from "../../asserts/imgIcon";
 
 import "./index.css";
-import { updateUser } from "../../core/api";
 
 const Results: FC = () => {
   const {
