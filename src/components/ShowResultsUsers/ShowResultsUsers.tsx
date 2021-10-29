@@ -9,9 +9,9 @@ import { getAllUser } from "../../core/api";
 import { MAIN, USER_GAMES } from "../../constants/routs.constants";
 import { ShowResultUser } from "../../interface/showResultUser";
 import { GENERATE_NUMBER_INDEX_QUESTION_COUNTRY } from "../../constants/general.constants";
+import { QuestionDataAnswer } from "../../interface/questionDataAnswer.interface";
 
 import "./index.css";
-import { QuestionDataAnswer } from "../../interface/questionDataAnswer.interface";
 
 const ShowResultsUsers: FC = () => {
   const history = useHistory();

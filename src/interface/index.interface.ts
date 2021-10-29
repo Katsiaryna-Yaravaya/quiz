@@ -7,3 +7,4 @@ export type { CredentialUser } from "./credentialUser.interface";
 export type { Credentials } from "./credentials.interface";
 export type { RegistrationDataUser } from "./registrationDataUser";
 export type { ShowResultUser } from "./showResultUser";
+export type { HookParams } from "./hookParams";

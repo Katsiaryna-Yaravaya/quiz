@@ -6,7 +6,7 @@ import { RootState } from "../../redux/root-reducer";
 
 import { deleteResultUserQuestionDataAnswer, saveResultUserQuestionDataAnswer } from "../../redux/country/actions";
 import { GAME_RESULT, RESULTS_USERS } from "../../constants/routs.constants";
-import { QuestionDataAnswer } from "../../interface/questionDataAnswer.interface";
+import { QuestionDataAnswer, HookParams } from "../../interface/index.interface";
 
 import "./index.css";
 
@@ -14,7 +14,7 @@ const GamesUser:FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { userGames } = useSelector((state: RootState) => state.data);
-  const { id } = useParams();
+  const { id } = useParams<HookParams>();
 
   const handleListClick = (game: QuestionDataAnswer[], idx: number): void => {
     dispatch(saveResultUserQuestionDataAnswer(game));
@@ -31,7 +31,7 @@ const GamesUser:FC = () => {
         <button className="back__button" onClick={handleClick}>back</button>
       </div>
       <ul className="games_list">
-        {userGames.map((item: QuestionDataAnswer[], idx) => (
+        {userGames.map((item: QuestionDataAnswer[], idx: number) => (
           <li className="game" key={idx} onClick={() => handleListClick(item, idx + 1)}>
             game №
             {idx + 1}

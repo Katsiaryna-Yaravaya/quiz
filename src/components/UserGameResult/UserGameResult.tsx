@@ -10,7 +10,7 @@ import {
 
 import { USER_GAMES } from "../../constants/routs.constants";
 import { deleteUserGames } from "../../redux/country/actions";
-import { QuestionDataAnswer } from "../../interface/questionDataAnswer.interface";
+import { QuestionDataAnswer, HookParams } from "../../interface/index.interface";
 
 import { generalIcon } from "../../asserts/imgIcon";
 
@@ -20,7 +20,7 @@ const UserGameResult: FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { questionsResult, counter } = useSelector((state: RootState) => state.data);
-  const { id } = useParams();
+  const { id } = useParams<HookParams>();
 
   const handleClick = (): void => {
     dispatch(deleteUserGames());
