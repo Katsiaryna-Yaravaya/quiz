@@ -1,6 +1,4 @@
-import {
-  Switch, Route, Redirect, useParams, generatePath, 
-} from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { useSelector } from "react-redux";
 import { RootState } from "./redux/root-reducer";
