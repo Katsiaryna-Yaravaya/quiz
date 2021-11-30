@@ -8,3 +8,5 @@ export const SIGN_UP_ROUT: string = "/sign-up-form";
 export const RESULTS_USERS: string = "/results-users";
 export const GAME_RESULT:string = "/:id/game/:idx";
 export const USER_GAMES: string = "/:id/games";
+export const USER_PROFILE: string = "/profile";
+export const USER_PROFILE_EDIT: string = "/profile/edit";

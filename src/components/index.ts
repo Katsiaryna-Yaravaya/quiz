@@ -13,3 +13,8 @@ export { default as SignUp } from "./SignUp/SignUp";
 export { default as ShowResultsUsers } from "./ShowResultsUsers/ShowResultsUsers";
 export { default as GamesUser } from "./GamesUser/GamesUser";
 export { default as UserGameResult } from "./UserGameResult/UserGameResult";
+export { default as Header } from "./Header/Header";
+export { default as EditProfile } from "./EditProfile/EditProfile";
+export { default as Profile } from "./Profile/Profile";
+export { default as DragNDrop } from "./DragNDrop/DragNDrop";
+export { default as Table } from "./Table/Table";

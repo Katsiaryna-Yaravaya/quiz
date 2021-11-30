@@ -4,7 +4,7 @@ import {
   clearAllAnsweredQuestions,
   deleteData,
   deleteResultUserQuestionDataAnswer,
-  deleteUserGames,
+  deleteUserGames, deleteUserInformation,
   saveCounter,
   saveCountries,
   saveCountriesUserQuestions,
@@ -128,6 +128,23 @@ export const countryReducer = createReducer(INITIAL_STATE, {
       email: "",
       pass: "",
     };
+  },
+  [deleteUserInformation.type]: (state) => {
+    state.allServerDataCountries = [];
+    state.countriesUserQuestions = [];
+    state.counter = 1;
+    state.questionsResult = [];
+    state.currentQuestion = {
+      correctAnswer: "",
+      flag: "",
+      capital: "",
+      allAnswers: [],
+    };
+    state.credentialUser = {
+      email: "",
+      pass: "",
+    };
+    state.userGames = [];
   },
 });
 

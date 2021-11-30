@@ -1,0 +1,15 @@
+{
+  "logout": "выйти",
+  "profile": "профиль",
+  "capital": "столица",
+  "flag": "флаг",
+  "language": "язык",
+  "name":  "имя",
+  "surname": "фамилия",
+  "age":  "возраст",
+  "email": "почта",
+  "isTheCapitalOf": "является столицей",
+  "whichCountryDoesThisFlagBelongTo": "К какой стране принадлежит этот флаг",
+  "of": "из",
+  "question":  "Вопрос"
+}

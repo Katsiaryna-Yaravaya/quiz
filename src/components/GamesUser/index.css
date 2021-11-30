@@ -1,6 +1,6 @@
 .games_list {
   position: absolute;
-  transform: translate(-50%, -100%);
+  transform: translate(-50%, -80%);
 }
 
 .game {

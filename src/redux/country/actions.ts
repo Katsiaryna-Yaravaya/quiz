@@ -19,3 +19,4 @@ export const clearAllAnsweredQuestions = createAction("[Results] DELETE_DATA_INC
 export const saveCredentialUser = createAction<CredentialUser>("[api] SAVE_CREDENTIAL_USER");
 export const saveUserGames = createAction<QuestionDataAnswer[][]>("[ShowResultsUsers] SAVE_USER_GAMES");
 export const deleteUserGames = createAction("[ShowResultsUsers] DELETE_USER_GAMES");
+export const deleteUserInformation = createAction("[Header] DELETE_USER_INFORMATION");

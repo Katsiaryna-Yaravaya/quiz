@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 import { RootState } from "../../redux/root-reducer";
 
@@ -9,16 +10,17 @@ import "./index.css";
 
 const QuestionCount: FC = () => {
   const { countriesUserQuestions, counter, questionsResult } = useSelector((state: RootState) => state.data);
+  const { t } = useTranslation();
 
   return (
     <div className="questionCount">
-      Question
+      {t("question")}
       <span>
         {" "}
         {counter}
         {" "}
       </span>
-      of
+      {t("of")}
       <span>
         {" "}
         {countriesUserQuestions.length

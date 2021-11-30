@@ -1,0 +1,15 @@
+{
+  "logout": "logout",
+  "profile": "Profile",
+  "capital": "capital",
+  "flag": "flag",
+  "language": "language",
+  "name":  "name",
+  "surname": "surname",
+  "age":  "age",
+  "email": "email",
+  "isTheCapitalOf": "is the capital of",
+  "whichCountryDoesThisFlagBelongTo": "Which country does this flag belong to",
+  "of": "of",
+  "question":  "Question"
+}

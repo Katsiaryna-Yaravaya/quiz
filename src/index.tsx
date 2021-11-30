@@ -6,6 +6,8 @@ import { history } from "./core/common";
 import { store } from "./redux/store";
 import App from "./app";
 
+import "./core/i18n";
+
 import "./index.css";
 
 ReactDOM.render(

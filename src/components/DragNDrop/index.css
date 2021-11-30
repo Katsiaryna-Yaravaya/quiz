@@ -1,0 +1,29 @@
+.drop-area {
+    border: 4px dashed #ccc;
+    border-radius: 19px;
+    height: 12rem;
+    margin: 0 5rem 3rem 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    font-size: 2rem;
+    color: gray;
+}
+
+.highlight {
+    border-color: darkblue;
+    color: darkblue;
+}
+
+.img-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.img-file {
+    height: 12rem;
+    width: auto;
+}
