@@ -3,15 +3,12 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
-import {
-  FormControl, InputLabel, MenuItem, Select, TextField,
-} from "@mui/material";
+import { MenuItem, TextField } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
 import { deleteUserInformation } from "../../redux/country/actions";
 
 import { MAIN, USER_PROFILE } from "../../constants/routs.constants";
-import { languageConstants } from "../../constants/language";
 
 import "./index.css";
 
