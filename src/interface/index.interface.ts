@@ -8,3 +8,4 @@ export type { Credentials } from "./credentials.interface";
 export type { RegistrationDataUser } from "./registrationDataUser";
 export type { ShowResultUser } from "./showResultUser";
 export type { HookParams } from "./hookParams";
+export type { UserName } from "./userName.interface";

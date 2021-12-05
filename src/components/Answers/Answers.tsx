@@ -16,7 +16,7 @@ const Answers: FC = () => {
     currentQuestion: {
       allAnswers, correctAnswer, capital, flag,
     },
-    credentialUser: { email },
+    credentialUser,
     questionsResult,
   } = useSelector((state: RootState) => state.data);
   const history = useHistory();
@@ -79,15 +79,17 @@ const Answers: FC = () => {
     const newAnswersState: AnswerEnumState[] = defineAnswersState(answer);
 
     if (newAnswersState.includes(AnswerEnumState.INCORRECT)) {
-      updateUser(email, [
-        ...questionsResult,
-        {
-          answerState: newAnswersState,
-          currentQuestion: {
-            allAnswers, correctAnswer, capital, flag,
+      credentialUser.map((user) => {
+        updateUser(user.email, [
+          ...questionsResult,
+          {
+            answerState: newAnswersState,
+            currentQuestion: {
+              allAnswers, correctAnswer, capital, flag,
+            },
           },
-        },
-      ]);
+        ]);
+      });
     }
 
     setAnswerStyleStateValue(newAnswersState);

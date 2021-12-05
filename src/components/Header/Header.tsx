@@ -24,7 +24,7 @@ const useStyles = makeStyles({
 
 const languages = [
   {
-    value: "eng",
+    value: "en",
     label: "English",
   },
   {
@@ -38,8 +38,13 @@ const Header: FC = () => {
   const history = useHistory();
   const classes = useStyles();
   const { t } = useTranslation();
+  let initialState: string;
 
-  const [language, setLanguage] = useState("ru");
+  if (i18next.language === "ru") {
+    initialState = "ru";
+  } else initialState = "en";
+
+  const [language, setLanguage] = useState(`${initialState}`);
 
   const handleLanguageChange = (lang) => i18next.changeLanguage(lang);
 
@@ -116,8 +121,8 @@ export default Header;
 //       <div className="header__nav">
 //         <button onClick={handleClickLogout} className="header__button">{t("logout")}</button>
 //
-//         <div className="dropdown" onClick={handleClickButton}>
-//           <button className="dropdown__button">{t("language")}</button>
+//         <div className="header__dropdown" onClick={handleClickButton}>
+//           <button className="header__dropdown-button">{t("language")}</button>
 //           {
 //             isOpenButton && (
 //               <>

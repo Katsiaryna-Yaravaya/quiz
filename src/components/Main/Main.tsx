@@ -1,30 +1,53 @@
 import { FC } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
-import { logIn } from "../../core/api";
+import { logInPlayer, logInTwoPlayers } from "../../core/api";
 
-import { RESULTS_USERS, SIGN_UP_ROUT } from "../../constants/routs.constants";
+import { COUNTRY_QUIZ_ROUT, RESULTS_USERS, SIGN_UP_ROUT } from "../../constants/routs.constants";
 
 import { iconGlobe, iconBeach } from "../../asserts/imgIcon";
 
 import "./index.css";
+import { RootState } from "../../redux/root-reducer";
+import { PLAYERS } from "../../constants/general.constants";
 
 const Main: FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const { register, handleSubmit, watch } = useForm({ mode: "onBlur" });
+  const { isTwoPlayers, credentialUser } = useSelector((state: RootState) => state.data);
+  const {
+    register, handleSubmit, watch, reset, 
+  } = useForm({ mode: "onBlur" });
 
   const email = watch("email");
 
   const onSubmit = (data): void => {
-    dispatch(logIn(data));
+    if (isTwoPlayers) {
+      if ((credentialUser.length + 1) === PLAYERS) {
+        dispatch(logInTwoPlayers(data));
+        history.push(COUNTRY_QUIZ_ROUT);
+      } else {
+        dispatch(logInTwoPlayers(data));
+      }
+    } else {
+      dispatch(logInPlayer(data));
+    }
+
+    reset();
   };
 
   return (
     <form className="quiz-form" onSubmit={handleSubmit(onSubmit)}>
       <div className="quiz-form_user-results">
+        {isTwoPlayers && (
+          <h3 className="quiz-form_user-results-player">
+            Player 
+            {" "}
+            { credentialUser.length ? PLAYERS : 1 }
+          </h3>
+        )}
         <button onClick={() => history.push(RESULTS_USERS)} className="quiz-form_user-results-button">Show users results</button>
       </div>
       <div className="login">

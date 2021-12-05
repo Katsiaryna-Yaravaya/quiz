@@ -1,5 +1,4 @@
 import {
-  saveCounter,
   saveCountriesUserQuestions,
   saveCurrentQuestion,
   showGenerateAnswer,

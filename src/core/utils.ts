@@ -1,4 +1,7 @@
 import { Countries } from "../interface/countries.interface";
+import { ShowResultUser } from "../interface/showResultUser";
+import { QuestionDataAnswer } from "../interface/questionDataAnswer.interface";
+import { GENERATE_NUMBER_INDEX_QUESTION_COUNTRY } from "../constants/general.constants";
 
 export const generateIndexCountry = (arrayFindDataObject, num: number, correctAnswerName?: string): Countries[] => {
   const uniqueNumber: number[] = [];
@@ -23,4 +26,20 @@ export const generateIndexCountry = (arrayFindDataObject, num: number, correctAn
     }));
   }
   return [];
+};
+
+export const getHighersScore = (userData: ShowResultUser): number => {
+  let result: number = 0;
+  if (userData.userGames.length) {
+    userData.userGames.forEach((item: QuestionDataAnswer[]) => {
+      result = Math.max(item.length, result);
+    });
+  }
+  if (result < GENERATE_NUMBER_INDEX_QUESTION_COUNTRY && result) {
+    return result - 1;
+  }
+  if (result === GENERATE_NUMBER_INDEX_QUESTION_COUNTRY) {
+    return result;
+  }
+  return result;
 };

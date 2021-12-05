@@ -1,5 +1,5 @@
 import {
-  Countries, CurrentQuestion, QuestionDataAnswer, CredentialUser,
+  Countries, CurrentQuestion, QuestionDataAnswer, CredentialUser, ShowResultUser,
 } from "./index.interface";
 
 export interface QuestionState {
@@ -8,6 +8,8 @@ export interface QuestionState {
   counter: number;
   currentQuestion: CurrentQuestion;
   questionsResult: QuestionDataAnswer[];
-  credentialUser: CredentialUser;
+  credentialUser: CredentialUser[];
   userGames: QuestionDataAnswer[][];
+  users: ShowResultUser[];
+  isTwoPlayers: boolean;
 }

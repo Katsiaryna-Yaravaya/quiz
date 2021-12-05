@@ -21,6 +21,19 @@
   background: #cfacfc;
 }
 
+.button-delete {
+  cursor: pointer;
+  color: #1D355D;
+  background: red;
+  padding: 1rem;
+  position: absolute;
+  top: 8rem;
+  left: 19%;
+  border-radius: 50%;
+  font-size: 1.4rem;
+
+}
+
 .table {
   table-layout: fixed;
   border-collapse: collapse;

@@ -1,0 +1,22 @@
+.modal__box{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40rem;
+    background: antiquewhite;
+    border: 2px solid #000;
+    border-radius: 20px;
+    padding: 2rem;
+}
+
+.modal__header {
+    font-size: 3rem !important;
+    color: darkblue;
+    text-align: center;
+    margin-bottom: 2rem !important;
+}
+
+.modal__information {
+    font-size: 1.4rem !important;
+}

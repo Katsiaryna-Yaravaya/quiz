@@ -15,8 +15,9 @@ const EditProfile: FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { credentialUser } = useSelector((state: RootState) => state.data);
-  const { register, handleSubmit, formState: { errors } } = useForm({ mode: "onBlur", defaultValues: credentialUser });
-  const [user, setUser] = useState<CredentialUser>({ ...credentialUser });
+  const { register, handleSubmit, formState: { errors } } = useForm({ mode: "onBlur", defaultValues: credentialUser[0] });
+
+  const [user, setUser] = useState<CredentialUser>({ ...credentialUser[0] });
 
   useEffect(() => {
     dispatch(saveCredentialUser(user));

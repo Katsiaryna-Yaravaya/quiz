@@ -1,6 +1,12 @@
 .quiz-form_user-results{
     display: flex;
-    justify-content: end;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.quiz-form_user-results-player {
+    font-size: 2rem;
+    color: #191970;
 }
 
 .quiz-form_user-results-button{

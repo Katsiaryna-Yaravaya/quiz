@@ -5,13 +5,13 @@ import { RootState } from "../redux/root-reducer";
 import { MAIN } from "../constants/routs.constants";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-  const { credentialUser: { email, pass } } = useSelector((state: RootState) => state.data);
+  const { credentialUser } = useSelector((state: RootState) => state.data);
 
   return (
     <Route
       {...rest}
       render={(props) =>
-        (!email && !pass ? <Redirect to={MAIN} /> : <Component {...props} />)}
+        (!credentialUser.length ? <Redirect to={MAIN} /> : <Component {...props} />)}
     />
   );
 };

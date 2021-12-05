@@ -3,7 +3,8 @@ import {
   Countries,
   CredentialUser,
   CurrentQuestion,
-  QuestionDataAnswer,
+  QuestionDataAnswer, ShowResultUser,
+  UserName,
 } from "../../interface/index.interface";
 
 export const saveCountries = createAction<Countries[]>("[api] GET_COUNTRIES");
@@ -18,5 +19,9 @@ export const deleteResultUserQuestionDataAnswer = createAction("[GamesUser] DELE
 export const clearAllAnsweredQuestions = createAction("[Results] DELETE_DATA_INCLUDE_AFTER_RESULT");
 export const saveCredentialUser = createAction<CredentialUser>("[api] SAVE_CREDENTIAL_USER");
 export const saveUserGames = createAction<QuestionDataAnswer[][]>("[ShowResultsUsers] SAVE_USER_GAMES");
+export const saveUsers = createAction<ShowResultUser[]>("[ShowResultsUsers] SAVE_USERS");
 export const deleteUserGames = createAction("[ShowResultsUsers] DELETE_USER_GAMES");
 export const deleteUserInformation = createAction("[Header] DELETE_USER_INFORMATION");
+export const deleteUser = createAction<number | number[]>("[Dropdown] DELETE_USER");
+export const isMultiPlayer = createAction<boolean>("[MainGame] IS_MULTI_PLAYER");
+export const updateUserName = createAction<UserName>("[ShowResultsUsers] UPDATE_USER_NAME");

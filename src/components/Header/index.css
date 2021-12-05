@@ -29,7 +29,7 @@
     background: #191970;
 }
 
-.dropdown {
+.header__dropdown {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -43,7 +43,7 @@
     cursor: pointer;
 }
 
-.dropdown__button,
+.header__dropdown-button,
 .header__language-button {
     border: none;
     margin-bottom: 1rem;
@@ -57,5 +57,3 @@
     font-size: 2rem;
     color: #6a5acd;
 }
-
-

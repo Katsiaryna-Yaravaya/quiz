@@ -20,7 +20,7 @@ const Next: FC<Props> = ({ resetQuestionState }) => {
     countriesUserQuestions,
     counter,
     questionsResult,
-    credentialUser: { email },
+    credentialUser,
   } = useSelector((state: RootState) => state.data);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -30,7 +30,7 @@ const Next: FC<Props> = ({ resetQuestionState }) => {
       resetQuestionState();
       dispatch(saveCounter(counter + 1));
     } else {
-      updateUser(email, questionsResult);
+      credentialUser.map((item) => updateUser(item.email, questionsResult));
       history.push(RESULTS);
     }
   };

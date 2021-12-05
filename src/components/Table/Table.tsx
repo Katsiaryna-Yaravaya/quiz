@@ -1,43 +1,57 @@
-import { useTable } from "react-table";
-import { generatePath, useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { toast } from "react-toastify";
-import { saveUserGames } from "../../redux/country/actions";
+import { useTable, useSortBy, useRowSelect } from "react-table";
+import { IndeterminateCheckbox } from "../index";
 
-import { QuestionDataAnswer } from "../../interface/questionDataAnswer.interface";
-import { USER_GAMES } from "../../constants/routs.constants";
-
-const Table = ({ columns, data }) => {
+const Table = ({ columns, data, handleClickCheckBox }) => {
   const {
     getTableProps,
     getTableBodyProps,
     headerGroups,
     rows,
     prepareRow,
+    selectedFlatRows,
   } = useTable({
     columns,
     data,
+  },
+  useSortBy,
+  useRowSelect,
+  (hooks) => {
+    hooks.visibleColumns.push((columns) => [
+      {
+        id: "selection",
+        Header: ({ getToggleAllRowsSelectedProps }) => (
+            <div>
+              <IndeterminateCheckbox {...getToggleAllRowsSelectedProps()} />
+            </div>
+        ),
+        Cell: ({ row }) => (
+            <div>
+              <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
+            </div>
+        ),
+      },
+      ...columns,
+    ]);
   });
-  const history = useHistory();
-  const dispatch = useDispatch();
 
-  const handleClick = (userGames: QuestionDataAnswer[][], id: number): void => {
-    if (!userGames.length) {
-      toast("user has not played yet");
-    }
-    if (userGames.length) {
-      dispatch(saveUserGames(userGames));
-      history.push(generatePath(USER_GAMES, { id }));
-    }
-  };
+  handleClickCheckBox(selectedFlatRows);
 
   return (
-    <table {...getTableProps()} className="table">
+      <table {...getTableProps()} className="table">
       <thead>
       {headerGroups.map((headerGroup, idx) => (
         <tr className="table__row" key={idx} {...headerGroup.getHeaderGroupProps()}>
           {headerGroup.headers.map((column) => (
-            <th className="table__header" key={idx} {...column.getHeaderProps()}>{column.render("Header")}</th>
+            <th className="table__header" key={idx} {...column.getHeaderProps(column.getSortByToggleProps())}>
+              {column.render("Header")}
+                <span>
+                   {column.isSorted
+                     ? column.isSortedDesc
+                       ? " 🔽"
+                       : " 🔼"
+                     : ""}
+                </span>
+            </th>
           ))}
         </tr>
       ))}
@@ -47,17 +61,12 @@ const Table = ({ columns, data }) => {
         prepareRow(row);
         return (
           <tr className="table__row" key={i} {...row.getRowProps()}>
-            {row.cells.map((cell) => {
-              if (cell.column.Header === "Name") {
-                return <td key={i} {...cell.getCellProps()}><span className="table__link" onClick={() => handleClick(cell.row.original.userGames, cell.row.original.id)}>{cell.render("Cell")}</span></td>;
-              }
-              return <td key={i} {...cell.getCellProps()}>{cell.render("Cell")}</td>;
-            })}
+            {row.cells.map((cell) => <td key={i} {...cell.getCellProps()}>{cell.render("Cell")}</td>)}
           </tr>
         );
       })}
       </tbody>
-    </table>
+      </table>
   );
 };
 

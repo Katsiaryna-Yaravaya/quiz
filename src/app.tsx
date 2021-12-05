@@ -15,6 +15,7 @@ import {
   UserGameResult,
   Profile,
   EditProfile,
+  MainGame,
 } from "./components";
 
 import {
@@ -30,6 +31,7 @@ import {
   GAME_RESULT,
   USER_PROFILE,
   USER_PROFILE_EDIT,
+  MAIN_GAME,
 } from "./constants/routs.constants";
 
 import "react-toastify/dist/ReactToastify.css";
@@ -43,6 +45,7 @@ const App = () => {
             <ToastContainer position="top-center" autoClose={4000} />
             <div>
                 <Switch>
+                    <Route exact path={MAIN_GAME} component={MainGame} />
                     <Route exact path={MAIN} component={Main} />
                     <Route path={SIGN_UP_ROUT} component={SignUp} />
                     <Route path={RESULTS_USERS} component={ShowResultsUsers} />

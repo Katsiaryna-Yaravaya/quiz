@@ -22,11 +22,19 @@ export const getCountriesFlags = (name, flag) => (dispatch) => {
     });
 };
 
-export const logIn = (data) => (dispatch) => {
+export const logInPlayer = (data) => (dispatch) => {
   axios.post("http://localhost:3001/login", data)
     .then((res) => {
       dispatch(saveCredentialUser(res.data));
       history.push(COUNTRY_QUIZ_ROUT);
+    })
+    .catch((err) => toast(err.response.data));
+};
+
+export const logInTwoPlayers = (data) => (dispatch) => {
+  axios.post("http://localhost:3001/login", data)
+    .then((res) => {
+      dispatch(saveCredentialUser(res.data));
     })
     .catch((err) => toast(err.response.data));
 };

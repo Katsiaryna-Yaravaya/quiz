@@ -1,40 +1,64 @@
 import {
-  FC, useEffect, useMemo, useState,
+  FC, useEffect, useMemo, useRef, useState,
 } from "react";
-import { useHistory } from "react-router-dom";
+import { generatePath, useHistory } from "react-router-dom";
 
-import { getAllUser } from "../../core/api";
-import { Table } from "../index";
+import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { Dropdown, Table } from "../index";
+import { RootState } from "../../redux/root-reducer";
 
-import { MAIN } from "../../constants/routs.constants";
+import { getAlLUsers } from "./effects";
+
+import { MAIN, USER_GAMES } from "../../constants/routs.constants";
 import { ShowResultUser } from "../../interface/showResultUser";
-import { GENERATE_NUMBER_INDEX_QUESTION_COUNTRY } from "../../constants/general.constants";
+import { getHighersScore } from "../../core/utils";
 import { QuestionDataAnswer } from "../../interface/questionDataAnswer.interface";
+import {
+  deleteUser, saveUserGames, updateUserName,
+} from "../../redux/country/actions";
 
 import "./index.css";
 
 const ShowResultsUsers: FC = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
+  const { users } = useSelector((state: RootState) => state.data);
+  const deleteIds = useRef<number[] >([]);
   const [data, setData] = useState<ShowResultUser[]>([]);
+  const [isVisibleButtonDelete, setIsVisibleButtonDelete] = useState<boolean>(false);
 
   useEffect(() => {
-    getAllUser().then((dataServer) => setData(dataServer.data));
+    dispatch(getAlLUsers());
   }, []);
 
-  const getHighersScore = (userData: ShowResultUser): number => {
-    let result: number = 0;
-    if (userData.userGames.length) {
-      userData.userGames.forEach((item: QuestionDataAnswer[]) => {
-        result = Math.max(item.length, result);
-      });
+  useEffect(() => {
+    setData(users);
+  }, [users]);
+
+  const handleClick = (userGames: QuestionDataAnswer[][], id: number): void => {
+    if (!userGames.length) {
+      toast("user has not played yet");
     }
-    if (result < GENERATE_NUMBER_INDEX_QUESTION_COUNTRY && result) {
-      return result - 1;
+    if (userGames.length) {
+      dispatch(saveUserGames(userGames));
+      history.push(generatePath(USER_GAMES, { id }));
     }
-    if (result === GENERATE_NUMBER_INDEX_QUESTION_COUNTRY) {
-      return result;
-    }
-    return result;
+  };
+
+  const handleClickCheckBox = (selected) => {
+    if (selected.length) {
+      deleteIds.current = selected.map((item) => item.original.id);
+      setIsVisibleButtonDelete(true);
+    } else setIsVisibleButtonDelete(false);
+  };
+
+  const handleClickDelete = () => {
+    dispatch(deleteUser(deleteIds.current));
+  };
+
+  const handle = (data, row) => {
+    dispatch(updateUserName({ name: data.name, email: row.email }));
   };
 
   const columns = useMemo(
@@ -42,6 +66,8 @@ const ShowResultsUsers: FC = () => {
       {
         Header: "Name",
         accessor: "name",
+        Cell: ({ row }) => 
+          (<span className="table__link" onClick={() => handleClick(row.original.userGames, row.original.id)}>{row.original.name}</span>),
       },
       {
         Header: "Best result",
@@ -50,6 +76,13 @@ const ShowResultsUsers: FC = () => {
       {
         Header: "Number of games",
         accessor: "userGames.length",
+      },
+      {
+        Header: "DropDown",
+        accessor: "...",
+        Cell: ({ row }) => (
+          <Dropdown rowSelected={row} dataUser={handle} />
+        ),
       },
     ],
     [],
@@ -61,7 +94,9 @@ const ShowResultsUsers: FC = () => {
         <button className="back__button" onClick={() => history.push(MAIN)}>back</button>
       </div>
 
-      <Table columns={columns} data={data} />
+      <Table columns={columns} data={data} handleClickCheckBox={handleClickCheckBox} />
+
+      {isVisibleButtonDelete && <button className="button-delete" onClick={handleClickDelete}>delete</button>}
     </>
   );
 };

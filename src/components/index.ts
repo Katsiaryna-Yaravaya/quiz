@@ -18,3 +18,7 @@ export { default as EditProfile } from "./EditProfile/EditProfile";
 export { default as Profile } from "./Profile/Profile";
 export { default as DragNDrop } from "./DragNDrop/DragNDrop";
 export { default as Table } from "./Table/Table";
+export { default as IndeterminateCheckbox } from "./IndeterminateCheckbox/IndeterminateCheckbox";
+export { default as Dropdown } from "./Dropdown/Dropdown";
+export { default as ModalEdit } from "./ModalEdit/ModalEdit";
+export { default as MainGame } from "./MainGame/MainGame";

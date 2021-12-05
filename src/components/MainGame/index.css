@@ -1,0 +1,25 @@
+.main-game {
+    text-align: center;
+}
+
+.title{
+    text-transform: uppercase;
+    background: linear-gradient(to right, #22D628 0%, #DEC41B 83%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 10rem;
+}
+
+.text {
+    font-size: 3rem;
+    color: aquamarine;
+}
+
+.player{
+    padding: 2rem;
+    margin: 1.4rem;
+    border-radius: 10px;
+    font-size: 2rem;
+    background: linear-gradient(to right, #22D628 0%, #DEC41B 111%);
+    cursor: pointer;
+}

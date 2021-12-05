@@ -3,8 +3,8 @@ import { QuestionState } from "../../interface/questionState.interface";
 import {
   clearAllAnsweredQuestions,
   deleteData,
-  deleteResultUserQuestionDataAnswer,
-  deleteUserGames, deleteUserInformation,
+  deleteResultUserQuestionDataAnswer, deleteUser,
+  deleteUserGames, deleteUserInformation, isMultiPlayer,
   saveCounter,
   saveCountries,
   saveCountriesUserQuestions,
@@ -12,8 +12,8 @@ import {
   saveCurrentQuestion,
   saveQuestionDataAnswer,
   saveResultUserQuestionDataAnswer,
-  saveUserGames,
-  showGenerateAnswer,
+  saveUserGames, saveUsers,
+  showGenerateAnswer, updateUserName,
 } from "./actions";
 
 const INITIAL_STATE: QuestionState = {
@@ -27,11 +27,10 @@ const INITIAL_STATE: QuestionState = {
     allAnswers: [],
   },
   questionsResult: [],
-  credentialUser: {
-    email: "",
-    pass: "",
-  },
+  credentialUser: [],
   userGames: [],
+  users: [],
+  isTwoPlayers: false,
 };
 
 export const countryReducer = createReducer(INITIAL_STATE, {
@@ -56,96 +55,69 @@ export const countryReducer = createReducer(INITIAL_STATE, {
     state.currentQuestion.allAnswers = action.payload;
   },
 
-  [deleteData.type]: (state) => {
-    state.allServerDataCountries = [];
-    state.countriesUserQuestions = [];
-    state.counter = 1;
-    state.currentQuestion = {
-      correctAnswer: "",
-      flag: "",
-      capital: "",
-      allAnswers: [],
-    };
-    state.questionsResult = [];
-    state.userGames = [];
-  },
+  [deleteData.type]: (state) => ({
+    ...INITIAL_STATE,
+    credentialUser: state.credentialUser,
+  }),
 
   [saveQuestionDataAnswer.type]: (state, action) => {
     state.questionsResult.push(action.payload);
   },
 
-  [clearAllAnsweredQuestions.type]: (state) => {
-    state.allServerDataCountries = [];
-    state.countriesUserQuestions = [];
-    state.counter = 1;
-    state.currentQuestion = {
-      correctAnswer: "",
-      flag: "",
-      capital: "",
-      allAnswers: [],
-    };
-    state.userGames = [];
-  },
+  [clearAllAnsweredQuestions.type]: (state) => ({
+    ...INITIAL_STATE,
+    credentialUser: state.credentialUser,
+    questionsResult: state.questionsResult,
+  }),
 
   [saveCredentialUser.type]: (state, action) => {
-    state.credentialUser = { ...action.payload };
+    state.credentialUser.push(action.payload);
   },
 
   [saveUserGames.type]: (state, action) => {
     state.userGames = action.payload;
   },
+
+  [saveUsers.type]: (state, action) => {
+    state.users = action.payload;
+  },
+
+  [deleteUser.type]: (state, action) => {
+    const idsArray = action.payload.length ? [...action.payload] : [action.payload];
+    idsArray.forEach((id) => {
+      state.users = state.users.filter((user) => user.id !== id);
+    });
+  },
+
   [saveResultUserQuestionDataAnswer.type]: (state, action) => {
     state.questionsResult = action.payload;
   },
-  [deleteResultUserQuestionDataAnswer.type]: (state) => {
-    state.countriesUserQuestions = [];
-    state.allServerDataCountries = [];
-    state.counter = 1;
-    state.currentQuestion = {
-      correctAnswer: "",
-      flag: "",
-      capital: "",
-      allAnswers: [],
-    };
-    state.credentialUser = {
-      email: "",
-      pass: "",
-    };
-    state.userGames = [];
+
+  [deleteResultUserQuestionDataAnswer.type]: (state) => ({
+    ...INITIAL_STATE,
+    questionsResult: state.questionsResult,
+  }),
+
+  [deleteUserGames.type]: (state) => ({
+    ...INITIAL_STATE,
+    userGames: state.userGames,
+  }),
+
+  [deleteUserInformation.type]: (state) => INITIAL_STATE,
+
+  [isMultiPlayer.type]: (state, action) => {
+    state.isTwoPlayers = action.payload;
   },
-  [deleteUserGames.type]: (state) => {
-    state.allServerDataCountries = [];
-    state.countriesUserQuestions = [];
-    state.counter = 1;
-    state.questionsResult = [];
-    state.currentQuestion = {
-      correctAnswer: "",
-      flag: "",
-      capital: "",
-      allAnswers: [],
-    };
-    state.credentialUser = {
-      email: "",
-      pass: "",
-    };
+
+  [updateUserName.type]: (state, action) => {
+    state.users = state.users.map((user) => {
+      if (user.email === action.payload.email) {
+        user.name = action.payload.name;
+      }
+      return user;
+    });
   },
-  [deleteUserInformation.type]: (state) => {
-    state.allServerDataCountries = [];
-    state.countriesUserQuestions = [];
-    state.counter = 1;
-    state.questionsResult = [];
-    state.currentQuestion = {
-      correctAnswer: "",
-      flag: "",
-      capital: "",
-      allAnswers: [],
-    };
-    state.credentialUser = {
-      email: "",
-      pass: "",
-    };
-    state.userGames = [];
-  },
+
 });
 
 export default countryReducer;

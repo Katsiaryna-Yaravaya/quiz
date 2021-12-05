@@ -60,6 +60,9 @@
     "react-hooks/exhaustive-deps": "off",
     "jsx-a11y/no-noninteractive-element-interactions": "off",
     "import/no-cycle": "off",
-    "react/require-default-props": "off"
+    "react/require-default-props": "off",
+    "eslint-disable-next-line no-plusplus": "off",
+    "eslint-disable-next-line": "off",
+    "no-plusplus": "off"
   }
 }
