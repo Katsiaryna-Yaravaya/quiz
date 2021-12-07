@@ -1,5 +1,5 @@
 import { Countries } from "../interface/countries.interface";
-import { ShowResultUser } from "../interface/showResultUser";
+import { ShowResultUserInterface } from "../interface/showResultUser.interface";
 import { QuestionDataAnswer } from "../interface/questionDataAnswer.interface";
 import { GENERATE_NUMBER_INDEX_QUESTION_COUNTRY } from "../constants/general.constants";
 
@@ -28,7 +28,7 @@ export const generateCountries = (arrayFindDataObject, num: number, correctAnswe
   return [];
 };
 
-export const getHighersScore = (userData: ShowResultUser): number => {
+export const getHighersScore = (userData: ShowResultUserInterface): number => {
   let result: number = 0;
   if (userData.userGames.length) {
     userData.userGames.forEach((item: QuestionDataAnswer[]) => {

@@ -11,7 +11,7 @@ import { RootState } from "../../redux/root-reducer";
 import { getAlLUsers } from "./effects";
 
 import { MAIN, USER_GAMES } from "../../constants/routs.constants";
-import { ShowResultUser } from "../../interface/showResultUser";
+import { ShowResultUserInterface } from "../../interface/showResultUser.interface";
 import { getHighersScore } from "../../core/utils";
 import { QuestionDataAnswer } from "../../interface/questionDataAnswer.interface";
 import {
@@ -25,7 +25,7 @@ const ShowResultsUsers: FC = () => {
   const dispatch = useDispatch();
   const { users } = useSelector((state: RootState) => state.data);
   const deleteIds = useRef<number[] >([]);
-  const [data, setData] = useState<ShowResultUser[]>([]);
+  const [data, setData] = useState<ShowResultUserInterface[]>([]);
   const [isVisibleButtonDelete, setIsVisibleButtonDelete] = useState<boolean>(false);
 
   useEffect(() => {

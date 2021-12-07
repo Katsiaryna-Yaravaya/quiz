@@ -12,35 +12,35 @@ import {
 } from "../../constants/general.constants";
 import { Countries } from "../../interface/countries.interface";
 
-export const generateCountriesUserQuestions = () => (dispatch, getState) => {
+export const generateCountriesUserQuestions = (id) => (dispatch, getState) => {
   const { data } = getState();
   const generatedUserQuestionCountries: Countries[] = generateCountries(
     data.allServerDataCountries,
     GENERATE_NUMBER_INDEX_QUESTION_COUNTRY,
   );
-  dispatch(saveCountriesUserQuestions(generatedUserQuestionCountries));
+  dispatch(saveCountriesUserQuestions({ id, userQuestions: generatedUserQuestionCountries }));
 };
 
-export const choseCurrentQuestion = () => (dispatch, getState) => {
+export const choseCurrentQuestion = (id) => (dispatch, getState) => {
   const { data } = getState();
-  const currentUserQuestion: Countries = data.countriesUserQuestions[data.questionCounter - 1];
+  const currentUserQuestion: Countries = data.countriesUserQuestions[id][data.questionCounter - 1];
   if (currentUserQuestion) {
     const { name, capital, flag } = currentUserQuestion;
-    dispatch(saveCurrentQuestion({ correctAnswer: name, capital, flag }));
+    dispatch(saveCurrentQuestion({ id, questions: { correctAnswer: name, capital, flag } }));
   }
 };
 
-export const answerOptions = () => (dispatch, getState) => {
+export const answerOptions = (id) => (dispatch, getState) => {
   const { data } = getState();
   const generatedIncorrectAnswers: Countries[] = generateCountries(
     data.allServerDataCountries,
     GENERATE_NUMBER_INDEX_INCORRECT_ANSWER_COUNTRY,
-    data.currentQuestion.correctAnswer,
+    data.currentQuestion[id].correctAnswer,
   );
 
   const generateAnswers: string[] = generatedIncorrectAnswers
     .map((item) => item.name)
-    .concat(data.currentQuestion.correctAnswer)
+    .concat(data.currentQuestion[id].correctAnswer)
     .sort(() => 0.5 - Math.random());
-  dispatch(showGenerateAnswer(generateAnswers));
+  dispatch(showGenerateAnswer({ id, allAnswers: generateAnswers }));
 };

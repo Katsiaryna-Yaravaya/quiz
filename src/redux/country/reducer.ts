@@ -1,4 +1,4 @@
-import { createReducer } from "@reduxjs/toolkit";
+import { createReducer, createSelector } from "@reduxjs/toolkit";
 import { QuestionState } from "../../interface/questionState.interface";
 import {
   clearAllAnsweredQuestions,
@@ -16,17 +16,11 @@ import {
   showGenerateAnswer, updateUserName,
 } from "./actions";
 
-// { id: [], id: [] },
 const INITIAL_STATE: QuestionState = {
   allServerDataCountries: [],
-  countriesUserQuestions: [],
+  countriesUserQuestions: {},
   questionCounter: 1,
-  currentQuestion: {
-    correctAnswer: "",
-    flag: "",
-    capital: "",
-    allAnswers: [],
-  },
+  currentQuestion: {},
   questionsResult: [],
   credentialUser: [],
   userGames: [],
@@ -35,13 +29,12 @@ const INITIAL_STATE: QuestionState = {
 };
 
 export const countryReducer = createReducer(INITIAL_STATE, {
-
   [saveCountries.type]: (state, action) => {
     state.allServerDataCountries = action.payload;
   },
 
   [saveCountriesUserQuestions.type]: (state, action) => {
-    state.countriesUserQuestions = action.payload;
+    state.countriesUserQuestions[action.payload.id] = action.payload.userQuestions;
   },
 
   [saveCounter.type]: (state, action) => {
@@ -49,11 +42,11 @@ export const countryReducer = createReducer(INITIAL_STATE, {
   },
 
   [saveCurrentQuestion.type]: (state, action) => {
-    state.currentQuestion = action.payload;
+    state.currentQuestion[action.payload.id] = action.payload.questions;
   },
 
   [showGenerateAnswer.type]: (state, action) => {
-    state.currentQuestion.allAnswers = action.payload;
+    state.currentQuestion[action.payload.id].allAnswers = action.payload.allAnswers;
   },
 
   [deleteData.type]: (state) => ({

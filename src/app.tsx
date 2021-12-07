@@ -1,7 +1,6 @@
 import { Switch, Route, Redirect } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { useSelector } from "react-redux";
-import { RootState } from "./redux/root-reducer";
 import PrivateRoute from "./private-route/private-route";
 import {
   CountryQuiz,
@@ -17,6 +16,8 @@ import {
   EditProfile,
   MainGame,
 } from "./components";
+
+import { getStateData } from "./redux/country/selectors";
 
 import {
   COUNTRY_ROUT,
@@ -38,7 +39,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./index.css";
 
 const App = () => {
-  const { userGames } = useSelector((state: RootState) => state.data);
+  const { userGames } = useSelector(getStateData);
 
   return (
         <div className="app main">

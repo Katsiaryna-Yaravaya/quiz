@@ -1,15 +1,15 @@
 import {
-  Countries, CurrentQuestion, QuestionDataAnswer, CredentialUser, ShowResultUser,
+  Countries, QuestionDataAnswer, CredentialUser, ShowResultUserInterface, UsersId, UserIdQuestions,
 } from "./index.interface";
 
 export interface QuestionState {
   allServerDataCountries: Countries[];
-  countriesUserQuestions: Countries[];
+  countriesUserQuestions: UsersId;
   questionCounter: number;
-  currentQuestion: CurrentQuestion;
+  currentQuestion: UserIdQuestions;
   questionsResult: QuestionDataAnswer[];
   credentialUser: CredentialUser[];
   userGames: QuestionDataAnswer[][];
-  users: ShowResultUser[];
+  users: ShowResultUserInterface[];
   isTwoPlayers: boolean;
 }

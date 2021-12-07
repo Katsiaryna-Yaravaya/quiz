@@ -1,6 +1,6 @@
 import { QuestionDataAnswer } from "./questionDataAnswer.interface";
 
-export interface ShowResultUser {
+export interface ShowResultUserInterface {
   age: string;
   email: string;
   name: string;
