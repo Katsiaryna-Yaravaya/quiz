@@ -13,10 +13,11 @@ import "./index.css";
 
 const Quiz: FC = () => {
   const {
-    counter,
+    questionCounter,
     currentQuestion: { correctAnswer, capital, flag },
     allServerDataCountries,
     countriesUserQuestions,
+    isTwoPlayers,
   } = useSelector((state: RootState) => state.data);
   const dispatch = useDispatch();
 
@@ -26,7 +27,7 @@ const Quiz: FC = () => {
 
   useEffect(() => {
     dispatch(choseCurrentQuestion());
-  }, [countriesUserQuestions, counter, dispatch]);
+  }, [countriesUserQuestions, questionCounter, dispatch]);
 
   useEffect(() => {
     if (allServerDataCountries.length && correctAnswer) {

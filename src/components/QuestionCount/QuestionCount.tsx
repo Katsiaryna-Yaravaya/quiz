@@ -9,7 +9,7 @@ import { GENERATE_NUMBER_INDEX_QUESTION_COUNTRY } from "../../constants/general.
 import "./index.css";
 
 const QuestionCount: FC = () => {
-  const { countriesUserQuestions, counter, questionsResult } = useSelector((state: RootState) => state.data);
+  const { countriesUserQuestions, questionCounter, questionsResult } = useSelector((state: RootState) => state.data);
   const { t } = useTranslation();
 
   return (
@@ -17,7 +17,7 @@ const QuestionCount: FC = () => {
       {t("question")}
       <span>
         {" "}
-        {counter}
+        {questionCounter}
         {" "}
       </span>
       {t("of")}

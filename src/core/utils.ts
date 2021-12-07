@@ -3,7 +3,7 @@ import { ShowResultUser } from "../interface/showResultUser";
 import { QuestionDataAnswer } from "../interface/questionDataAnswer.interface";
 import { GENERATE_NUMBER_INDEX_QUESTION_COUNTRY } from "../constants/general.constants";
 
-export const generateIndexCountry = (arrayFindDataObject, num: number, correctAnswerName?: string): Countries[] => {
+export const generateCountries = (arrayFindDataObject, num: number, correctAnswerName?: string): Countries[] => {
   const uniqueNumber: number[] = [];
 
   while (uniqueNumber.length < num) {

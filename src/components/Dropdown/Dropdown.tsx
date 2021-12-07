@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { ModalEdit } from "../index";
 
 import "./index.css";
-import { deleteUser } from "../../redux/country/actions";
+import { deleteUsers } from "../../redux/country/actions";
 
 const Dropdown = ({ rowSelected, dataUser }) => {
   const dispatch = useDispatch();
@@ -14,10 +14,13 @@ const Dropdown = ({ rowSelected, dataUser }) => {
   const handleClickButton = () => setIsOpenButton((change) => !change);
 
   const handleRemove = (rowId) => {
-    dispatch(deleteUser(rowId));
+    dispatch(deleteUsers(rowId));
   };
 
-  const handleOpen = () => setIsOpenModal(true);
+  const handleOpenEdit = () => {
+    setIsOpenModal(true);
+    setIsOpenButton(false);
+  };
   const handleClose = () => setIsOpenModal(false);
 
   return (
@@ -28,7 +31,7 @@ const Dropdown = ({ rowSelected, dataUser }) => {
           isOpenButton && (
             <div className="dropdown__open-block">
               <button className="dropdown__remove dropdown__open" onClick={() => handleRemove(rowSelected.original.id)}>delete</button>
-              <button className="dropdown__edit dropdown__open" onClick={handleOpen}>edit</button>
+              <button className="dropdown__edit dropdown__open" onClick={handleOpenEdit}>edit</button>
             </div>
           )
         }

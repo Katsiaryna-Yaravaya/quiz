@@ -4,7 +4,7 @@ import {
   showGenerateAnswer,
 } from "../../redux/country/actions";
 
-import { generateIndexCountry } from "../../core/utils";
+import { generateCountries } from "../../core/utils";
 
 import {
   GENERATE_NUMBER_INDEX_INCORRECT_ANSWER_COUNTRY,
@@ -14,7 +14,7 @@ import { Countries } from "../../interface/countries.interface";
 
 export const generateCountriesUserQuestions = () => (dispatch, getState) => {
   const { data } = getState();
-  const generatedUserQuestionCountries: Countries[] = generateIndexCountry(
+  const generatedUserQuestionCountries: Countries[] = generateCountries(
     data.allServerDataCountries,
     GENERATE_NUMBER_INDEX_QUESTION_COUNTRY,
   );
@@ -23,7 +23,7 @@ export const generateCountriesUserQuestions = () => (dispatch, getState) => {
 
 export const choseCurrentQuestion = () => (dispatch, getState) => {
   const { data } = getState();
-  const currentUserQuestion: Countries = data.countriesUserQuestions[data.counter - 1];
+  const currentUserQuestion: Countries = data.countriesUserQuestions[data.questionCounter - 1];
   if (currentUserQuestion) {
     const { name, capital, flag } = currentUserQuestion;
     dispatch(saveCurrentQuestion({ correctAnswer: name, capital, flag }));
@@ -32,7 +32,7 @@ export const choseCurrentQuestion = () => (dispatch, getState) => {
 
 export const answerOptions = () => (dispatch, getState) => {
   const { data } = getState();
-  const generatedIncorrectAnswers: Countries[] = generateIndexCountry(
+  const generatedIncorrectAnswers: Countries[] = generateCountries(
     data.allServerDataCountries,
     GENERATE_NUMBER_INDEX_INCORRECT_ANSWER_COUNTRY,
     data.currentQuestion.correctAnswer,

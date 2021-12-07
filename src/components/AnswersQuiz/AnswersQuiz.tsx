@@ -15,7 +15,7 @@ import { generalIcon } from "../../asserts/imgIcon";
 import "./index.css";
 
 const AnswersQuiz: FC = () => {
-  const { questionsResult, counter } = useSelector((state: RootState) => state.data);
+  const { questionsResult, questionCounter } = useSelector((state: RootState) => state.data);
   const history = useHistory();
 
   return (
@@ -26,10 +26,10 @@ const AnswersQuiz: FC = () => {
           <img className="quiz-form__icon" src={generalIcon} alt="generalIcon" />
         </div>
         <QuestionCount />
-        <Question capital={questionsResult[counter - 1].currentQuestion.capital} flag={questionsResult[counter - 1].currentQuestion.flag} />
+        <Question capital={questionsResult[questionCounter - 1].currentQuestion.capital} flag={questionsResult[questionCounter - 1].currentQuestion.flag} />
 
         {questionsResult.map((itemResult: QuestionDataAnswer, idxResult: number) => {
-          if (idxResult === counter - 1) {
+          if (idxResult === questionCounter - 1) {
             return itemResult.currentQuestion.allAnswers?.map((item: string, idx: number) => (
               <AnswerItem numeric={idx + 1} key={idx} answerStyleStateValue={itemResult.answerState[idx]} answer={item} />
             ));

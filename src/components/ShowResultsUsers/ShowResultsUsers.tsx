@@ -15,7 +15,7 @@ import { ShowResultUser } from "../../interface/showResultUser";
 import { getHighersScore } from "../../core/utils";
 import { QuestionDataAnswer } from "../../interface/questionDataAnswer.interface";
 import {
-  deleteUser, saveUserGames, updateUserName,
+  deleteUsers, saveUserGames, updateUserName,
 } from "../../redux/country/actions";
 
 import "./index.css";
@@ -46,7 +46,7 @@ const ShowResultsUsers: FC = () => {
     }
   };
 
-  const handleClickCheckBox = (selected) => {
+  const changeSelectedRows = (selected) => {
     if (selected.length) {
       deleteIds.current = selected.map((item) => item.original.id);
       setIsVisibleButtonDelete(true);
@@ -54,7 +54,7 @@ const ShowResultsUsers: FC = () => {
   };
 
   const handleClickDelete = () => {
-    dispatch(deleteUser(deleteIds.current));
+    dispatch(deleteUsers(deleteIds.current));
   };
 
   const handle = (data, row) => {
@@ -66,7 +66,7 @@ const ShowResultsUsers: FC = () => {
       {
         Header: "Name",
         accessor: "name",
-        Cell: ({ row }) => 
+        Cell: ({ row }) =>
           (<span className="table__link" onClick={() => handleClick(row.original.userGames, row.original.id)}>{row.original.name}</span>),
       },
       {
@@ -94,7 +94,7 @@ const ShowResultsUsers: FC = () => {
         <button className="back__button" onClick={() => history.push(MAIN)}>back</button>
       </div>
 
-      <Table columns={columns} data={data} handleClickCheckBox={handleClickCheckBox} />
+      <Table columns={columns} data={data} changeSelectedRows={changeSelectedRows} />
 
       {isVisibleButtonDelete && <button className="button-delete" onClick={handleClickDelete}>delete</button>}
     </>

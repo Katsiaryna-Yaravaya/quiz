@@ -14,10 +14,10 @@ const Profile = () => {
   const history = useHistory();
   const { t } = useTranslation();
   const { credentialUser } = useSelector((state: RootState) => state.data);
-  const { img } = credentialUser;
+  const { img } = credentialUser[0];
 
   // Todo convert the object to an array of objects with a pair (key: value)
-  const result = Object.entries(credentialUser).map((entry) => ({ [entry[0]]: entry[1] }));
+  const result = Object.entries(credentialUser[0]).map((entry) => ({ [entry[0]]: entry[1] }));
 
   return (
     <form className="quiz-form">

@@ -15,7 +15,7 @@ const Results: FC = () => {
   const {
     questionsResult,
     countriesUserQuestions,
-    counter,
+    questionCounter,
   } = useSelector((state: RootState) => state.data);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -32,7 +32,7 @@ const Results: FC = () => {
 
   const showUserCorrectAnswers = (): number | undefined => {
     if (countriesUserQuestions.length) {
-      return counter === GENERATE_NUMBER_INDEX_QUESTION_COUNTRY ? counter : counter - 1;
+      return questionCounter === GENERATE_NUMBER_INDEX_QUESTION_COUNTRY ? questionCounter : questionCounter - 1;
     }
     if (questionsResult.length) {
       return questionsResult.length - 1;

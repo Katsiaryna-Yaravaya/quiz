@@ -5,7 +5,7 @@ import {
 export interface QuestionState {
   allServerDataCountries: Countries[];
   countriesUserQuestions: Countries[];
-  counter: number;
+  questionCounter: number;
   currentQuestion: CurrentQuestion;
   questionsResult: QuestionDataAnswer[];
   credentialUser: CredentialUser[];

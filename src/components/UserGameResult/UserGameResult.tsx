@@ -19,7 +19,7 @@ import "./index.css";
 const UserGameResult: FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const { questionsResult, counter } = useSelector((state: RootState) => state.data);
+  const { questionsResult, questionCounter } = useSelector((state: RootState) => state.data);
   const { id } = useParams<HookParams>();
 
   const handleClick = (): void => {
@@ -38,10 +38,10 @@ const UserGameResult: FC = () => {
           <img className="quiz-form__icon" src={generalIcon} alt="generalIcon" />
         </div>
         <QuestionCount />
-        <Question capital={questionsResult[counter - 1].currentQuestion.capital} flag={questionsResult[counter - 1].currentQuestion.flag} />
+        <Question capital={questionsResult[questionCounter - 1].currentQuestion.capital} flag={questionsResult[questionCounter - 1].currentQuestion.flag} />
 
         {questionsResult.map((itemResult: QuestionDataAnswer, idxResult: number) => {
-          if (idxResult === counter - 1) {
+          if (idxResult === questionCounter - 1) {
             return itemResult.currentQuestion.allAnswers?.map((item, idx) => (
               <AnswerItem
                 numeric={idx + 1}

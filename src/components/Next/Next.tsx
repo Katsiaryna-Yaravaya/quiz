@@ -18,7 +18,7 @@ interface Props {
 const Next: FC<Props> = ({ resetQuestionState }) => {
   const {
     countriesUserQuestions,
-    counter,
+    questionCounter,
     questionsResult,
     credentialUser,
   } = useSelector((state: RootState) => state.data);
@@ -26,9 +26,9 @@ const Next: FC<Props> = ({ resetQuestionState }) => {
   const history = useHistory();
 
   const handleNextQuestionButton = (): void => {
-    if (countriesUserQuestions && counter < countriesUserQuestions.length) {
+    if (countriesUserQuestions && questionCounter < countriesUserQuestions.length) {
       resetQuestionState();
-      dispatch(saveCounter(counter + 1));
+      dispatch(saveCounter(questionCounter + 1));
     } else {
       credentialUser.map((item) => updateUser(item.email, questionsResult));
       history.push(RESULTS);

@@ -4,5 +4,6 @@ export interface CredentialUser {
   name?: string,
   surname?: string,
   age?: string,
-  img?:string,
+  id?: number,
+  img?: string,
 }

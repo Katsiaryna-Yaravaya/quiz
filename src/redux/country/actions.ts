@@ -22,6 +22,6 @@ export const saveUserGames = createAction<QuestionDataAnswer[][]>("[ShowResultsU
 export const saveUsers = createAction<ShowResultUser[]>("[ShowResultsUsers] SAVE_USERS");
 export const deleteUserGames = createAction("[ShowResultsUsers] DELETE_USER_GAMES");
 export const deleteUserInformation = createAction("[Header] DELETE_USER_INFORMATION");
-export const deleteUser = createAction<number | number[]>("[Dropdown] DELETE_USER");
+export const deleteUsers = createAction<number | number[]>("[Dropdown] DELETE_USER");
 export const isMultiPlayer = createAction<boolean>("[MainGame] IS_MULTI_PLAYER");
 export const updateUserName = createAction<UserName>("[ShowResultsUsers] UPDATE_USER_NAME");

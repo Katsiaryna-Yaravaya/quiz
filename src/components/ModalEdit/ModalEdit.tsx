@@ -21,6 +21,7 @@ const ModalEdit = ({
 
   const onSubmit = (data): void => {
     dataUser(data, rowSelected.original);
+    handleClose();
   };
 
   return (

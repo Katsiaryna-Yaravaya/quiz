@@ -63,6 +63,7 @@
     "react/require-default-props": "off",
     "eslint-disable-next-line no-plusplus": "off",
     "eslint-disable-next-line": "off",
-    "no-plusplus": "off"
+    "no-plusplus": "off",
+    "react/display-name": "off"
   }
 }

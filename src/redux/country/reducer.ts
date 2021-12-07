@@ -3,7 +3,7 @@ import { QuestionState } from "../../interface/questionState.interface";
 import {
   clearAllAnsweredQuestions,
   deleteData,
-  deleteResultUserQuestionDataAnswer, deleteUser,
+  deleteResultUserQuestionDataAnswer, deleteUsers,
   deleteUserGames, deleteUserInformation, isMultiPlayer,
   saveCounter,
   saveCountries,
@@ -16,10 +16,11 @@ import {
   showGenerateAnswer, updateUserName,
 } from "./actions";
 
+// { id: [], id: [] },
 const INITIAL_STATE: QuestionState = {
   allServerDataCountries: [],
   countriesUserQuestions: [],
-  counter: 1,
+  questionCounter: 1,
   currentQuestion: {
     correctAnswer: "",
     flag: "",
@@ -44,7 +45,7 @@ export const countryReducer = createReducer(INITIAL_STATE, {
   },
 
   [saveCounter.type]: (state, action) => {
-    state.counter = action.payload;
+    state.questionCounter = action.payload;
   },
 
   [saveCurrentQuestion.type]: (state, action) => {
@@ -82,7 +83,7 @@ export const countryReducer = createReducer(INITIAL_STATE, {
     state.users = action.payload;
   },
 
-  [deleteUser.type]: (state, action) => {
+  [deleteUsers.type]: (state, action) => {
     const idsArray = action.payload.length ? [...action.payload] : [action.payload];
     idsArray.forEach((id) => {
       state.users = state.users.filter((user) => user.id !== id);
@@ -103,7 +104,7 @@ export const countryReducer = createReducer(INITIAL_STATE, {
     userGames: state.userGames,
   }),
 
-  [deleteUserInformation.type]: (state) => INITIAL_STATE,
+  [deleteUserInformation.type]: () => INITIAL_STATE,
 
   [isMultiPlayer.type]: (state, action) => {
     state.isTwoPlayers = action.payload;
@@ -117,7 +118,6 @@ export const countryReducer = createReducer(INITIAL_STATE, {
       return user;
     });
   },
-
 });
 
 export default countryReducer;

@@ -1,7 +1,7 @@
 import { useTable, useSortBy, useRowSelect } from "react-table";
 import { IndeterminateCheckbox } from "../index";
 
-const Table = ({ columns, data, handleClickCheckBox }) => {
+const Table = ({ columns, data, changeSelectedRows }) => {
   const {
     getTableProps,
     getTableBodyProps,
@@ -34,7 +34,7 @@ const Table = ({ columns, data, handleClickCheckBox }) => {
     ]);
   });
 
-  handleClickCheckBox(selectedFlatRows);
+  changeSelectedRows(selectedFlatRows);
 
   return (
       <table {...getTableProps()} className="table">
