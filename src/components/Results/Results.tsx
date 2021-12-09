@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { deleteData, clearAllAnsweredQuestions } from "../../redux/country/actions";
-import { RootState } from "../../redux/root-reducer";
+import { getStateData, usersName } from "../../redux/country/selectors";
 import { COUNTRY_QUIZ_ROUT, SHOW_RESULT_QUIZ_ROUT } from "../../constants/routs.constants";
 import { GENERATE_NUMBER_INDEX_QUESTION_COUNTRY } from "../../constants/general.constants";
 
@@ -16,7 +16,11 @@ const Results: FC = () => {
     questionsResult,
     countriesUserQuestions,
     questionCounter,
-  } = useSelector((state: RootState) => state.data);
+    isTwoPlayers,
+    credentialUser,
+    currentUserIndex,
+  } = useSelector(getStateData);
+  const name = useSelector(usersName);
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -31,7 +35,7 @@ const Results: FC = () => {
   };
 
   const showUserCorrectAnswers = (): number | undefined => {
-    if (countriesUserQuestions.length) {
+    if (countriesUserQuestions[credentialUser[currentUserIndex].id]?.length) {
       return questionCounter === GENERATE_NUMBER_INDEX_QUESTION_COUNTRY ? questionCounter : questionCounter - 1;
     }
     if (questionsResult.length) {
@@ -46,7 +50,8 @@ const Results: FC = () => {
         <div className="quiz-form__result">
           <img className="quiz-form__result-icon" src={imgResults} alt="imgResults" />
         </div>
-        <h2 className="quiz-form__title">Results</h2>
+        <h2 className="quiz-form__title">Result</h2>
+        <p className="quiz-form__name">{isTwoPlayers ? `Lost: ${name}` : null}</p>
         <p className="quiz-form__text">
           You got
           <span className="quiz-form__text-count">

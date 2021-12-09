@@ -1,4 +1,6 @@
 import {
+  currentUserIndex,
+  saveCounter,
   saveCountriesUserQuestions,
   saveCurrentQuestion,
   showGenerateAnswer,
@@ -43,4 +45,15 @@ export const answerOptions = (id) => (dispatch, getState) => {
     .concat(data.currentQuestion[id].correctAnswer)
     .sort(() => 0.5 - Math.random());
   dispatch(showGenerateAnswer({ id, allAnswers: generateAnswers }));
+};
+
+export const changeUserId = (ids) => (dispatch, getState) => {
+  const { data } = getState();
+
+  if (data.currentUserIndex === ids.length - 1) {
+    dispatch(saveCounter(data.questionCounter + 1));
+    dispatch(currentUserIndex(0));
+  } else {
+    dispatch(currentUserIndex(data.currentUserIndex + 1));
+  }
 };

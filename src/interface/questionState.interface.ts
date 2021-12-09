@@ -12,4 +12,5 @@ export interface QuestionState {
   userGames: QuestionDataAnswer[][];
   users: ShowResultUserInterface[];
   isTwoPlayers: boolean;
+  currentUserIndex: number;
 }

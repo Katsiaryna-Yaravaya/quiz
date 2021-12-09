@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { Redirect, Route } from "react-router-dom";
 import { RootState } from "../redux/root-reducer";
 
-import { MAIN } from "../constants/routs.constants";
+import { MAIN_GAME } from "../constants/routs.constants";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const { credentialUser } = useSelector((state: RootState) => state.data);
@@ -11,7 +11,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={(props) =>
-        (!credentialUser.length ? <Redirect to={MAIN} /> : <Component {...props} />)}
+        (!credentialUser.length ? <Redirect to={MAIN_GAME} /> : <Component {...props} />)}
     />
   );
 };

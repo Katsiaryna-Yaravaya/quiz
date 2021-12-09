@@ -1,11 +1,13 @@
 import { FC, useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { usersId, getStateData } from "../../redux/country/selectors";
+import { usersId, getStateData, usersName } from "../../redux/country/selectors";
 
 import { Answers, Question, QuestionCount } from "../index";
 
-import { answerOptions, choseCurrentQuestion, generateCountriesUserQuestions } from "./effects";
+import {
+  answerOptions, changeUserId, choseCurrentQuestion, generateCountriesUserQuestions, 
+} from "./effects";
 
 import { generalIcon } from "../../asserts/imgIcon";
 
@@ -17,16 +19,16 @@ const Quiz: FC = () => {
     currentQuestion,
     allServerDataCountries,
     countriesUserQuestions,
+    currentUserIndex,
   } = useSelector(getStateData);
   const ids = useSelector(usersId);
+  const name = useSelector(usersName);
   const dispatch = useDispatch();
-  const [currentUserId, setCurrentUserId] = useState<number | null>(null);
+  const [currentUserId, setCurrentUserId] = useState<number>(currentUserIndex);
 
   useEffect(() => {
-    if (!currentUserId && ids.length) {
-      setCurrentUserId(ids[0]);
-    }
-  }, []);
+    setCurrentUserId(ids[currentUserIndex]);
+  }, [currentUserIndex]);
 
   useEffect(() => {
     ids.map((id) => dispatch(generateCountriesUserQuestions(id)));
@@ -45,9 +47,7 @@ const Quiz: FC = () => {
   }, [allServerDataCountries.length, currentQuestion[ids[0]]?.correctAnswer, dispatch]);
 
   const selectedId = () => {
-    if (currentUserId === ids[0]) {
-      setCurrentUserId(ids[1]);
-    } else setCurrentUserId(ids[0]);
+    dispatch(changeUserId(ids));
   };
 
   return (
@@ -58,7 +58,11 @@ const Quiz: FC = () => {
           <img className="quiz-form__icon" src={generalIcon} alt="generalIcon" />
         </div>
 
-        <QuestionCount id={currentUserId} />
+        <div className="header__form">
+          <QuestionCount id={currentUserId} />
+          <h2 className="header__form-name">{name}</h2>
+        </div>
+
         <Question capital={currentUserId ? currentQuestion[currentUserId]?.capital : null} flag={currentUserId ? currentQuestion[currentUserId]?.flag : null} />
         <Answers id={currentUserId} selectedId={selectedId} />
       </form>

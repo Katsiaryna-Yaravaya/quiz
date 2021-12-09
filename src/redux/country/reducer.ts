@@ -13,7 +13,7 @@ import {
   saveQuestionDataAnswer,
   saveResultUserQuestionDataAnswer,
   saveUserGames, saveUsers,
-  showGenerateAnswer, updateUserName,
+  showGenerateAnswer, updateUserName, currentUserIndex,
 } from "./actions";
 
 const INITIAL_STATE: QuestionState = {
@@ -26,9 +26,14 @@ const INITIAL_STATE: QuestionState = {
   userGames: [],
   users: [],
   isTwoPlayers: false,
+  currentUserIndex: 0,
 };
 
 export const countryReducer = createReducer(INITIAL_STATE, {
+  [currentUserIndex.type]: (state, action) => {
+    state.currentUserIndex = action.payload;
+  },
+
   [saveCountries.type]: (state, action) => {
     state.allServerDataCountries = action.payload;
   },
@@ -52,6 +57,7 @@ export const countryReducer = createReducer(INITIAL_STATE, {
   [deleteData.type]: (state) => ({
     ...INITIAL_STATE,
     credentialUser: state.credentialUser,
+    isTwoPlayers: state.isTwoPlayers,
   }),
 
   [saveQuestionDataAnswer.type]: (state, action) => {
@@ -62,6 +68,7 @@ export const countryReducer = createReducer(INITIAL_STATE, {
     ...INITIAL_STATE,
     credentialUser: state.credentialUser,
     questionsResult: state.questionsResult,
+    isTwoPlayers: state.isTwoPlayers,
   }),
 
   [saveCredentialUser.type]: (state, action) => {

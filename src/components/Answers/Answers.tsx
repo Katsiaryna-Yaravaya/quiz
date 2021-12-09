@@ -13,7 +13,7 @@ import { updateUser } from "../../core/api";
 import { usersId, getStateData } from "../../redux/country/selectors";
 
 interface Props {
-  id: number | null;
+  id: number;
   selectedId: () => void;
 }
 

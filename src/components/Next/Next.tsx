@@ -12,29 +12,20 @@ import "./index.css";
 
 interface Props {
   resetQuestionState: () => void;
-  id: number | null;
+  id: number;
   selectedId: () => void;
 }
 
 const Next: FC<Props> = ({ resetQuestionState, selectedId, id }) => {
   const {
-    countriesUserQuestions, questionCounter, questionsResult, credentialUser, isTwoPlayers,
+    countriesUserQuestions, questionCounter, questionsResult, credentialUser,
   } = useSelector(getStateData);
-  const ids = useSelector(usersId);
-  const dispatch = useDispatch();
   const history = useHistory();
 
   const handleNextQuestionButton = (): void => {
     if (countriesUserQuestions[id] && questionCounter < countriesUserQuestions[id].length) {
       resetQuestionState();
-      selectedId(id);
-      if (isTwoPlayers) {
-        if (id === ids[1]) {
-          dispatch(saveCounter(questionCounter + 1));
-        }
-      } else {
-        dispatch(saveCounter(questionCounter + 1));
-      }
+      selectedId();
     } else {
       credentialUser.map((item) => updateUser(item.email, questionsResult));
       history.push(RESULTS);

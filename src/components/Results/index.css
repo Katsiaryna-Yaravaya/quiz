@@ -16,6 +16,12 @@
     text-align: center;
 }
 
+.quiz-form__name{
+    font-size: 1.8rem;
+    text-align: center;
+    color: red;
+}
+
 .quiz-form__text {
     color: #1D355D;
     text-align: center;

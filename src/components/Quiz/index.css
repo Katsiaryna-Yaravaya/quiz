@@ -17,6 +17,16 @@
     height: 11.6rem;
 }
 
+.header__form {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.header__form-name {
+    color: #6A5ACD;
+}
+
 @media (max-width: 58rem) {
     .quiz-form {
         height: 50rem;
