@@ -10,15 +10,19 @@ import { AnswerItem, Next } from "../index";
 import { AnswerEnumState } from "../../enum/AnswerState.enum";
 import { RESULTS } from "../../constants/routs.constants";
 import { updateUser } from "../../core/api";
+import { usersId, getStateData } from "../../redux/country/selectors";
 
-const Answers: FC = () => {
+interface Props {
+  id: number | null;
+  selectedId: () => void;
+}
+
+const Answers: FC<Props> = ({ id, selectedId }) => {
   const {
-    currentQuestion: {
-      allAnswers, correctAnswer, capital, flag,
-    },
+    currentQuestion,
     credentialUser,
     questionsResult,
-  } = useSelector((state: RootState) => state.data);
+  } = useSelector(getStateData);
   const history = useHistory();
   const dispatch = useDispatch();
   const [isNextButtonVisible, setIsNextButtonVisible] = useState<boolean>(false);
@@ -26,8 +30,8 @@ const Answers: FC = () => {
   const [answerStyleStateValue, setAnswerStyleStateValue] = useState<AnswerEnumState[]>([]);
 
   useEffect(() => {
-    allAnswers && setAnswerStyleStateValue(Array(allAnswers.length).fill(AnswerEnumState.DEFAULT, 0, allAnswers.length));
-  }, [allAnswers]);
+    currentQuestion[id]?.allAnswers && setAnswerStyleStateValue(Array(currentQuestion[id]?.allAnswers.length).fill(AnswerEnumState.DEFAULT, 0, currentQuestion[id]?.allAnswers.length));
+  }, [currentQuestion[id]?.allAnswers]);
 
   const resetQuestionState = (): void => {
     setIsSelectedAnswer(false);
@@ -37,9 +41,7 @@ const Answers: FC = () => {
   const saveCard = (resultState: AnswerEnumState[]): void => {
     saveReduxQuestionDataAnswer({
       answerState: resultState,
-      currentQuestion: {
-        allAnswers, correctAnswer, capital, flag,
-      },
+      currentQuestion: currentQuestion[id],
     });
   };
 
@@ -50,16 +52,16 @@ const Answers: FC = () => {
   const defineAnswersState = (answer: string): AnswerEnumState[] => {
     const resultState: AnswerEnumState[] = [];
 
-    allAnswers?.forEach((answerItem: string) => {
-      const currentAnswerState: AnswerEnumState = answerItem === correctAnswer
+    currentQuestion[id].allAnswers?.forEach((answerItem: string) => {
+      const currentAnswerState: AnswerEnumState = answerItem === currentQuestion[id].correctAnswer
         ? AnswerEnumState.CORRECT
-        : answerItem === answer && answer !== correctAnswer
+        : answerItem === answer && answer !== currentQuestion[id].correctAnswer
           ? AnswerEnumState.INCORRECT
           : AnswerEnumState.DISABLED;
 
       resultState.push(currentAnswerState);
 
-      if (currentAnswerState === AnswerEnumState.CORRECT && answer === correctAnswer) {
+      if (currentAnswerState === AnswerEnumState.CORRECT && answer === currentQuestion[id].correctAnswer) {
         setIsNextButtonVisible(true);
       }
 
@@ -84,9 +86,7 @@ const Answers: FC = () => {
           ...questionsResult,
           {
             answerState: newAnswersState,
-            currentQuestion: {
-              allAnswers, correctAnswer, capital, flag,
-            },
+            currentQuestion: currentQuestion[id],
           },
         ]);
       });
@@ -98,7 +98,7 @@ const Answers: FC = () => {
 
   return (
         <>
-            {!!allAnswers && allAnswers.map((answer: string, idx: number) => (
+            {!!currentQuestion[id]?.allAnswers && currentQuestion[id]?.allAnswers.map((answer: string, idx: number) => (
                 <AnswerItem
                   key={idx}
                   numeric={idx + 1}
@@ -108,7 +108,7 @@ const Answers: FC = () => {
                 />
             ))}
 
-            {isNextButtonVisible ? (<Next resetQuestionState={resetQuestionState} />) : null}
+            {isNextButtonVisible ? (<Next id={id} selectedId={selectedId} resetQuestionState={resetQuestionState} />) : null}
         </>
   );
 };

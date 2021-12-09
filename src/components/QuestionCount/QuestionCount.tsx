@@ -2,15 +2,18 @@ import { FC } from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 
-import { getId, getStateData } from "../../redux/country/selectors";
+import { usersId, getStateData } from "../../redux/country/selectors";
 
 import { GENERATE_NUMBER_INDEX_QUESTION_COUNTRY } from "../../constants/general.constants";
 
 import "./index.css";
 
-const QuestionCount: FC = () => {
+interface Props {
+  id: number | null;
+}
+
+const QuestionCount: FC<Props> = ({ id }) => {
   const { countriesUserQuestions, questionCounter, questionsResult } = useSelector(getStateData);
-  // const ids = useSelector(getId);
   const { t } = useTranslation();
 
   return (
@@ -24,7 +27,7 @@ const QuestionCount: FC = () => {
       {t("of")}
       <span>
         {" "}
-        {countriesUserQuestions.length
+        {countriesUserQuestions[id]?.length
           ? GENERATE_NUMBER_INDEX_QUESTION_COUNTRY
           : questionsResult.length}
       </span>

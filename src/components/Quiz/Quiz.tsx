@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { getId, getStateData } from "../../redux/country/selectors";
+import { usersId, getStateData } from "../../redux/country/selectors";
 
 import { Answers, Question, QuestionCount } from "../index";
 
@@ -18,8 +18,15 @@ const Quiz: FC = () => {
     allServerDataCountries,
     countriesUserQuestions,
   } = useSelector(getStateData);
-  const ids = useSelector(getId);
+  const ids = useSelector(usersId);
   const dispatch = useDispatch();
+  const [currentUserId, setCurrentUserId] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (!currentUserId && ids.length) {
+      setCurrentUserId(ids[0]);
+    }
+  }, []);
 
   useEffect(() => {
     ids.map((id) => dispatch(generateCountriesUserQuestions(id)));
@@ -37,6 +44,12 @@ const Quiz: FC = () => {
     });
   }, [allServerDataCountries.length, currentQuestion[ids[0]]?.correctAnswer, dispatch]);
 
+  const selectedId = () => {
+    if (currentUserId === ids[0]) {
+      setCurrentUserId(ids[1]);
+    } else setCurrentUserId(ids[0]);
+  };
+
   return (
     <>
       <h1 className="main__title">COUNTRY QUIZ</h1>
@@ -45,9 +58,9 @@ const Quiz: FC = () => {
           <img className="quiz-form__icon" src={generalIcon} alt="generalIcon" />
         </div>
 
-         {/* <QuestionCount /> */}
-         {/* <Question capital={capital} flag={flag} /> */}
-         {/* <Answers /> */}
+        <QuestionCount id={currentUserId} />
+        <Question capital={currentUserId ? currentQuestion[currentUserId]?.capital : null} flag={currentUserId ? currentQuestion[currentUserId]?.flag : null} />
+        <Answers id={currentUserId} selectedId={selectedId} />
       </form>
     </>
   );

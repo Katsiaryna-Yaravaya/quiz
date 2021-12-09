@@ -1,8 +1,7 @@
 import { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-
-import { RootState } from "../../redux/root-reducer";
+import { usersId, getStateData } from "../../redux/country/selectors";
 
 import { updateUser } from "../../core/api";
 
@@ -13,22 +12,29 @@ import "./index.css";
 
 interface Props {
   resetQuestionState: () => void;
+  id: number | null;
+  selectedId: () => void;
 }
 
-const Next: FC<Props> = ({ resetQuestionState }) => {
+const Next: FC<Props> = ({ resetQuestionState, selectedId, id }) => {
   const {
-    countriesUserQuestions,
-    questionCounter,
-    questionsResult,
-    credentialUser,
-  } = useSelector((state: RootState) => state.data);
+    countriesUserQuestions, questionCounter, questionsResult, credentialUser, isTwoPlayers,
+  } = useSelector(getStateData);
+  const ids = useSelector(usersId);
   const dispatch = useDispatch();
   const history = useHistory();
 
   const handleNextQuestionButton = (): void => {
-    if (countriesUserQuestions && questionCounter < countriesUserQuestions.length) {
+    if (countriesUserQuestions[id] && questionCounter < countriesUserQuestions[id].length) {
       resetQuestionState();
-      dispatch(saveCounter(questionCounter + 1));
+      selectedId(id);
+      if (isTwoPlayers) {
+        if (id === ids[1]) {
+          dispatch(saveCounter(questionCounter + 1));
+        }
+      } else {
+        dispatch(saveCounter(questionCounter + 1));
+      }
     } else {
       credentialUser.map((item) => updateUser(item.email, questionsResult));
       history.push(RESULTS);
